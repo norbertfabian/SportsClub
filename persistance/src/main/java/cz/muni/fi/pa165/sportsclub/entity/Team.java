@@ -4,8 +4,9 @@ import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 
-import com.sun.istack.internal.NotNull;
+
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by norbert on 24.10.16.
@@ -22,14 +23,10 @@ public class Team {
     @Column(unique = true)
     private String name;
 
-//    TODO: Remove Transient annotation and uncomment OneToMany annotation when Player class is implemented
-//    @OneToMany(mappedBy = "team")
-    @Transient
+    @OneToMany(mappedBy = "team")
     private List<Membership> memberships;
 
-//    TODO: Remove Transient annotation and uncomment OneToMany annotation when Player class is implemented
-//    @OneToMany(mappedBy = "team")
-    @Transient
+    @OneToMany(mappedBy = "team")
     private List<TeamManager> teamManagers;
 
     private AgeGroup ageGroup;

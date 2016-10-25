@@ -88,6 +88,15 @@
       <artifactId>logback-classic</artifactId>
       <version>0.9.24</version>
     </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+    <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>1.1.0.Final</version>
+    </dependency>
+
+
 
     <!-- TESTS -->
 
@@ -120,7 +129,12 @@
       <version>8.5.5</version>
       <scope>provided</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>1.10.19</version>
+      <type>jar</type>
+    </dependency>
   </dependencies>
   <build>
     <finalName>sportsclub</finalName>
