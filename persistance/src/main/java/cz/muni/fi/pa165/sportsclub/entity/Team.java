@@ -23,12 +23,14 @@ public class Team {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "team")
+//    @OneToMany(mappedBy = "team")
+    @Transient
     private List<Membership> memberships;
 
-    @OneToMany(mappedBy = "team")
-    private List<TeamManager> teamManagers;
+    @ManyToOne
+    private TeamManager teamManager;
 
+    @Enumerated
     private AgeGroup ageGroup;
 
     public long getId() {
@@ -47,6 +49,14 @@ public class Team {
         this.name = name;
     }
 
+    public TeamManager getTeamManager() {
+        return teamManager;
+    }
+
+    public void setTeamManager(TeamManager teamManager) {
+        this.teamManager = teamManager;
+    }
+
     public AgeGroup getAgeGroup() {
         return ageGroup;
     }
@@ -63,20 +73,8 @@ public class Team {
         //TODO: implement when Membership ID exists
     }
 
-    public void addTeamManager(TeamManager teamManager) {
-        teamManagers.add(teamManager);
-    }
-
-    public void removeTeamManager(long id) {
-        //TODO: implement when TeamManager ID exists
-    }
-
     public List<Membership> getMemberships() {
         return Collections.unmodifiableList(memberships);
-    }
-
-    public List<TeamManager> getTeamManagers() {
-        return Collections.unmodifiableList(teamManagers);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class TeamManager {
     @NotNull
     private String contact;
     
-    @OneToMany
+    @OneToMany(mappedBy = "teamManager")
     private List<Team> teams;
 
     public Long getId() {

@@ -1,8 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
-
-import java.sql.Date;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -37,7 +36,8 @@ public class Player {
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
     
-    @OneToMany
+//    @OneToMany
+    @Transient
     private Set<Membership> memberships;
 
     public Long getId() {
