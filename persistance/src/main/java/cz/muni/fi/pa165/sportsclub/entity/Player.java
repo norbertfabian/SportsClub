@@ -5,15 +5,9 @@ import java.util.Date;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author novaakpatrik
+ * Created by patrik on 25.10.16.
  */
 @Entity
 public class Player {
@@ -36,7 +30,7 @@ public class Player {
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
     
-//    @OneToMany
+    @OneToMany
     @Transient
     private Set<Membership> memberships;
 
