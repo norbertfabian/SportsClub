@@ -19,7 +19,7 @@ team of a higher age group). That implies a player can be listed on multiple tea
 
 ##1st Milestone Project Requirements
 
-1st milestone project done: Mon 31.10. 23:59
+1st milestone project done: Mon 31.10. 23:59  
 1st milestone evaluation submitted: Thur 3. 11. 15:59
 
 ###Project Requirements:
