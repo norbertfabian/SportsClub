@@ -13,9 +13,10 @@ height, weight and date of birth. Each team has a roster of players listing
 their jersey numbers on the team. It is important that each player's age 
 group matches the age group of the team, but a player is allowed to be on 
 the roster of a team one level above (i.e. a younger player can be on the 
-team of a higher age group). That implies a player can be listed on multiple 
-team rosters.
+team of a higher age group). That implies a player can be listed on multiple team rosters.
+
 --------------------------------
+
 ##1st Milestone Project Requirements
 
 1st milestone project done: Mon 31.10. 23:59
