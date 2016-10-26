@@ -99,7 +99,11 @@ public class Player {
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        int hash = 7;
+        hash = 89 * hash + getFirstName().hashCode();
+        hash = 89 * hash + getLastName().hashCode();
+        hash = 89 * hash + getDateOfBirth().hashCode();
+        return hash;
     }
 
     @Override
@@ -107,14 +111,19 @@ public class Player {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
         if (!(obj instanceof Player)) {
             return false;
         }
         final Player other = (Player) obj;
-        return getId().equals(other.getId());
+        
+        if (!getFirstName().equals(other.getFirstName())) {
+            return false;
+        }
+        if (!getLastName().equals(other.getLastName())) {
+            return false;
+        }
+        return getDateOfBirth().equals(other.getDateOfBirth());
     }
+    
     
 }
