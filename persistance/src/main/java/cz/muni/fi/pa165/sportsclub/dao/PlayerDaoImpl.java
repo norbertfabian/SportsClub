@@ -10,6 +10,8 @@ import javax.persistence.PersistenceContext;
 /**
  * Created by patrik on 26.10.16.
  */
+@Repository
+@Transactional
 public class PlayerDaoImpl implements PlayerDao{
 
     @PersistenceContext

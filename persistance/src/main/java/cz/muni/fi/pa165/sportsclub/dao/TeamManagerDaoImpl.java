@@ -6,6 +6,9 @@
 package cz.muni.fi.pa165.sportsclub.dao;
 
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -13,6 +16,8 @@ import javax.persistence.PersistenceContext;
  *
  * @author Marian Sulgan
  */
+@Repository
+@Transactional
 public class TeamManagerDaoImpl implements TeamManagerDao {
     
     @PersistenceContext

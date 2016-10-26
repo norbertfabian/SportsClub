@@ -6,7 +6,6 @@ import cz.muni.fi.pa165.sportsclub.entity.Team;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -26,7 +25,7 @@ import javax.inject.Inject;
 @Transactional
 public class TeamRepositoryTest extends AbstractTestNGSpringContextTests {
 
-    @Autowired
+    @Inject
     private TeamDao teamDao;
 
     @Test

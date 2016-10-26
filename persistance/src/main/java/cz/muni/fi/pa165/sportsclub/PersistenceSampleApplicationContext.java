@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.sportsclub;
 /**
  * Created by norbert on 24.10.16.
  */
-import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDaoImpl;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;

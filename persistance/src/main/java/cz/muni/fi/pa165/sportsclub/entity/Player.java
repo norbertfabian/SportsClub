@@ -31,7 +31,6 @@ public class Player {
     private Date dateOfBirth;
     
     @OneToMany
-    @Transient
     private Set<Membership> memberships;
 
     public Long getId() {
