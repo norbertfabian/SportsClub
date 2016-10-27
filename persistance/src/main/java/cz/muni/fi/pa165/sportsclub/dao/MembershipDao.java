@@ -19,7 +19,4 @@ public interface MembershipDao {
 
     Membership findById(Long id);
 
-    List<Membership> findByPlayerId(Long id);
-
-    List<Membership> findByTeamId(Long id);
 }
