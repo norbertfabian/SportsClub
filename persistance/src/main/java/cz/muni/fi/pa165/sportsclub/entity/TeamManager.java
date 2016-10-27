@@ -9,14 +9,14 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by MarianSulgan on 25.10.16.
+ *
+ * @author Marian Sulgan
  */
 
 @Entity
 public class TeamManager {
 
     @Id
-    // TODO: check reasonablity of strategy
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
@@ -36,79 +36,105 @@ public class TeamManager {
         return id;
     }
 
-    public void setId(Long id) {
+    public TeamManager setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public TeamManager setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public TeamManager setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public String getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public TeamManager setContact(String contact) {
         this.contact = contact;
+        return this;
     }
 
     public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
-    }
+    // Not necessary, in fact only addTeam will be used in reality
+//    public void setTeams(List<Team> teams) {
+//        this.teams = teams;
+//    }
     
-    public void addTeam(Team team) {
+    public TeamManager addTeam(Team team) {
         this.teams.add(team);
+        return this;
     }
     
     /* TODO: consider having only one remove function - removeTeam(long id) - 
        following norbert's convention?
     */
     
-    public void removeTeam(Team team) {
+    public TeamManager removeTeam(Team team) {
         this.teams.remove(team);
+        return this;
     }
     
-    public void removeTeamById(long id) {
+    public TeamManager removeTeamById(long id) {
         for (Team t: this.teams) {
             if (t.getId() == id) {
                 this.teams.remove(this.teams.indexOf(t));
-                return;
+                break;
             }
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) 
-            return true;
-        
-        if (!(o instanceof TeamManager)) 
-            return false;
-
-        TeamManager tm = (TeamManager) o;
-
-        return getId().equals(tm.getId());
+        return this;
     }
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        int hash = 7;
+        hash = 67 * hash + getName().hashCode();
+        hash = 67 * hash + getAddress().hashCode();
+        hash = 67 * hash + getContact().hashCode();
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        
+        if (obj == null) {
+            return false;
+        }
+        
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final TeamManager other = (TeamManager) obj;
+        
+        if (!getName().equals(other.getName()))
+            return false;
+        
+        if (!getAddress().equals(other.getAddress()))
+            return false;
+        
+        return (getContact().equals(other.getContact()));
+    }
+
+
     
 }
