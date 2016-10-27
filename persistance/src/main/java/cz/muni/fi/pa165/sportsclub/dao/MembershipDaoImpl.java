@@ -39,15 +39,4 @@ public class MembershipDaoImpl implements MembershipDao {
         return em.find(Membership.class, id);
     }
 
-    public List<Membership> findByPlayerId(Long id) {
-        return em.createQuery("SELECT m FROM Membership m WHERE m.player.id = :player", Membership.class)
-            .setParameter("player", id)
-            .getResultList();
-    }
-
-    public List<Membership> findByTeamId(Long id) {
-        return em.createQuery("SELECT m FROM Membership m WHERE m.team.id = :team", Membership.class)
-            .setParameter("team", id)
-            .getResultList();
-    }
 }
