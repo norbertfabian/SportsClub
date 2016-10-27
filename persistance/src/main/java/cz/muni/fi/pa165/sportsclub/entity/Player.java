@@ -2,43 +2,48 @@ package cz.muni.fi.pa165.sportsclub.entity;
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import javax.validation.constraints.Past;
 
 /**
- *
- * @author novaakpatrik
+ * Created by patrik on 25.10.16.
  */
 @Entity
 public class Player {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
     private String firstName;
-    
+
     @NotNull
     private String lastName;
-    
+
     private int height;
-    
+
     private int weight;
-    
+
     @NotNull
     @Temporal(TemporalType.DATE)
+    @Past
     private Date dateOfBirth;
-    
-//    @OneToMany
+
+    @OneToMany
     @Transient
-    private Set<Membership> memberships;
+    private Set<Membership> memberships = new HashSet<Membership>();
+
+    public Player() {
+   
+    }
+
+    public Player(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
@@ -98,14 +103,21 @@ public class Player {
         return Collections.unmodifiableSet(memberships);
     }
 
-    public Player setMemberships(Set<Membership> memberships) {
-        this.memberships = memberships;
-        return this;
+    public void addMembership(Membership membership) {
+        memberships.add(membership);
+    }
+
+    public void removeMembership(Membership membership) {
+        memberships.remove(membership);
     }
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        int hash = 7;
+        hash = 89 * hash + getFirstName().hashCode();
+        hash = 89 * hash + getLastName().hashCode();
+        hash = 89 * hash + getDateOfBirth().hashCode();
+        return hash;
     }
 
     @Override
@@ -113,14 +125,18 @@ public class Player {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
         if (!(obj instanceof Player)) {
             return false;
         }
         final Player other = (Player) obj;
-        return getId().equals(other.getId());
+
+        if (!getFirstName().equals(other.getFirstName())) {
+            return false;
+        }
+        if (!getLastName().equals(other.getLastName())) {
+            return false;
+        }
+        return getDateOfBirth().equals(other.getDateOfBirth());
     }
-    
+
 }

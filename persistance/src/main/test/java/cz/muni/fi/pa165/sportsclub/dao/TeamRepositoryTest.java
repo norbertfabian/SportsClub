@@ -1,20 +1,19 @@
 package cz.muni.fi.pa165.sportsclub.dao;
 
 
+import javax.inject.Inject;
+
 import cz.muni.fi.pa165.sportsclub.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
 
 /**
  * Created by norbert on 24.10.16.
@@ -26,7 +25,7 @@ import javax.inject.Inject;
 @Transactional
 public class TeamRepositoryTest extends AbstractTestNGSpringContextTests {
 
-    @Autowired
+    @Inject
     private TeamDao teamDao;
 
     @Test

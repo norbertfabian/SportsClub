@@ -10,22 +10,23 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>cz.muni.fi.pa165</groupId>
   <artifactId>persistance</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>sportsclub Maven Webapp</name>
-  <url>http://maven.apache.org</url>
 
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.1.0.Final</version>
+    </dependency>
+
+    <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>5.2.3.Final</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/hibernate/hibernate-entitymanager -->
     <dependency>
       <groupId>hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
@@ -34,47 +35,15 @@
 
     <dependency>
       <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-annotations</artifactId>
-      <version>3.5.6-Final</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>5.2.4.Final</version>
     </dependency>
 
-    <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-      <version>1.0.0.GA</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+    <!-- Spring -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>4.3.3.RELEASE</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>3.0.5.RELEASE</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derby</artifactId>
-      <version>10.12.1.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>4.2.8.RELEASE</version>
     </dependency>
 
     <dependency>
@@ -83,84 +52,51 @@
       <version>1.10.4.RELEASE</version>
     </dependency>
 
+    <!-- Logging -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
       <version>2.7</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
       <version>2.7</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>1.6.0</version>
-    </dependency>
 
-    <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.1.7</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-    <dependency>
-        <groupId>javax.validation</groupId>
-        <artifactId>validation-api</artifactId>
-        <version>1.1.0.Final</version>
-    </dependency>
-
     <!-- TESTS -->
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>6.9.13.6</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>3.1.0.RELEASE</version>
     </dependency>
 
-    <!-- TOMCAT -->
+    <!-- Database -->
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derby</artifactId>
+      <version>10.12.1.1</version>
+    </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-servlet-api</artifactId>
-      <version>8.5.5</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>1.10.19</version>
-      <type>jar</type>
-    </dependency>
   </dependencies>
-  <build>
-    <finalName>sportsclub</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-      </plugin>
-    </plugins>
-  </build>
 </project>
