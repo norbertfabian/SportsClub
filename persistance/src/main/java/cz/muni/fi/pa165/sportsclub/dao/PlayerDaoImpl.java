@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * Created by patrik on 26.10.16.
+ * DAO implementation of {@link PlayerDao} for DB.
+ * 
+ * @author Patrik Novák
  */
 @Repository
 @Transactional
