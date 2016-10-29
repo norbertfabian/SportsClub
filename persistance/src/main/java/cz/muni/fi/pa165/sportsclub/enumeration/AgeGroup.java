@@ -9,8 +9,8 @@ import java.util.GregorianCalendar;
  * Created by norbert on 24.10.16.
  */
 public enum AgeGroup {
-    A (new GregorianCalendar(1990, 1, 1).getTime(), new GregorianCalendar(1991, 12, 31).getTime()),
-    B (new GregorianCalendar(1992, 1, 1).getTime(), new GregorianCalendar(1993, 12, 31).getTime());
+    A (new GregorianCalendar(1990, 0, 0).getTime(), new GregorianCalendar(1991, 11, 30).getTime()),
+    B (new GregorianCalendar(1992, 0, 0).getTime(), new GregorianCalendar(1993, 11, 30).getTime());
 
     private final Date from;
     private final Date to;
@@ -21,11 +21,11 @@ public enum AgeGroup {
     }
 
     public Date getFrom() {
-        return from;
+        return new Date(from.getTime());
     }
 
     public Date getTo() {
-        return to;
+        return new Date(to.getTime());
     }
 
     /**

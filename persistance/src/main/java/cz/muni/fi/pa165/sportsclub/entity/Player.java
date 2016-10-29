@@ -158,7 +158,7 @@ public class Player {
      * @return birth date of Player.
      */
     public Date getDateOfBirth() {
-        return dateOfBirth;
+        return new Date(dateOfBirth.getTime());
     }
 
     /**
@@ -168,7 +168,11 @@ public class Player {
      * @return this Player.
      */
     public Player setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        if (dateOfBirth == null) {
+            this.dateOfBirth = null;
+            return this;
+        }
+        this.dateOfBirth = new Date(dateOfBirth.getTime());
         return this;
     }
 
@@ -202,9 +206,9 @@ public class Player {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(getFirstName());
-        hash = 89 * hash + Objects.hashCode(getLastName());
-        hash = 89 * hash + Objects.hashCode(getDateOfBirth());
+        hash = 89 * hash + Objects.hashCode(firstName);
+        hash = 89 * hash + Objects.hashCode(lastName);
+        hash = 89 * hash + Objects.hashCode(dateOfBirth);
         return hash;
     }
 
