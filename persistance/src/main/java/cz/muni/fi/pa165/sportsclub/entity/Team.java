@@ -39,32 +39,36 @@ public class Team {
         return id;
     }
 
-    public void setId(long id) {
+    public Team setId(long id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Team setName(String name) {
         this.name = name;
+        return this;
     }
 
     public TeamManager getTeamManager() {
         return teamManager;
     }
 
-    public void setTeamManager(TeamManager teamManager) {
+    public Team setTeamManager(TeamManager teamManager) {
         this.teamManager = teamManager;
+        return this;
     }
 
     public AgeGroup getAgeGroup() {
         return ageGroup;
     }
 
-    public void setAgeGroup(AgeGroup ageGroup) {
+    public Team setAgeGroup(AgeGroup ageGroup) {
         this.ageGroup = ageGroup;
+        return this;
     }
 
     public void addMembership(Membership membership) {
