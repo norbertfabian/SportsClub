@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -70,7 +71,7 @@ public class TeamManager {
     }
 
     public List<Team> getTeams() {
-        return teams;
+        return Collections.unmodifiableList(teams);
     }
 
     // Not necessary, in fact only addTeam will be used in reality
