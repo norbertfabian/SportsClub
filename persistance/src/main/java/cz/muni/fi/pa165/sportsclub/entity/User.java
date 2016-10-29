@@ -99,7 +99,7 @@ public class User {
         if (obj == null)
             return false;
         
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof User)) {
             return false;
         }
 
