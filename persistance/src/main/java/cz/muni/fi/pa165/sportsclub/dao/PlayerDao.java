@@ -2,10 +2,12 @@ package cz.muni.fi.pa165.sportsclub.dao;
 
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 
+import java.util.List;
+
 /**
  * DAO interface prescribing operations for Player entity.
  * 
- * @author Patrik Novák
+ * @author Patrik Novï¿½k
  */
 public interface PlayerDao {
     
@@ -38,4 +40,11 @@ public interface PlayerDao {
      * @return Player with provided ID.
      */
     Player findById(Long id);
+
+    /**
+     * Returns all Players from the database.
+     *
+     * @return List of Players.
+     */
+    List<Player> findAll();
 }

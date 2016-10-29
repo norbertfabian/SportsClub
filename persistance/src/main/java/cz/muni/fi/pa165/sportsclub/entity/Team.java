@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.sportsclub.entity;
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
@@ -90,6 +91,6 @@ public class Team {
 
     @Override
     public int hashCode() {
-        return getName().hashCode();
+        return Objects.hashCode(name);
     }
 }

@@ -6,11 +6,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.List;
 
 /**
  * DAO implementation of {@link PlayerDao} for DB.
  * 
- * @author Patrik Novák
+ * @author Patrik Novï¿½k
  */
 @Repository
 @Transactional
@@ -33,6 +35,11 @@ public class PlayerDaoImpl implements PlayerDao{
 
     public Player findById(Long id) {
         return em.find(Player.class, id);
+    }
+
+    public List<Player> findAll() {
+        CriteriaQuery<Player> criteria = em.getCriteriaBuilder().createQuery(Player.class);
+        return em.createQuery(criteria.select(criteria.from(Player.class))).getResultList();
     }
     
 }

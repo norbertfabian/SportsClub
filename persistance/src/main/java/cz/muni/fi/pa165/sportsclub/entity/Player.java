@@ -1,9 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -11,14 +8,14 @@ import javax.validation.constraints.*;
  * Entity class which represents a player in SportsClub. Player can be a member
  * of multiple teams, which is represented via {@link Membership}
  * 
- * @author Patrik Novák
+ * @author Patrik Novï¿½k
  */
 @Entity
 public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @NotNull
     private String firstName;
@@ -60,7 +57,7 @@ public class Player {
      * 
      * @return ID of Player.
      */
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -70,7 +67,7 @@ public class Player {
      * @param id to be set.
      * @return this Player.
      */
-    public Player setId(Long id) {
+    public Player setId(long id) {
         this.id = id;
         return this;
     }
@@ -205,9 +202,9 @@ public class Player {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + getFirstName().hashCode();
-        hash = 89 * hash + getLastName().hashCode();
-        hash = 89 * hash + getDateOfBirth().hashCode();
+        hash = 89 * hash + Objects.hashCode(getFirstName());
+        hash = 89 * hash + Objects.hashCode(getLastName());
+        hash = 89 * hash + Objects.hashCode(getDateOfBirth());
         return hash;
     }
 

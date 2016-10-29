@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.sportsclub.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 /**
  *
@@ -87,7 +88,7 @@ public class User {
     
     @Override
     public int hashCode() {
-        return this.getUsername().hashCode();
+        return Objects.hashCode(username);
     }
     
     @Override

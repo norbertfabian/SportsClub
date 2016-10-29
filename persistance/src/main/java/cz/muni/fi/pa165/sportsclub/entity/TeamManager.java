@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -104,9 +105,9 @@ public class TeamManager {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 67 * hash + getName().hashCode();
-        hash = 67 * hash + getAddress().hashCode();
-        hash = 67 * hash + getContact().hashCode();
+        hash = 67 * hash + Objects.hashCode(getName());
+        hash = 67 * hash + Objects.hashCode(getAddress());
+        hash = 67 * hash + Objects.hashCode(getContact());
         return hash;
     }
 
