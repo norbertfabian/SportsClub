@@ -1,9 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
 import javax.persistence.*;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
@@ -24,15 +22,18 @@ public class Team {
     @Column(unique = true)
     private String name;
 
-//    @OneToMany(mappedBy = "team")
-    @Transient
-    private List<Membership> memberships;
+    @OneToMany(mappedBy = "team")
+    private Set<Membership> memberships;
 
     @ManyToOne
     private TeamManager teamManager;
 
     @Enumerated
     private AgeGroup ageGroup;
+
+    public Team() {
+        this.memberships = new HashSet<>();
+    }
 
     public long getId() {
         return id;
@@ -70,12 +71,12 @@ public class Team {
         memberships.add(membership);
     }
 
-    public void removeMemebership(long id) {
-        //TODO: implement when Membership ID exists
+    public void removeMemebership(Membership membership) {
+        memberships.remove(membership);
     }
 
-    public List<Membership> getMemberships() {
-        return Collections.unmodifiableList(memberships);
+    public Set<Membership> getMemberships() {
+        return Collections.unmodifiableSet(memberships);
     }
 
     @Override
