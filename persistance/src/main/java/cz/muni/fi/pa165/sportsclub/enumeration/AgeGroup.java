@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
- * Created by norbert on 24.10.16.
+ * @author Fabian Norbert
  */
 public enum AgeGroup {
     A (new GregorianCalendar(1990, 0, 0).getTime(), new GregorianCalendar(1991, 11, 30).getTime()),

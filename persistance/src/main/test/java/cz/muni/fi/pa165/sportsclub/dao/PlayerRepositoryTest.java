@@ -16,7 +16,7 @@ import javax.inject.Inject;
 import javax.validation.ConstraintViolationException;
 
 /**
- * Created by norbert on 29.10.16.
+ * @author Fabian Norbert
  */
 
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)

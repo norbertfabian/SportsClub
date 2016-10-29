@@ -8,7 +8,7 @@ import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by norbert on 24.10.16.
+ * @author Fabian Norbert
  */
 
 @Entity

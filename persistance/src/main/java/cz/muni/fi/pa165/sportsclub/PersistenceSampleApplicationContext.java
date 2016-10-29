@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.sportsclub;
 
 /**
- * Created by norbert on 24.10.16.
+ * @author Fabian Norbert
  */
 import javax.sql.DataSource;
 

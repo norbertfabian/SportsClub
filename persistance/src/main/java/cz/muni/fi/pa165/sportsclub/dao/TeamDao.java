@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.sportsclub.entity.Team;
 /**
  * DAO interface prescribing operations for Player entity.
  *
- * Created by norbert on 24.10.16.
+ * @author Fabian Norbert
  */
 public interface TeamDao {
 
