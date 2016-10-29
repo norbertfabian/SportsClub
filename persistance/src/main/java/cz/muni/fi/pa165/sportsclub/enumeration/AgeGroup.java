@@ -7,10 +7,10 @@ import java.util.Date;
  * @author Fabian Norbert
  */
 public enum AgeGroup {
-    JUVENILE(5, 10),
-    JUNIOR(10, 15),
-    YOUTH(15, 20),
-    ADULT(20, 35),
+    JUVENILE(5, 9),
+    JUNIOR(10, 14),
+    YOUTH(15, 19),
+    ADULT(20, 34),
     SENIOR(35, Integer.MAX_VALUE);
 
     private final long YEAR = 31536000000L;
