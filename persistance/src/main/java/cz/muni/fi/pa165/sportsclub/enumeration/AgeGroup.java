@@ -1,45 +1,70 @@
 package cz.muni.fi.pa165.sportsclub.enumeration;
 
-import cz.muni.fi.pa165.sportsclub.entity.Player;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * @author Fabian Norbert
  */
 public enum AgeGroup {
-    A (new GregorianCalendar(1990, 0, 0).getTime(), new GregorianCalendar(1991, 11, 30).getTime()),
-    B (new GregorianCalendar(1992, 0, 0).getTime(), new GregorianCalendar(1993, 11, 30).getTime());
+    JUVENILE(5, 10),
+    JUNIOR(10, 15),
+    YOUTH(15, 20),
+    ADULT(20, 35),
+    SENIOR(35, Integer.MAX_VALUE);
 
-    private final Date from;
-    private final Date to;
+    private final long YEAR = 31536000000L;
 
-    AgeGroup(Date from, Date to) {
-        this.from = from;
-        this.to = to;
+    private final int ageFrom;
+    private final int ageTo;
+    private final Date yearFrom;
+    private final Date yearTo;
+    
+
+    AgeGroup(int ageFrom, int ageTo) {
+        this.ageFrom = ageFrom;
+        this.ageTo = ageTo;
+        this.yearFrom = new Date(yearAgoFromNow(ageTo));
+        this.yearTo = new Date(yearAgoFromNow(ageFrom));
     }
 
-    public Date getFrom() {
-        return new Date(from.getTime());
+    public int getAgeFrom() {
+        return ageFrom;
     }
 
-    public Date getTo() {
-        return new Date(to.getTime());
+    public int getAgeTo() {
+        return ageTo;
+    }
+    
+    public Date getYearFrom() {
+        return yearFrom;
     }
 
+    public Date getYearTo() {
+        return yearTo;
+    }
+
+    
     /**
-     * Returns an AgeGroup according to the players birthday.
-     * If no group exists for the specified player's birthday, null is returned.
+     * Returns an AgeGroup according to the players birthday. If no group exists
+     * for the specified player's birthday, null is returned.
      *
-     * @param player Player to whom return the AgeGroup.
-     * @return AgeGroup for the players birthday or null if no group exists for the player's birthday.
+     * @param dateOfBirth
+     * @return AgeGroup for the players birthday or null if no group exists for
+     * the player's birthday.
      */
-    public AgeGroup getAgeGroup(Player player) {
-        for(AgeGroup group : AgeGroup.values()) {
-            if(player.getDateOfBirth().after(from) && player.getDateOfBirth().before(to))
+    public static AgeGroup getAgeGroup(Date dateOfBirth) {
+        for (AgeGroup group : AgeGroup.values()) {
+            if (dateOfBirth.after(group.getYearFrom()) && dateOfBirth.before(group.yearTo)) {
                 return group;
+            }
         }
         return null;
+    }
+
+    private long yearAgoFromNow(int years) {
+        long now = System.currentTimeMillis();
+        long currentYear = now - (now % YEAR);
+        return currentYear - years * YEAR;
     }
 }
