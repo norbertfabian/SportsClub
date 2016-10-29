@@ -121,7 +121,7 @@ public class TeamManager {
             return false;
         }
         
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof TeamManager)) {
             return false;
         }
         
@@ -135,7 +135,5 @@ public class TeamManager {
         
         return (getContact().equals(other.getContact()));
     }
-
-
     
 }
