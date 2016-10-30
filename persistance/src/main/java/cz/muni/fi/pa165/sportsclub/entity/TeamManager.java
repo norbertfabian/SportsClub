@@ -21,16 +21,16 @@ public class TeamManager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
     private String name;
-    
+
     @NotNull
     private String address;
-    
+
     @NotNull
     private String contact;
-    
+
     @OneToMany(mappedBy = "teamManager")
     private List<Team> teams;
 
@@ -75,24 +75,24 @@ public class TeamManager {
     }
 
     // Not necessary, in fact only addTeam will be used in reality
-//    public void setTeams(List<Team> teams) {
-//        this.teams = teams;
-//    }
-    
+    //    public void setTeams(List<Team> teams) {
+    //        this.teams = teams;
+    //    }
+
     public TeamManager addTeam(Team team) {
         this.teams.add(team);
         return this;
     }
-    
-    /* TODO: consider having only one remove function - removeTeam(long id) - 
+
+    /* TODO: consider having only one remove function - removeTeam(long id) -
        following norbert's convention?
     */
-    
+
     public TeamManager removeTeam(Team team) {
         this.teams.remove(team);
         return this;
     }
-    
+
     public TeamManager removeTeamById(long id) {
         for (Team t: this.teams) {
             if (t.getId() == id) {
@@ -117,24 +117,24 @@ public class TeamManager {
         if (this == obj) {
             return true;
         }
-        
+
         if (obj == null) {
             return false;
         }
-        
+
         if (!(obj instanceof TeamManager)) {
             return false;
         }
-        
+
         final TeamManager other = (TeamManager) obj;
-        
+
         if (!getName().equals(other.getName()))
             return false;
-        
+
         if (!getAddress().equals(other.getAddress()))
             return false;
-        
+
         return (getContact().equals(other.getContact()));
     }
-    
+
 }

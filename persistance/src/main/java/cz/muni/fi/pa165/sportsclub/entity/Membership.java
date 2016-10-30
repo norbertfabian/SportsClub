@@ -32,32 +32,36 @@ public class Membership {
         return id;
     }
 
-    public void setId(Long id) {
+    public Membership setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public Team getTeam() {
         return team;
     }
 
-    public void setTeam(Team team) {
+    public Membership setTeam(Team team) {
         this.team = team;
+        return this;
     }
 
     public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public Membership setPlayer(Player player) {
         this.player = player;
+        return this;
     }
 
     public int getJerseyNumber() {
         return jerseyNumber;
     }
 
-    public void setJerseyNumber(int jerseyNumber) {
+    public Membership setJerseyNumber(int jerseyNumber) {
         this.jerseyNumber = jerseyNumber;
+        return this;
     }
 
     @Override

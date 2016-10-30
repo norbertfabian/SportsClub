@@ -1,12 +1,12 @@
 package cz.muni.fi.pa165.sportsclub;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
-
-import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by jsmolar on 10/27/16.
