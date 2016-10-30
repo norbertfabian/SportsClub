@@ -24,7 +24,9 @@ public class AgeGroupTest {
                 {34, +1, AgeGroup.ADULT},
                 {35, -1, AgeGroup.SENIOR},
                 {99, +1, AgeGroup.SENIOR},
-                {3, -1, null},
+                {3, -1, AgeGroup.NOT_CATEGORIZED},
+                {10000, -1, AgeGroup.NOT_CATEGORIZED},
+                {-300, -1, AgeGroup.NOT_CATEGORIZED}
         };
     }
 

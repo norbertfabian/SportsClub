@@ -11,7 +11,8 @@ public enum AgeGroup {
     JUNIOR(10, 14),
     YOUTH(15, 19),
     ADULT(20, 34),
-    SENIOR(35, 150);
+    SENIOR(35, 150),
+    NOT_CATEGORIZED(Integer.MIN_VALUE, 4);
 
     private final int ageFrom;
     private final int ageTo;
@@ -57,7 +58,7 @@ public enum AgeGroup {
                 return group;
             }
         }
-        return null;
+        return AgeGroup.NOT_CATEGORIZED;
     }
 
     private Date yearAgoFromNow(int years) {
