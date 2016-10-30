@@ -5,8 +5,10 @@ import java.util.Date;
 
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
+import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 
 /**
  * Created by jsmolar on 10/27/16.
@@ -56,5 +58,22 @@ public class EntityFactory {
         cal.set(1991, 1, 1);
         return cal.getTime();
     }
-
+    
+    public TeamManager createTeamManager(String name) {
+        TeamManager tm = new TeamManager();
+        tm.setName(name);
+        tm.setAddress("address");
+        tm.setContact("contact");
+        return tm;
+    }
+    
+    public TeamManager createTeamManager() {
+        return createTeamManager("teamManager");
+    }
+    
+    public TeamManager createTeamManager(TeamManagerDao managerDao) {
+        TeamManager tm = new TeamManager();
+        managerDao.create(tm);
+        return tm;
+    }
 }
