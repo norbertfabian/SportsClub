@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
  * Entity class which represents a player in SportsClub. Player can be a member
  * of multiple teams, which is represented via {@link Membership}
  * 
- * @author Patrik Nov�k
+ * @author Patrik Novak
  */
 @Entity
 public class Player {
@@ -22,9 +22,11 @@ public class Player {
 
     @NotNull
     private String lastName;
-
+    
+    @Min(0)
     private int height;
 
+    @Min(0)
     private int weight;
 
     @NotNull
