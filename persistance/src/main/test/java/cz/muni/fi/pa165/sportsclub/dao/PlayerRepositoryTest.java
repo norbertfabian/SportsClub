@@ -98,4 +98,18 @@ public class PlayerRepositoryTest extends AbstractTestNGSpringContextTests {
         playerDao.create(player);
     }
 
+    @Test(expectedExceptions = ConstraintViolationException.class)
+    public void testHeightNotNegative() {
+        Player player = entityFactory.createPlayer();
+        player.setHeight(-1);
+        playerDao.create(player);
+    }
+
+    @Test(expectedExceptions = ConstraintViolationException.class)
+    public void testWeightNotNegative() {
+        Player player = entityFactory.createPlayer();
+        player.setWeight(-1);
+        playerDao.create(player);
+    }
+
 }
