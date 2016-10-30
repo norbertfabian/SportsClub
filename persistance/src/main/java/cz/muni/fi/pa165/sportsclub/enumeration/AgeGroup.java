@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.enumeration;
 
-
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -11,21 +11,19 @@ public enum AgeGroup {
     JUNIOR(10, 14),
     YOUTH(15, 19),
     ADULT(20, 34),
-    SENIOR(35, Integer.MAX_VALUE);
-
-    private final long YEAR = 31536000000L;
+    SENIOR(35, 150);
 
     private final int ageFrom;
     private final int ageTo;
-    private final Date yearFrom;
-    private final Date yearTo;
+    private final Date dateFrom;
+    private final Date dateTo;
     
 
     AgeGroup(int ageFrom, int ageTo) {
         this.ageFrom = ageFrom;
         this.ageTo = ageTo;
-        this.yearFrom = new Date(yearAgoFromNow(ageTo));
-        this.yearTo = new Date(yearAgoFromNow(ageFrom));
+        this.dateFrom = yearAgoFromNow(ageTo);
+        this.dateTo = yearAgoFromNow(ageFrom);
     }
 
     public int getAgeFrom() {
@@ -36,35 +34,35 @@ public enum AgeGroup {
         return ageTo;
     }
     
-    public Date getYearFrom() {
-        return yearFrom;
+    public Date getDateFrom() {
+        return new Date(dateFrom.getTime());
     }
 
-    public Date getYearTo() {
-        return yearTo;
+    public Date getDateTo() {
+        return new Date(dateTo.getTime());
     }
 
     
     /**
-     * Returns an AgeGroup according to the players birthday. If no group exists
-     * for the specified player's birthday, null is returned.
+     * Returns an AgeGroup according to the birthday. If no group exists
+     * for the specified birthday, null is returned.
      *
      * @param dateOfBirth
-     * @return AgeGroup for the players birthday or null if no group exists for
-     * the player's birthday.
+     * @return AgeGroup for the given birthday or null if no group exists for
+     * the given birthday.
      */
     public static AgeGroup getAgeGroup(Date dateOfBirth) {
         for (AgeGroup group : AgeGroup.values()) {
-            if (dateOfBirth.after(group.getYearFrom()) && dateOfBirth.before(group.yearTo)) {
+            if (dateOfBirth.after(group.getDateFrom()) && dateOfBirth.before(group.dateTo)) {
                 return group;
             }
         }
         return null;
     }
 
-    private long yearAgoFromNow(int years) {
-        long now = System.currentTimeMillis();
-        long currentYear = now - (now % YEAR);
-        return currentYear - years * YEAR;
+    private Date yearAgoFromNow(int years) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, - years);
+        return cal.getTime();
     }
 }
