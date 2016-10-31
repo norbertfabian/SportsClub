@@ -9,7 +9,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 /**
- * Created by jsmolar on 10/25/16.
+ * @author Jakub Smolar
  */
 @Entity
 public class Membership {

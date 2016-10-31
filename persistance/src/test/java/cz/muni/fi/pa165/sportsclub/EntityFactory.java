@@ -1,10 +1,12 @@
 package cz.muni.fi.pa165.sportsclub;
 
+import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import java.util.Calendar;
 import java.util.Date;
 
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
+import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 
@@ -44,6 +46,13 @@ public class EntityFactory {
     public Player createPlayer() {
         return createPlayer(190, 100);
     }
+    
+    public Player createPlayer(String fname, String lname) {
+        Player player = createPlayer();
+        player.setFirstName(fname);
+        player.setLastName(lname);
+        return player;
+    }
 
     public Player createPlayer (PlayerDao dao) {
         Player player = createPlayer();
@@ -55,6 +64,20 @@ public class EntityFactory {
         Calendar cal = Calendar.getInstance();
         cal.set(1991, 1, 1);
         return cal.getTime();
+    }
+
+    public Membership createMembership(Player p, Team t) {
+        Membership m = new Membership();
+        m.setPlayer(p);
+        m.setTeam(t);
+        m.setJerseyNumber((int) ((Math.random() * 100) % 99));
+        return m;
+    }
+    
+    public Membership createMembership(Player p, Team t, MembershipDao dao) {
+        Membership m = createMembership(p, t);
+        dao.create(m);
+        return m;
     }
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 
 /**
- * Created by jsmolar on 10/25/16.
+ * @author Jakub Smolar
  */
 public interface MembershipDao {
 

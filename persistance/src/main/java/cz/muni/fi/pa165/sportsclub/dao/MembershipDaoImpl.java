@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by jsmolar on 10/25/16.
+ * @author Jakub Smolar
  */
 @Repository
 @Transactional
