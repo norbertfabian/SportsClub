@@ -10,6 +10,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 /**
+ * Entity clas which represents relationshiop between {@link Player} and
+ * {@link Team}.
+ * 
  * @author Jakub Smolar
  */
 @Entity

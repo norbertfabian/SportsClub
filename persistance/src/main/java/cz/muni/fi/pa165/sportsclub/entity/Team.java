@@ -18,6 +18,9 @@ import javax.validation.constraints.NotNull;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 
 /**
+ * Entity class which represents a team in SportsClub. Team can have several 
+ * players, which is represented via {@link Membership}.
+ * 
  * @author Fabian Norbert
  */
 
