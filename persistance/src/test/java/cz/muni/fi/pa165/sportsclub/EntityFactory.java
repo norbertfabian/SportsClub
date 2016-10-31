@@ -31,9 +31,9 @@ public class EntityFactory {
         return team;
     }
 
-    public Player createPlayer( Integer height, Integer weight) {
+    public Player createPlayer(String firstName, Integer height, Integer weight) {
         Player player = new Player();
-        player.setFirstName("firstName");
+        player.setFirstName(firstName);
         player.setLastName("lastName");
         player.setDateOfBirth(getDate());
         if (height != null)
@@ -43,14 +43,22 @@ public class EntityFactory {
         return player;
     }
 
+    public Player createPlayer(Integer height, Integer weight) {
+        return createPlayer("firstName", height, weight);
+    }
+
     public Player createPlayer() {
         return createPlayer(190, 100);
     }
 
-    public Player createPlayer (PlayerDao dao) {
-        Player player = createPlayer();
+    public Player createPersistedPlayer(String firstName, PlayerDao dao) {
+        Player player = createPlayer(firstName, 190, 100);
         dao.create(player);
         return player;
+    }
+
+    public Player createPersistedPlayer(PlayerDao dao) {
+        return createPersistedPlayer("firstName", dao);
     }
 
     public Date getDate() {
