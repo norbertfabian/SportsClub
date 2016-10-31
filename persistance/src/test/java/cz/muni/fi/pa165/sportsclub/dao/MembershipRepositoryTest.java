@@ -83,23 +83,23 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
     
     @Test (expectedExceptions = ConstraintViolationException.class)
     public void wrongJerseyNumberTest1() {
-        Membership m = entityFactory.createMembership(p1, t1, membershipDao);
+        Membership m = entityFactory.createMembership(p1, t1);
         m.setJerseyNumber(12345);
         membershipDao.create(m);
     }
     
     @Test (expectedExceptions = ConstraintViolationException.class)
     public void wrongJerseyNumberTest2() {
-        Membership m = entityFactory.createMembership(p1, t1, membershipDao);
+        Membership m = entityFactory.createMembership(p1, t1);
         m.setJerseyNumber(-123);
         membershipDao.create(m);
     }
     
     @Test void updateMembershipTest() {
         Membership m = entityFactory.createMembership(p1, t1, membershipDao);
-        m.setJerseyNumber(42);
-        m.setPlayer(p3);
-        m.setTeam(t2);
+        m.setJerseyNumber(42)
+                .setPlayer(p3)
+                .setTeam(t2);
         membershipDao.update(m);
         
         Membership persistedMem = membershipDao.findById(m.getId());
