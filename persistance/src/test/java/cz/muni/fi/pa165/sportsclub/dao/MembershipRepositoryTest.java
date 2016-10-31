@@ -51,7 +51,7 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
     private Team t2;
     
     @BeforeMethod
-    public void createMemberships() {
+    public void setUp() {
         p1 = entityFactory.createPlayer("John", "Doe");
         p2 = entityFactory.createPlayer("Jack", "Foo");
         p3 = entityFactory.createPlayer("Lorem", "Ipsum");
@@ -62,14 +62,14 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
     }
     
     @Test
-    public void nullMembershipTest() {
+    public void shouldNotFindMembership() {
         Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
         Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
         Assert.assertNull(membershipDao.findById(123456L));
     }
     
     @Test
-    public void createMembershipTest() {
+    public void shouldCreateMembership() {
         Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
         Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
         Membership m3 = entityFactory.createMembership(p3, t2, membershipDao);
@@ -82,20 +82,20 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
     }
     
     @Test (expectedExceptions = ConstraintViolationException.class)
-    public void wrongJerseyNumberTest1() {
+    public void shouldNotCreateMembershipWrongJersey1() {
         Membership m = entityFactory.createMembership(p1, t1);
         m.setJerseyNumber(12345);
         membershipDao.create(m);
     }
     
     @Test (expectedExceptions = ConstraintViolationException.class)
-    public void wrongJerseyNumberTest2() {
+    public void shouldNotCreateMembershipWrongJersey2() {
         Membership m = entityFactory.createMembership(p1, t1);
         m.setJerseyNumber(-123);
         membershipDao.create(m);
     }
     
-    @Test void updateMembershipTest() {
+    @Test void shouldUpdateMembership() {
         Membership m = entityFactory.createMembership(p1, t1, membershipDao);
         m.setJerseyNumber(42)
                 .setPlayer(p3)
@@ -109,7 +109,7 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(persistedMem.getTeam(), m.getTeam());
     }
     
-    @Test void deleteMemberShipTest() {
+    @Test void shouldDeleteMembership() {
         Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
         Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
         Membership m3 = entityFactory.createMembership(p3, t2, membershipDao);
