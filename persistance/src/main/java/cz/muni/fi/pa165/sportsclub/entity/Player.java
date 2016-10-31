@@ -219,7 +219,7 @@ public class Player {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Player)) {
+        if ((obj == null) || !(obj instanceof Player)) {
             return false;
         }
         final Player other = (Player) obj;
