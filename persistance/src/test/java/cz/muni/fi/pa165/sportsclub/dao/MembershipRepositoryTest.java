@@ -62,34 +62,20 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
     }
     
     @Test
-    public void shouldNotFindMembership() {
-        Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
-        Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
-        Assert.assertNull(membershipDao.findById(123456L));
-    }
-    
-    @Test
     public void shouldCreateMembership() {
         Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
-        Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
-        Membership m3 = entityFactory.createMembership(p3, t2, membershipDao);
-        Membership m4 = entityFactory.createMembership(p4, t2, membershipDao);
-        
         Assert.assertEquals(membershipDao.findById(m1.getId()), m1);
-        Assert.assertEquals(membershipDao.findById(m2.getId()), m2);
-        Assert.assertEquals(membershipDao.findById(m3.getId()), m3);
-        Assert.assertEquals(membershipDao.findById(m4.getId()), m4);
     }
     
     @Test (expectedExceptions = ConstraintViolationException.class)
-    public void shouldNotCreateMembershipWrongJersey1() {
+    public void shouldNotCreateMembershipTooBigNumber() {
         Membership m = entityFactory.createMembership(p1, t1);
         m.setJerseyNumber(12345);
         membershipDao.create(m);
     }
     
     @Test (expectedExceptions = ConstraintViolationException.class)
-    public void shouldNotCreateMembershipWrongJersey2() {
+    public void shouldNotCreateMembershipNegativeNumber() {
         Membership m = entityFactory.createMembership(p1, t1);
         m.setJerseyNumber(-123);
         membershipDao.create(m);
@@ -113,14 +99,19 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
         Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
         Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
         Membership m3 = entityFactory.createMembership(p3, t2, membershipDao);
-        Membership m4 = entityFactory.createMembership(p4, t2, membershipDao);
         
-        membershipDao.remove(m3);
+        membershipDao.remove(m2);
         
-        Assert.assertNull(membershipDao.findById(m3.getId()));
+        Assert.assertNull(membershipDao.findById(m2.getId()));
         Assert.assertEquals(membershipDao.findById(m1.getId()), m1);
-        Assert.assertEquals(membershipDao.findById(m2.getId()), m2);
-        Assert.assertEquals(membershipDao.findById(m4.getId()), m4);
+        Assert.assertEquals(membershipDao.findById(m3.getId()), m3);
+    }
+    
+    @Test void shouldFindAllMemberships() {
+        Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
+        Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
+        Membership m3 = entityFactory.createMembership(p3, t2, membershipDao);
+        Assert.assertEquals(3, membershipDao.findAll().size());
     }
     
 }
