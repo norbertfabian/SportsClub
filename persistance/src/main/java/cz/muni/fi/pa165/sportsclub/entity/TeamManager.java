@@ -11,7 +11,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 /**
- *
+ * Entity class which represents a team manager in SportsClub. Team manager 
+ * can manage multiple teams.
+ * 
  * @author Marian Sulgan
  */
 
@@ -70,29 +72,44 @@ public class TeamManager {
         return this;
     }
 
+    
+    /**
+     * Get list of teams that belong to Team manager
+     * 
+     * @return list of teams
+     */
     public List<Team> getTeams() {
         return Collections.unmodifiableList(teams);
     }
-
-    // Not necessary, in fact only addTeam will be used in reality
-    //    public void setTeams(List<Team> teams) {
-    //        this.teams = teams;
-    //    }
-
+    
+    /**
+     * Adds a team to Team manager.
+     * 
+     * @param team to be added
+     * @return this TeamManager
+     */
     public TeamManager addTeam(Team team) {
         this.teams.add(team);
         return this;
     }
 
-    /* TODO: consider having only one remove function - removeTeam(long id) -
-       following norbert's convention?
-    */
-
+    /**
+     * Removes a team from Team manager.
+     * 
+     * @param team to be removed
+     * @return this TeamManager
+     */
     public TeamManager removeTeam(Team team) {
         this.teams.remove(team);
         return this;
     }
 
+    /**
+     * Removes a team from Team manager.
+     * 
+     * @param id of team to be removed
+     * @return this TeamManager
+     */
     public TeamManager removeTeamById(long id) {
         for (Team t: this.teams) {
             if (t.getId() == id) {
