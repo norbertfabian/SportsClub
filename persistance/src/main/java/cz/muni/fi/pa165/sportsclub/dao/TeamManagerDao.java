@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.sportsclub.dao;
 
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
+import java.util.List;
 
 /**
  *
@@ -20,5 +21,7 @@ public interface TeamManagerDao {
     void remove(TeamManager tm);
 
     TeamManager findById(Long id);
+    
+    List<TeamManager> findAll();
     
 }
