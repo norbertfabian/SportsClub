@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * DAO implementation of {@link PlayerDao} for DB.
  * 
- * @author Patrik Nov�k
+ * @author Patrik Novak
  */
 @Repository
 @Transactional

@@ -4,7 +4,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author Fabian Norbert
+ * Enum class representing age groups of Team.
+ * 
+ * @author Patrik Novak
  */
 public enum AgeGroup {
     JUVENILE(5, 9),
