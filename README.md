@@ -1,5 +1,7 @@
 # PA165 - SportsClub
 
+###Wiki:
+[SportsClub Wiki on GitHub](../../wiki)
 ###Course: 
 PA165 Vývoj programových systémů v jazyce Java
 ###Project Topic: 
