@@ -20,7 +20,7 @@ public interface TeamDao {
      * Updates changes of a Team in the database.
      *
      * @param team Updated Team.
-     * @return
+     * @return updated Team
      */
     Team update(Team team);
 

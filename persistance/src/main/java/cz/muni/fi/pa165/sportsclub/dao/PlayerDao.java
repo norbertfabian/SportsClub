@@ -12,14 +12,14 @@ import java.util.List;
 public interface PlayerDao {
     
     /**
-     * Creates new Player.
+     * Persists Player.
      * 
      * @param player to be created.
      */
     void create(Player player);
     
     /**
-     * Updates existing Player.
+     * Updates changes of a Player in the database.
      * 
      * @param player
      * @return updated Player
