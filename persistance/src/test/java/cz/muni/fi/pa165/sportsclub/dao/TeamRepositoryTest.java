@@ -17,7 +17,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by jsmolar on 24.10.16.
+ * @author Jakub Smolar
  */
 
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)

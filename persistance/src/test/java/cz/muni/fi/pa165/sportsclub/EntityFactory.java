@@ -5,13 +5,17 @@ import java.util.Date;
 
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
+import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
+
+import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 
+
 /**
- * Created by jsmolar on 10/27/16.
+ * @author Jakub Smolar
  */
 public class EntityFactory {
 
@@ -50,6 +54,13 @@ public class EntityFactory {
     public Player createPlayer() {
         return createPlayer(190, 100);
     }
+    
+    public Player createPlayer(String fname, String lname) {
+        Player player = createPlayer();
+        player.setFirstName(fname);
+        player.setLastName(lname);
+        return player;
+    }
 
     public Player createPersistedPlayer(String firstName, PlayerDao dao) {
         Player player = createPlayer(firstName, 190, 100);
@@ -83,5 +94,19 @@ public class EntityFactory {
         TeamManager tm = new TeamManager();
         managerDao.create(tm);
         return tm;
+    }
+    
+        public Membership createMembership(Player p, Team t) {
+        Membership m = new Membership();
+        m.setPlayer(p);
+        m.setTeam(t);
+        m.setJerseyNumber((int) ((Math.random() * 100) % 99));
+        return m;
+    }
+    
+    public Membership createMembership(Player p, Team t, MembershipDao dao) {
+        Membership m = createMembership(p, t);
+        dao.create(m);
+        return m;
     }
 }
