@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * DAO interface prescribing operations for Player entity.
  * 
- * @author Patrik Nov�k
+ * @author Patrik Novak
  */
 public interface PlayerDao {
     
