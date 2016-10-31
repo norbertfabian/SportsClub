@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.sportsclub.dao;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactory;
@@ -81,7 +76,8 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
         membershipDao.create(m);
     }
     
-    @Test void shouldUpdateMembership() {
+    @Test 
+    public void shouldUpdateMembership() {
         Membership m = entityFactory.createMembership(p1, t1, membershipDao);
         m.setJerseyNumber(42)
                 .setPlayer(p3)
@@ -95,7 +91,8 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(persistedMem.getTeam(), m.getTeam());
     }
     
-    @Test void shouldDeleteMembership() {
+    @Test 
+    public void shouldDeleteMembership() {
         Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
         Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
         Membership m3 = entityFactory.createMembership(p3, t2, membershipDao);
@@ -107,10 +104,11 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(membershipDao.findById(m3.getId()), m3);
     }
     
-    @Test void shouldFindAllMemberships() {
-        Membership m1 = entityFactory.createMembership(p1, t1, membershipDao);
-        Membership m2 = entityFactory.createMembership(p2, t1, membershipDao);
-        Membership m3 = entityFactory.createMembership(p3, t2, membershipDao);
+    @Test 
+    public void shouldFindAllMemberships() {
+        entityFactory.createMembership(p1, t1, membershipDao);
+        entityFactory.createMembership(p2, t1, membershipDao);
+        entityFactory.createMembership(p3, t2, membershipDao);
         Assert.assertEquals(3, membershipDao.findAll().size());
     }
     
