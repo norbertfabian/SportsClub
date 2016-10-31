@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,10 +19,10 @@ public class Membership {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Team team;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private Player player;
 
     @Min(1)
@@ -68,24 +69,24 @@ public class Membership {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || !(o instanceof Membership))
             return false;
 
         Membership that = (Membership) o;
 
-        if (jerseyNumber != that.jerseyNumber)
+        if (getJerseyNumber() != that.getJerseyNumber())
             return false;
-        if (team != null ? !team.equals(that.team) : that.team != null)
+        if (getTeam() != null ? !getTeam().equals(that.getTeam()) : that.getTeam() != null)
             return false;
-        return player != null ? player.equals(that.player) : that.player == null;
+        return getPlayer() != null ? getPlayer().equals(that.getPlayer()) : that.getPlayer() == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = team != null ? team.hashCode() : 0;
-        result = 31 * result + (player != null ? player.hashCode() : 0);
-        result = 31 * result + jerseyNumber;
+        int result = getTeam() != null ? getTeam().hashCode() : 0;
+        result = 31 * result + (getPlayer() != null ? getPlayer().hashCode() : 0);
+        result = 31 * result + getJerseyNumber();
         return result;
     }
 }
