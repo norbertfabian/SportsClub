@@ -96,7 +96,7 @@ public class Team {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Team)) return false;
+        if ((o == null) || !(o instanceof Team)) return false;
 
         Team team = (Team) o;
 
