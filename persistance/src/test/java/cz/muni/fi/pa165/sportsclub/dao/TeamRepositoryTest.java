@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 
 import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactory;
 import cz.muni.fi.pa165.sportsclub.PersistenceSampleApplicationContext;
@@ -42,23 +43,30 @@ public class TeamRepositoryTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void testCreate(){
+    public void shouldCreateTeam(){
         assertEquals(teamDao.findById(team1.getId()), team1);
     }
 
     @Test
-    public void testUpdate(){
+    public void shouldUpdateTeam(){
         team1.setName("updatedTeam1");
         teamDao.update(team1);
         assertEquals(teamDao.findById(team1.getId()), team1);
     }
 
     @Test
-    public void testRemove(){
+    public void shouldRemoveTeam(){
         assertEquals(teamDao.findById(team1.getId()), team1);
         assertEquals(teamDao.findById(team2.getId()), team2);
         teamDao.remove(team1);
         assertNull(teamDao.findById(team1.getId()));
         assertEquals(teamDao.findById(team2.getId()), team2);
+    }
+
+    @Test(expectedExceptions = ConstraintViolationException.class)
+    public void shouldNotCreateTeamWithNullName() {
+        Team team = entityFactory.createTeam();
+        team.setName(null);
+        teamDao.create(team);
     }
 }
