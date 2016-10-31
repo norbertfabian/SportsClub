@@ -55,6 +55,12 @@ public class TeamManagerRepositoryTest extends AbstractTestNGSpringContextTests 
         assertNull(teamManagerDao.findById(teamManager.getId()));
     }
     
+    @Test
+    public void testFindAll() {
+        teamManagerDao.create(entityFactory.createTeamManager("anotherTeamManager"));
+        assertEquals(teamManagerDao.findAll().size(), 2);
+    }
+    
     @Test(expectedExceptions = ConstraintViolationException.class)
     public void testNullName() {
         TeamManager tm = new TeamManager();
