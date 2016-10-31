@@ -1,17 +1,21 @@
 package cz.muni.fi.pa165.sportsclub;
 
-import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import java.util.Calendar;
 import java.util.Date;
 
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
+import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
+import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
+
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
+
 
 /**
- * Created by jsmolar on 10/27/16.
+ * @author Jakub Smolar
  */
 public class EntityFactory {
 
@@ -31,9 +35,9 @@ public class EntityFactory {
         return team;
     }
 
-    public Player createPlayer( Integer height, Integer weight) {
+    public Player createPlayer(String firstName, Integer height, Integer weight) {
         Player player = new Player();
-        player.setFirstName("firstName");
+        player.setFirstName(firstName);
         player.setLastName("lastName");
         player.setDateOfBirth(getDate());
         if (height != null)
@@ -41,6 +45,10 @@ public class EntityFactory {
         if (weight != null)
             player.setWeight(weight);
         return player;
+    }
+
+    public Player createPlayer(Integer height, Integer weight) {
+        return createPlayer("firstName", height, weight);
     }
 
     public Player createPlayer() {
@@ -54,10 +62,14 @@ public class EntityFactory {
         return player;
     }
 
-    public Player createPlayer (PlayerDao dao) {
-        Player player = createPlayer();
+    public Player createPersistedPlayer(String firstName, PlayerDao dao) {
+        Player player = createPlayer(firstName, 190, 100);
         dao.create(player);
         return player;
+    }
+
+    public Player createPersistedPlayer(PlayerDao dao) {
+        return createPersistedPlayer("firstName", dao);
     }
 
     public Date getDate() {
@@ -65,8 +77,26 @@ public class EntityFactory {
         cal.set(1991, 1, 1);
         return cal.getTime();
     }
-
-    public Membership createMembership(Player p, Team t) {
+    
+    public TeamManager createTeamManager(String name) {
+        TeamManager tm = new TeamManager();
+        tm.setName(name);
+        tm.setAddress("address");
+        tm.setContact("contact");
+        return tm;
+    }
+    
+    public TeamManager createTeamManager() {
+        return createTeamManager("teamManager");
+    }
+    
+    public TeamManager createTeamManager(TeamManagerDao managerDao) {
+        TeamManager tm = new TeamManager();
+        managerDao.create(tm);
+        return tm;
+    }
+    
+        public Membership createMembership(Player p, Team t) {
         Membership m = new Membership();
         m.setPlayer(p);
         m.setTeam(t);
@@ -79,5 +109,4 @@ public class EntityFactory {
         dao.create(m);
         return m;
     }
-
 }

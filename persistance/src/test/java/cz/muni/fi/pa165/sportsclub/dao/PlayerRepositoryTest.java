@@ -56,13 +56,17 @@ public class PlayerRepositoryTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void updatePlayerTest() {
-        Player player = entityFactory.createPlayer(playerDao);
-        player.setLastName("updatedLastName").setFirstName("updatedFirstName").setDateOfBirth(entityFactory.getDate())
-                .setWeight(10).setHeight(10);
+        Player player = entityFactory.createPersistedPlayer(playerDao);
+        player.setLastName("updatedLastName")
+                .setFirstName("updatedFirstName")
+                .setDateOfBirth(entityFactory.getDate())
+                .setWeight(10)
+                .setHeight(10);
 
         playerDao.update(player);
 
         Player persistedPlayer = playerDao.findById(player.getId());
+
         Assert.assertEquals(player.getFirstName(), persistedPlayer.getFirstName());
         Assert.assertEquals(player.getLastName(), persistedPlayer.getLastName());
         Assert.assertEquals(player.getDateOfBirth(), persistedPlayer.getDateOfBirth());
@@ -71,8 +75,17 @@ public class PlayerRepositoryTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    public void listAllPlayersTest() {
+        entityFactory.createPersistedPlayer("firstPlayer", playerDao);
+        entityFactory.createPersistedPlayer("secondPlayer", playerDao);
+        entityFactory.createPersistedPlayer("thirdPlayer", playerDao);
+
+        Assert.assertEquals(3, playerDao.findAll().size());
+    }
+
+    @Test
     public void deletePlayerTest() {
-        Player player = entityFactory.createPlayer(playerDao);
+        Player player = entityFactory.createPersistedPlayer(playerDao);
         playerDao.remove(player);
         Assert.assertTrue(playerDao.findAll().isEmpty());
     }
