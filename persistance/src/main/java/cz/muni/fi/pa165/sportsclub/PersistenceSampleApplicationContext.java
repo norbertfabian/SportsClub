@@ -5,9 +5,6 @@ package cz.muni.fi.pa165.sportsclub;
  */
 import javax.sql.DataSource;
 
-import cz.muni.fi.pa165.sportsclub.dao.MembershipDaoImpl;
-import cz.muni.fi.pa165.sportsclub.dao.PlayerDaoImpl;
-import cz.muni.fi.pa165.sportsclub.dao.TeamDaoImpl;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

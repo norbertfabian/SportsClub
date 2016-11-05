@@ -1,10 +1,11 @@
-package cz.muni.fi.pa165.sportsclub.dao;
+package cz.muni.fi.pa165.sportsclub.dao.impl;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

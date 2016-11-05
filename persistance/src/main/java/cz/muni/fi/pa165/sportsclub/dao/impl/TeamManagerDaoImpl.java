@@ -1,5 +1,6 @@
-package cz.muni.fi.pa165.sportsclub.dao;
+package cz.muni.fi.pa165.sportsclub.dao.impl;
 
+import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import java.util.List;

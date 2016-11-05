@@ -1,5 +1,6 @@
-package cz.muni.fi.pa165.sportsclub.dao;
+package cz.muni.fi.pa165.sportsclub.dao.impl;
 
+import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
