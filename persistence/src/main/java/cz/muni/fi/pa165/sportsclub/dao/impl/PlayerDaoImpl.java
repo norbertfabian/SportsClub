@@ -21,23 +21,28 @@ public class PlayerDaoImpl implements PlayerDao{
 
     @PersistenceContext
     EntityManager em;
-    
+
+    @Override
     public void create(Player player) {
         em.persist(player);
     }
 
+    @Override
     public Player update(Player player) {
         return em.merge(player);
     }
 
+    @Override
     public void remove(Player player) {
         em.remove(player);
     }
 
+    @Override
     public Player findById(Long id) {
         return em.find(Player.class, id);
     }
 
+    @Override
     public List<Player> findAll() {
         CriteriaQuery<Player> criteria = em.getCriteriaBuilder().createQuery(Player.class);
         return em.createQuery(criteria.select(criteria.from(Player.class))).getResultList();

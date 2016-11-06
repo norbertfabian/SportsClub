@@ -5,8 +5,6 @@ import cz.muni.fi.pa165.sportsclub.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
-import javax.inject.Inject;
-import javax.validation.ConstraintViolationException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -15,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -40,8 +41,7 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
     private Player p1;
     private Player p2;
     private Player p3;
-    private Player p4;
-    
+
     private Team t1;
     private Team t2;
     
@@ -50,8 +50,7 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
         p1 = entityFactoryPersistence.createPlayer("John", "Doe");
         p2 = entityFactoryPersistence.createPlayer("Jack", "Foo");
         p3 = entityFactoryPersistence.createPlayer("Lorem", "Ipsum");
-        p4 = entityFactoryPersistence.createPlayer("Dolor", "Sit");
-        
+
         t1 = entityFactoryPersistence.createTeam("team1");
         t2 = entityFactoryPersistence.createTeam("team2");
     }

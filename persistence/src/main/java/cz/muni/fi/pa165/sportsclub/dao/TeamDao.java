@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.sportsclub.dao;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 
 /**
- * DAO interface prescribing operations for Player entity.
+ * DAO interface prescribing operations for Team entity.
  *
  * @author Fabian Norbert
  */
