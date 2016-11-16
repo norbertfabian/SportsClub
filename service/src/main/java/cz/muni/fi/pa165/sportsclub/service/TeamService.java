@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.sportsclub.entity.Team;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by norbert on 5.11.16.
+ * @author Fabian Norbert
  */
 
 @Service

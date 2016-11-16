@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 
 /**
- * Created by norbert on 5.11.16.
+ * @author Fabian Norbert
  */
 @Service
 public class TeamServiceImpl implements TeamService {
