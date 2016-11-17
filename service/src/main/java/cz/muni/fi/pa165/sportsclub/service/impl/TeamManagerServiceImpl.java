@@ -21,42 +21,49 @@ public class TeamManagerServiceImpl implements TeamManagerService {
 
     @Override
     public void createTeamManager(TeamManager tm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tmDao.create(tm);
     }
 
     @Override
     public void removeTeamManager(TeamManager tm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        tmDao.remove(tm);
     }
 
     @Override
     public TeamManager updateTeamManager(TeamManager tm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tmDao.update(tm);
     }
 
     @Override
     public TeamManager findById(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tmDao.findById(id);
     }
 
     @Override
     public TeamManager findByTeam(String teamName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tmDao.findByTeam(teamName);
     }
 
     @Override
     public List<TeamManager> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return tmDao.findAll();
     }
 
     @Override
-    public List<Team> getTeams(TeamManager tm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Team> getAllTeams(TeamManager tm) {
+        return tmDao.getAllTeams(tm);
+    }
+
+    //@todo: check it and fix
+    @Override
+    public void addNewTeam(TeamManager tm, Team t) {
+        t.setTeamManager(tm);
+        tm.addTeam(t);
     }
 
     @Override
-    public void addTeam(TeamManager tm, Team t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<TeamManager> findByName(String name) {
+        return tmDao.findByName(name);
     }
     
 }

@@ -106,5 +106,6 @@
   <modules>
     <module>persistence</module>
     <module>service</module>
+    <module>api</module>
   </modules>
 </project>

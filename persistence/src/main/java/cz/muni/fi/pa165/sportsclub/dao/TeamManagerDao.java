@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.dao;
 
+import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public interface TeamManagerDao {
      * 
      * @param tm team manager to be created.
      */
-    void create(TeamManager tm);
+    public void create(TeamManager tm);
 
     /**
      * Updates existing TeamManager.
@@ -23,14 +24,14 @@ public interface TeamManagerDao {
      * @param tm team manager to be updated
      * @return updated TeamManager
      */
-    TeamManager update(TeamManager tm);
+    public TeamManager update(TeamManager tm);
 
     /**
      * Removes TeamManager.
      * 
      * @param tm team manager to be removed.
      */
-    void remove(TeamManager tm);
+    public void remove(TeamManager tm);
 
     /**
      * Finds TeamManager by provided ID.
@@ -38,8 +39,45 @@ public interface TeamManagerDao {
      * @param id ID of TeamManager.
      * @return TeamManager with provided ID.
      */
-    TeamManager findById(Long id);
+    public TeamManager findById(Long id);
     
-    List<TeamManager> findAll();
+    /**
+     * Finds all team managers
+     * 
+     * @return list of team managers
+     */
+    public List<TeamManager> findAll();
+
+    /**
+     * Finds team manager by team name
+     * 
+     * @param teamName name of the team
+     * @return team manager
+     */
+    public TeamManager findByTeam(String teamName);
+
+    /**
+     * Gets all teams of team manager
+     * 
+     * @param tm team manager
+     * @return list of teams for give team manager
+     */
+    public List<Team> getAllTeams(TeamManager tm);
+
+    /**
+     * Adds a team to a given team manager
+     * 
+     * @param tm team manager
+     * @param t team to be added to manager
+     */
+//    public void addTeam(TeamManager tm, Team t);
+
+    /**
+     * Finds team managers by name
+     * 
+     * @param name name of team manager
+     * @return list of tam managers matching the given name
+     */
+    public List<TeamManager> findByName(String name);
     
 }
