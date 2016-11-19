@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by norbert on 5.11.16.
@@ -19,17 +20,30 @@ import javax.inject.Inject;
 public class TeamServiceIT extends AbstractTransactionalTestNGSpringContextTests {
 
     @Inject
-    TeamService teamService;
+    private TeamService teamService;
 
     @Inject
-    TeamDao teamDao;
+    private TeamDao teamDao;
 
-    EntityFactoryService entityFactoryService = new EntityFactoryService();
+    private EntityFactoryService entityFactoryService = new EntityFactoryService();
 
     @Test
-    public void findByIdTest() {
+    public void findByIdIT() {
         Team team = entityFactoryService.createPersistedTeam(teamDao);
         Assert.assertNotNull(teamService.findById(team.getId()));
+    }
+
+    @Test
+    void getAllIT() {
+        Team team1 = entityFactoryService.createPersistedTeam("Team1", teamDao);
+        Team team2 = entityFactoryService.createPersistedTeam("Team2", teamDao);
+
+        List<Team> result = teamDao.getAll();
+
+        Assert.assertNotNull(result);
+        Assert.assertEquals(2, result.size());
+        Assert.assertTrue(result.contains(team1));
+        Assert.assertTrue(result.contains(team2));
     }
 
     @Test
@@ -53,7 +67,7 @@ public class TeamServiceIT extends AbstractTransactionalTestNGSpringContextTests
     public void removeTeamIT() {
         Team teamToRemove = entityFactoryService.createPersistedTeam(teamDao);
         long id = teamToRemove.getId();
-        teamService.removeTeam(teamToRemove);
+        teamService.removeTeam(teamToRemove.getId());
         Assert.assertNull(teamDao.findById(id));
     }
 }

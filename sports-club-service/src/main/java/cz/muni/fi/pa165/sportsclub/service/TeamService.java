@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.sportsclub.service;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by norbert on 5.11.16.
  */
@@ -17,6 +19,13 @@ public interface TeamService {
      * @return Return team with the given id
      */
     Team findById(long id);
+
+    /**
+     * Returns all teams.
+     *
+     * @return List of all teams
+     */
+    List<Team> getAll();
 
     /**
      * Method creates new team
@@ -35,7 +44,7 @@ public interface TeamService {
 
     /**
      * Removes team
-     * @param team Team to remove
+     * @param id Id of the team to remove
      */
-    void removeTeam(Team team);
+    void removeTeam(long id);
 }

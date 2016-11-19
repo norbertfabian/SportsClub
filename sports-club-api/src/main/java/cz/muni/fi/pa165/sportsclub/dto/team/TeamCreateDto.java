@@ -12,10 +12,7 @@ import java.util.Set;
 /**
  * Created by norbert on 19.11.16.
  */
-public class TeamDto {
-
-    @NotNull
-    private long id;
+public class TeamCreateDto {
 
     @NotNull
     @Size(min = 3, max = 50)
@@ -27,24 +24,15 @@ public class TeamDto {
 
     private AgeGroupDto ageGroup;
 
-    public TeamDto() {
+    public TeamCreateDto() {
 
     }
 
-    public TeamDto(TeamDto dto) {
-        this.id = dto.getId();
+    public TeamCreateDto(TeamDto dto) {
         this.name = dto.getName();
         this.memberships = Collections.unmodifiableSet(dto.getMemberships());
         this.teamManager = dto.getTeamManager();
         this.ageGroup = dto.getAgeGroup();
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -82,11 +70,11 @@ public class TeamDto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if ((o == null) || !(o instanceof TeamDto)) return false;
+        if ((o == null) || !(o instanceof TeamCreateDto)) return false;
 
-        TeamDto teamDto = (TeamDto) o;
+        TeamCreateDto teamCreateDto = (TeamCreateDto) o;
 
-        return getName().equals(teamDto.getName());
+        return getName().equals(teamCreateDto.getName());
 
     }
 
@@ -97,9 +85,8 @@ public class TeamDto {
 
     @Override
     public String toString() {
-        return "TeamDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "TeamCreateDto{" +
+                "name='" + name + '\'' +
                 ", memberships=" + memberships +
                 ", teamManager=" + teamManager +
                 ", ageGroup=" + ageGroup +

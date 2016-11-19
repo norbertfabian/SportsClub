@@ -2,6 +2,8 @@ package cz.muni.fi.pa165.sportsclub.dao;
 
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 
+import java.util.List;
+
 /**
  * DAO interface prescribing operations for Team entity.
  *
@@ -27,9 +29,9 @@ public interface TeamDao {
     /**
      * Removes a team from the database.
      *
-     * @param team Team to remove.
+     * @param id Id of the team to remove.
      */
-    void remove(Team team);
+    void remove(long id);
 
     /**
      * Returns Team with the specified ID.
@@ -37,5 +39,12 @@ public interface TeamDao {
      * @param id ID of the Team to return.
      * @return Team with the specified ID.
      */
-    Team findById(Long id);
+    Team findById(long id);
+
+    /**
+     * Returns all teams.
+     *
+     * @return List of teams
+     */
+    List<Team> getAll();
 }

@@ -1,38 +1,34 @@
 package cz.muni.fi.pa165.sportsclub.service;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
-import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.service.impl.TeamServiceImpl;
 import org.hibernate.service.spi.ServiceException;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
-import org.mockito.InjectMocks;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-
-import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by norbert on 5.11.16.
  */
 
-@ContextConfiguration(classes = SpringContextConfiguration.class)
-public class TeamServiceTest extends AbstractTransactionalTestNGSpringContextTests {
+public class TeamServiceTest {
 
     @Mock
-    TeamDao teamDao;
+    private TeamDao teamDao;
 
-    @Inject
     @InjectMocks
-    TeamService teamService;
+    private TeamService teamService = new TeamServiceImpl();
 
-    EntityFactoryService entityFactoryService = new EntityFactoryService();
+    private EntityFactoryService entityFactoryService = new EntityFactoryService();
 
     @BeforeClass
     public void setUpClass() throws ServiceException {
@@ -46,8 +42,21 @@ public class TeamServiceTest extends AbstractTransactionalTestNGSpringContextTes
 
         Team result = teamService.findById(1L);
 
-        Mockito.verify(teamDao, Mockito.times(1)).create(Mockito.any());
+        Mockito.verify(teamDao, Mockito.times(1)).findById(Mockito.anyLong());
         Assert.assertNotNull(result);
+    }
+
+    @Test
+    public void getAllTest() {
+        List<Team> toReturn = new ArrayList<>();
+        toReturn.add(entityFactoryService.createTeam());
+        Mockito.when(teamDao.getAll()).thenReturn(toReturn);
+
+        List<Team> result = teamService.getAll();
+
+        Mockito.verify(teamDao, Mockito.times(1)).getAll();
+        Assert.assertNotNull(result);
+        Assert.assertEquals(1, result.size());
     }
 
     @Test
@@ -72,8 +81,8 @@ public class TeamServiceTest extends AbstractTransactionalTestNGSpringContextTes
     public void removeTeamTest() {
         Team team = entityFactoryService.createTeam();
 
-        teamService.removeTeam(team);
+        teamService.removeTeam(team.getId());
 
-        Mockito.verify(teamDao, Mockito.times(1)).remove(Mockito.any());
+        Mockito.verify(teamDao, Mockito.times(1)).remove(Mockito.anyLong());
     }
 }

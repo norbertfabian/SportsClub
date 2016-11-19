@@ -1,11 +1,5 @@
 package cz.muni.fi.pa165.sportsclub.dao;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNull;
-
-import javax.inject.Inject;
-import javax.validation.ConstraintViolationException;
-
 import cz.muni.fi.pa165.sportsclub.EntityFactoryPersistence;
 import cz.muni.fi.pa165.sportsclub.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
@@ -14,8 +8,17 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
+
+import java.util.List;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNull;
 
 /**
  * @author Jakub Smolar
@@ -58,9 +61,17 @@ public class TeamRepositoryTest extends AbstractTestNGSpringContextTests {
     public void shouldRemoveTeam(){
         assertEquals(teamDao.findById(team1.getId()), team1);
         assertEquals(teamDao.findById(team2.getId()), team2);
-        teamDao.remove(team1);
+        teamDao.remove(team1.getId());
         assertNull(teamDao.findById(team1.getId()));
         assertEquals(teamDao.findById(team2.getId()), team2);
+    }
+
+    @Test
+    public void shouldReturnAllTeams(){
+        List<Team> result = teamDao.getAll();
+        Assert.assertEquals(2, result.size());
+        Assert.assertTrue(result.contains(team1));
+        Assert.assertTrue(result.contains(team2));
     }
 
     @Test(expectedExceptions = ConstraintViolationException.class)

@@ -6,6 +6,7 @@ import cz.muni.fi.pa165.sportsclub.service.TeamService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by norbert on 5.11.16.
@@ -22,6 +23,11 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
+    public List<Team> getAll() {
+        return teamDao.getAll();
+    }
+
+    @Override
     public void createTeam(Team team) {
         teamDao.create(team);
     }
@@ -32,7 +38,7 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void removeTeam(Team team) {
-        teamDao.remove(team);
+    public void removeTeam(long id) {
+        teamDao.remove(id);
     }
 }

@@ -17,8 +17,14 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>persistence</artifactId>
+            <artifactId>sports-club-persistence</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cz.muni.fi.pa165</groupId>
+            <artifactId>sports-club-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- mapping -->
@@ -31,9 +37,10 @@
         <!-- Tests -->
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
+            <artifactId>mockito-core</artifactId>
+            <version>2.2.17</version>
         </dependency>
+
 
     </dependencies>
 </project>
