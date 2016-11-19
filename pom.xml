@@ -104,7 +104,7 @@
   </build>
 
   <modules>
-    <module>persistence</module>
-    <module>service</module>
+    <module>sports-club-persistence</module>
+    <module>sports-club-service</module>
   </modules>
 </project>

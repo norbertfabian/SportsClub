@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>cz.muni.fi.pa165.sportsclub</groupId>
-    <artifactId>bl</artifactId>
+    <artifactId>sports-club-service</artifactId>
 
     <dependencies>
 
