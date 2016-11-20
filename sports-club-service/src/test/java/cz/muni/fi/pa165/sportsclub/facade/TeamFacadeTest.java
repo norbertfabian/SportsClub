@@ -3,8 +3,8 @@ package cz.muni.fi.pa165.sportsclub.facade;
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.TeamService;
-import org.dozer.Mapper;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -28,7 +28,7 @@ public class TeamFacadeTest {
     private TeamService teamService;
 
     @Mock
-    private Mapper dtoMapper;
+    private DtoMapper dtoMapper;
 
     @InjectMocks
     private TeamFacade teamFacade = new TeamFacadeImpl();
@@ -42,13 +42,15 @@ public class TeamFacadeTest {
 
     @BeforeMethod
     public void setUpMethod() {
-        Mockito.when(dtoMapper.map(Mockito.any(), Mockito.any()))
-                .thenReturn(entityFactoryService.createTeamDto());
+        Mockito.when(dtoMapper.dtoToTeam(Mockito.any()))
+                .thenReturn(entityFactoryService.createTeam());
     }
 
 
     @Test
     public void getTeamTest() {
+        Mockito.when(dtoMapper.teamToDto(Mockito.any(), Mockito.any()))
+                .thenReturn(entityFactoryService.createTeamDto());
         Mockito.when(teamService.findById(Mockito.anyLong()))
                 .thenReturn(entityFactoryService.createTeam());
 
@@ -72,9 +74,6 @@ public class TeamFacadeTest {
 
     @Test
     public void createTeamTest() {
-        Mockito.when(dtoMapper.map(Mockito.any(), Mockito.any()))
-                .thenReturn(entityFactoryService.createTeam());
-
         teamFacade.createTeam(entityFactoryService.createTeamCreateDto());
 
         Mockito.verify(teamService, Mockito.times(1)).createTeam(Mockito.any(Team.class));

@@ -6,7 +6,8 @@ import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
-import org.dozer.Mapper;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
+import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
@@ -29,7 +30,7 @@ public class TeamFacadeIT extends AbstractTransactionalTestNGSpringContextTests 
     private TeamDao teamDao;
 
     @Inject
-    private Mapper dtoMapper;
+    private DtoMapper dtoMapper;
 
     private EntityFactoryService entityFactoryService = new EntityFactoryService();
 
@@ -42,6 +43,7 @@ public class TeamFacadeIT extends AbstractTransactionalTestNGSpringContextTests 
         Assert.assertNotNull(result);
         Assert.assertEquals(result.getId(), persistedTeam.getId());
         Assert.assertEquals(result.getName(), persistedTeam.getName());
+        Assert.assertEquals(result.getAgeGroupLabel(), persistedTeam.getAgeGroup().getLabel());
     }
 
     @Test
@@ -55,6 +57,8 @@ public class TeamFacadeIT extends AbstractTransactionalTestNGSpringContextTests 
         Team team = allTeams.get(0);
         Assert.assertNotNull(team.getId());
         Assert.assertEquals(teamCreateDto.getName(), team.getName());
+        Assert.assertEquals(team.getAgeGroup(), AgeGroup.getByLabel(teamCreateDto.getAgeGroupLabel()));
+
     }
 
     @Test
@@ -69,13 +73,15 @@ public class TeamFacadeIT extends AbstractTransactionalTestNGSpringContextTests 
     @Test
     public void updateTeamIT() {
         Team persistedTeam = entityFactoryService.createPersistedTeam(teamDao);
-        TeamDto updatedTeamDto = dtoMapper.map(persistedTeam, TeamDto.class);
+        TeamDto updatedTeamDto = dtoMapper.teamToDto(persistedTeam, TeamDto.class);
         updatedTeamDto.setName("UpdatedName");
+        updatedTeamDto.setAgeGroupLabel(AgeGroup.SENIOR.getLabel());
 
         teamFacade.updateTeam(updatedTeamDto);
 
         Team updateResult = teamDao.findById(persistedTeam.getId());
         Assert.assertEquals(updateResult.getName(), "UpdatedName");
+        Assert.assertEquals(updateResult.getAgeGroup(), AgeGroup.SENIOR);
     }
 
     @Test
@@ -90,5 +96,7 @@ public class TeamFacadeIT extends AbstractTransactionalTestNGSpringContextTests 
         Assert.assertTrue(result.get(1) instanceof  TeamDto);
         Assert.assertEquals(result.get(0).getName(), "Team1");
         Assert.assertEquals(result.get(1).getName(), "Team2");
+        Assert.assertEquals(result.get(0).getAgeGroupLabel(), AgeGroup.JUNIOR.getLabel());
+        Assert.assertEquals(result.get(1).getAgeGroupLabel(), AgeGroup.JUNIOR.getLabel());
     }
 }

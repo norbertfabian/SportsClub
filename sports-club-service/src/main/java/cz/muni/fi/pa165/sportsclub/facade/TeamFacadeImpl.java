@@ -3,8 +3,8 @@ package cz.muni.fi.pa165.sportsclub.facade;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.TeamService;
-import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,15 +20,14 @@ import java.util.List;
 public class TeamFacadeImpl implements TeamFacade {
 
     @Inject
-    private Mapper dtoMapper;
+    private DtoMapper dtoMapper;
 
     @Inject
     private TeamService teamService;
 
     @Override
     public void createTeam(TeamCreateDto dto) {
-        Team team = new Team();
-        dtoMapper.map(dto, team);
+        Team team = dtoMapper.dtoToTeam(dto);
         teamService.createTeam(team);
     }
 
@@ -39,8 +38,7 @@ public class TeamFacadeImpl implements TeamFacade {
 
     @Override
     public void updateTeam(TeamDto dto) {
-        Team team = new Team();
-        dtoMapper.map(dto, team);
+        Team team = dtoMapper.dtoToTeam(dto);
         teamService.updateTeam(team);
     }
 
@@ -49,7 +47,7 @@ public class TeamFacadeImpl implements TeamFacade {
         List<Team> teams = teamService.getAll();
         List<TeamDto> teamDtos = new ArrayList<>();
         for(Team team: teams) {
-            teamDtos.add(dtoMapper.map(team, TeamDto.class));
+            teamDtos.add(dtoMapper.teamToDto(team, TeamDto.class));
         }
         return teamDtos;
     }
@@ -57,6 +55,6 @@ public class TeamFacadeImpl implements TeamFacade {
     @Override
     public TeamDto getTeam(long id) {
         Team team = teamService.findById(id);
-        return dtoMapper.map(team, TeamDto.class);
+        return dtoMapper.teamToDto(team, TeamDto.class);
     }
 }

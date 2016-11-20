@@ -1,12 +1,12 @@
 package cz.muni.fi.pa165.sportsclub.dto.team;
 
-import cz.muni.fi.pa165.sportsclub.dto.ageGroup.AgeGroupDto;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,7 +22,9 @@ public class TeamCreateDto {
 
     private TeamManagerDto teamManager;
 
-    private AgeGroupDto ageGroup;
+    private String ageGroupLabel;
+
+    private List<String> ageGroupLabelsList;
 
     public TeamCreateDto() {
 
@@ -32,7 +34,8 @@ public class TeamCreateDto {
         this.name = dto.getName();
         this.memberships = Collections.unmodifiableSet(dto.getMemberships());
         this.teamManager = dto.getTeamManager();
-        this.ageGroup = dto.getAgeGroup();
+        this.ageGroupLabel = dto.getAgeGroupLabel();
+        this.ageGroupLabelsList = dto.getAgeGroupLabelsList();
     }
 
     public String getName() {
@@ -59,12 +62,20 @@ public class TeamCreateDto {
         this.teamManager = teamManager;
     }
 
-    public AgeGroupDto getAgeGroup() {
-        return ageGroup;
+    public String getAgeGroupLabel() {
+        return ageGroupLabel;
     }
 
-    public void setAgeGroup(AgeGroupDto ageGroup) {
-        this.ageGroup = ageGroup;
+    public void setAgeGroupLabel(String ageGroupLabel) {
+        this.ageGroupLabel = ageGroupLabel;
+    }
+
+    public List<String> getAgeGroupLabelsList() {
+        return ageGroupLabelsList;
+    }
+
+    public void setAgeGroupLabelsList(List<String> ageGroupLabelsList) {
+        this.ageGroupLabelsList = ageGroupLabelsList;
     }
 
     @Override
@@ -89,7 +100,7 @@ public class TeamCreateDto {
                 "name='" + name + '\'' +
                 ", memberships=" + memberships +
                 ", teamManager=" + teamManager +
-                ", ageGroup=" + ageGroup +
+                ", ageGroup=" + ageGroupLabel +
                 '}';
     }
 }
