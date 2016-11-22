@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 
 /**
- * Created by norbert on 20.11.16.
+ * @author Fabian Norbert
  */
 @Component
 public class DtoMapperImpl implements DtoMapper {

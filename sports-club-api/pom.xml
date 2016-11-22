@@ -12,12 +12,5 @@
 
     <groupId>cz.muni.fi.pa165</groupId>
     <artifactId>sports-club-api</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>cz.muni.fi.pa165.sportsclub</groupId>
-            <artifactId>sports-club-persistence</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
-    </dependencies>
+    
 </project>

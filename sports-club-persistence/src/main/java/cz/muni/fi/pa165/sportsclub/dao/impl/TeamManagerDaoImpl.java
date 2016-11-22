@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.dao.impl;
 
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
-import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,32 +46,12 @@ public class TeamManagerDaoImpl implements TeamManagerDao {
         CriteriaQuery<TeamManager> criteria = em.getCriteriaBuilder().createQuery(TeamManager.class);
         return em.createQuery(criteria.select(criteria.from(TeamManager.class))).getResultList();
     }
-       
-    @Override
-    public TeamManager findByTeam(String teamName) {
-        List<TeamManager> teamManagerList = em.createQuery(
-                "SELECT t.teamManager FROM Team t WHERE t.name = :teamName", TeamManager.class)
-                    .setParameter("teamName", teamName)
-                    .getResultList();
-        if (teamManagerList.isEmpty()) 
-            return null;
-        else 
-            return teamManagerList.get(0);
-    }
     
     @Override
     public List<TeamManager> findByName(String name) {
         return em.createQuery(
                 "SELECT tm FROM TeamManager tm WHERE tm.name = :name", TeamManager.class)
                     .setParameter("name", name)
-                    .getResultList();
-    }
-
-    @Override
-    public List<Team> getAllTeams(TeamManager tm) {
-        return em.createQuery(
-                "SELECT t FROM Team t WHERE t.teamManager.id = :teamManagerId", Team.class)
-                    .setParameter("teamManagerId", tm.getId())
                     .getResultList();
     }
 

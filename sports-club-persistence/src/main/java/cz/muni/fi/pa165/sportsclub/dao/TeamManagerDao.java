@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.sportsclub.dao;
 
-import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import java.util.List;
 
@@ -47,30 +46,6 @@ public interface TeamManagerDao {
      * @return list of team managers
      */
     public List<TeamManager> findAll();
-
-    /**
-     * Finds team manager by team name
-     * 
-     * @param teamName name of the team
-     * @return team manager
-     */
-    public TeamManager findByTeam(String teamName);
-
-    /**
-     * Gets all teams of team manager
-     * 
-     * @param tm team manager
-     * @return list of teams for give team manager
-     */
-    public List<Team> getAllTeams(TeamManager tm);
-
-    /**
-     * Adds a team to a given team manager
-     * 
-     * @param tm team manager
-     * @param t team to be added to manager
-     */
-//    public void addTeam(TeamManager tm, Team t);
 
     /**
      * Finds team managers by name

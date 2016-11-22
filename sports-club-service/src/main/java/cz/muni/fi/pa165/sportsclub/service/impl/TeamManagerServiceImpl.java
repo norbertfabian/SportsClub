@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.service.impl;
 
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
-import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.service.TeamManagerService;
 import java.util.List;
@@ -40,25 +39,8 @@ public class TeamManagerServiceImpl implements TeamManagerService {
     }
 
     @Override
-    public TeamManager findByTeam(String teamName) {
-        return tmDao.findByTeam(teamName);
-    }
-
-    @Override
     public List<TeamManager> findAll() {
         return tmDao.findAll();
-    }
-
-    @Override
-    public List<Team> getAllTeams(TeamManager tm) {
-        return tmDao.getAllTeams(tm);
-    }
-
-    //@todo: check it and fix
-    @Override
-    public void addNewTeam(TeamManager tm, Team t) {
-        t.setTeamManager(tm);
-        tm.addTeam(t);
     }
 
     @Override

@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 
 /**
- * Created by norbert on 20.11.16.
+ * @author Fabian Norbert
  */
 public interface DtoMapper {
 

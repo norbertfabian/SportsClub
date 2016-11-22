@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.sportsclub.dao;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactoryPersistence;
 import cz.muni.fi.pa165.sportsclub.PersistenceSampleApplicationContext;
+import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -15,9 +16,11 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 /**
  * @author Patrik Novak
  */
+
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
@@ -25,8 +28,11 @@ public class TeamManagerRepositoryTest extends AbstractTestNGSpringContextTests 
     
     @Inject
     private TeamManagerDao teamManagerDao;
+    
+    @Inject TeamDao teamDao;
 
     private TeamManager teamManager;
+    
     private EntityFactoryPersistence entityFactoryPersistence = new EntityFactoryPersistence();
 
     @BeforeMethod
@@ -58,6 +64,34 @@ public class TeamManagerRepositoryTest extends AbstractTestNGSpringContextTests 
     public void testFindAll() {
         teamManagerDao.create(entityFactoryPersistence.createTeamManager("anotherTeamManager"));
         assertEquals(teamManagerDao.findAll().size(), 2);
+    }
+    
+    @Test
+    public void testAddTeam() {
+         Team team = entityFactoryPersistence.createPersistedTeam(teamDao);
+         teamManager.addTeam(team);
+         teamManagerDao.update(teamManager);
+         assertEquals(teamManager.getTeams().size(), 1);
+         assertEquals(teamManager.getTeams().contains(team), true);
+    }
+    
+    @Test
+    public void testRemoveTeamById() {
+        Team t1 = entityFactoryPersistence.createPersistedTeam(teamDao);
+        Team t2 = entityFactoryPersistence.createPersistedTeam(teamDao);
+        Team t3 = entityFactoryPersistence.createPersistedTeam(teamDao);
+        
+        teamManager.addTeam(t1);
+        teamManager.addTeam(t2);
+        teamManager.addTeam(t3);
+        
+        teamManagerDao.update(teamManager);
+        
+        teamManager.removeTeamById(t2.getId());
+        
+        assertEquals(teamManager.getTeams().size(), 2);
+        assertEquals(teamManager.getTeams().contains(t1), true);
+        assertEquals(teamManager.getTeams().contains(t3), true);
     }
     
     @Test(expectedExceptions = ConstraintViolationException.class)
