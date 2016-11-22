@@ -27,5 +27,30 @@ public class TeamManagerDto extends TeamManagerCreateDto {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "TeamManagerDto{" + 
+                "id=" + id + 
+                "name=" + super.getName() + 
+                ", address=" + super.getAddress() + 
+                ", contact=" + super.getContact() + 
+                ", teamsCount=" + super.getTeams().size() + 
+                '}';
+    }
+    
+    
+    
+    
     
 }

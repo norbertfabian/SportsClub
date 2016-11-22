@@ -20,9 +20,9 @@ public interface TeamManagerService {
     
     /**
      * Removes team manager
-     * @param tm Team manager to be removed
+     * @param id ID of team manager to be deleted
      */
-    public void removeTeamManager(TeamManager tm);
+    public void removeTeamManager(long id);
     
     /**
      * Updates team manager

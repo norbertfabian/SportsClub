@@ -1,11 +1,51 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerCreateDto;
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
+import java.util.List;
+
 /**
  *
  * @author Marian Sulgan
  */
 public interface TeamManagerFacade {
     
-    // addNewTeam()
+    /**
+     * Creates a team manager
+     * @param dto Team manager DTO with data
+     */
+    public void createTeamManager(TeamManagerCreateDto dto);
+    
+    /**
+     * Deletes team manager with given id
+     * @param id ID of team manager to be deleted
+     */
+    public void deleteTeamManager(long id);
+    
+    /**
+     * Update team manager
+     * @param dto Team manager DTO with updated data
+     */
+    public void updateTeamManager(TeamManagerDto dto);
+    
+    /**
+     * Returns team manager with given id
+     * @param id ID of team manager
+     * @return Team manager with give id
+     */
+    public TeamManagerDto getTeamManager(long id);
+    
+    /**
+     * Return all team managers
+     * @return List of all team managers
+     */
+    public List<TeamManagerDto> getAllTeamManagers();
+    
+    /**
+     * Adds a team to team manager
+     * @param dto Team manager DTO
+     * @param teamId ID of team to be assigned to given team manager
+     */
+//    public void addTeamToManager(TeamManagerDto dto, long teamId);
     
 }

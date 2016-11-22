@@ -32,8 +32,8 @@ public class TeamManagerDaoImpl implements TeamManagerDao {
     }
 
     @Override
-    public void remove(TeamManager tm) {
-        em.remove(tm);
+    public void remove(long id) {
+        em.remove(findById(id));
     }
 
     @Override

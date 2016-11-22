@@ -56,7 +56,7 @@ public class TeamManagerRepositoryTest extends AbstractTestNGSpringContextTests 
     @Test
     public void testRemove(){
         assertEquals(teamManagerDao.findById(teamManager.getId()), teamManager);
-        teamManagerDao.remove(teamManager);
+        teamManagerDao.remove(teamManager.getId());
         assertNull(teamManagerDao.findById(teamManager.getId()));
     }
     

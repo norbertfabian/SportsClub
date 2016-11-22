@@ -24,8 +24,8 @@ public class TeamManagerServiceImpl implements TeamManagerService {
     }
 
     @Override
-    public void removeTeamManager(TeamManager tm) {
-        tmDao.remove(tm);
+    public void removeTeamManager(long id) {
+        tmDao.remove(id);
     }
 
     @Override

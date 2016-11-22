@@ -28,9 +28,9 @@ public interface TeamManagerDao {
     /**
      * Removes TeamManager.
      * 
-     * @param tm team manager to be removed.
+     * @param id ID of team manager to be removed
      */
-    public void remove(TeamManager tm);
+    public void remove(long id);
 
     /**
      * Finds TeamManager by provided ID.

@@ -2,7 +2,9 @@ package cz.muni.fi.pa165.sportsclub.dto.teamManager;
 
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import java.util.List;
+import java.util.Objects;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -13,12 +15,15 @@ import javax.validation.constraints.NotNull;
 public class TeamManagerCreateDto {
     
     @NotNull
+    @Size(min = 2, max = 80)
     private String name;
 
     @NotNull
+    @Size(min = 2, max = 200)
     private String address;
 
     @NotNull
+    @Size(min = 2, max = 60)
     private String contact;
     
     private List<TeamDto> teams;
@@ -27,7 +32,7 @@ public class TeamManagerCreateDto {
         
     }
 
-    public TeamManagerCreateDto(TeamManagerCreateDto dto) {
+    public TeamManagerCreateDto(TeamManagerDto dto) {
         this.name = dto.getName();
         this.address = dto.getAddress();
         this.contact = dto.getContact();
@@ -66,27 +71,37 @@ public class TeamManagerCreateDto {
         this.teams = teams;
     }
     
-//    @Override
-//    public boolean equals(Object o) {
-//        if (!super.equals(o) || !(o instanceof TeamManagerDto))
-//            return false;
-//        TeamManagerDto tmDto = (TeamManagerDto) o;
-//        return (tmDto.getId() == this.getId());
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//    }
-//    
-//    @Override
-//    public String toString() {
-//        return "TeamManagerDto{" + 
-//                "id=" + id + 
-//                ", name=" + name + 
-//                ", address=" + address + 
-//                ", contact=" + contact + 
-//                ", teams=" + teams + 
-//                '}';
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) 
+            return true;
+        
+        if ((o == null) || !(o instanceof TeamManagerCreateDto)) 
+            return false;
+
+        TeamManagerCreateDto tmCreateDto = (TeamManagerCreateDto) o;
+
+        return getTeams().equals(tmCreateDto.getTeams());
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.getName());
+        hash = 47 * hash + Objects.hashCode(this.getContact());
+        hash = 47 * hash + Objects.hashCode(this.getAddress());
+        hash = 47 * hash + Objects.hashCode(this.getTeams().size());
+        return hash;
+    }
+    
+    @Override
+    public String toString() {
+        return "TeamManagerCreateDto{" +
+                "name=" + name + 
+                ", address=" + address + 
+                ", contact=" + contact + 
+                ", teamsCount=" + teams.size() + 
+                '}';
+    }
     
 }
