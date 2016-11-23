@@ -8,10 +8,12 @@ package cz.muni.fi.pa165.sportsclub.service.impl;
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.service.PlayerService;
-import java.util.List;
+import org.springframework.stereotype.Service;
+
 import javax.inject.Inject;
+import java.util.List;
 
-
+@Service
 public class PlayerServiceImpl implements PlayerService {
 
     @Inject
