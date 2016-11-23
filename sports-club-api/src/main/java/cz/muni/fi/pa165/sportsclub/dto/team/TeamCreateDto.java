@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by norbert on 19.11.16.
+ * @author Fabian Norbert
  */
 public class TeamCreateDto {
 

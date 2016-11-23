@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.sportsclub.dto.team;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by norbert on 19.11.16.
+ * @author Fabian Norbert
  */
 public class TeamDto extends TeamCreateDto {
 

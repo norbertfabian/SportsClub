@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.TeamManagerService;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
@@ -38,17 +39,26 @@ public class TeamManagerFacadeImpl implements TeamManagerFacade {
 
     @Override
     public void updateTeamManager(TeamManagerDto dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TeamManager tm = dtoMapper.dtoToTeamManager(dto);
+        tmService.updateTeamManager(tm);
     }
 
     @Override
     public TeamManagerDto getTeamManager(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        TeamManager tm = tmService.findById(id);
+        return dtoMapper.teamManagerToDto(tm, TeamManagerDto.class);
     }
 
     @Override
     public List<TeamManagerDto> getAllTeamManagers() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<TeamManager> tms = tmService.getAll();
+        List<TeamManagerDto> dtos = new ArrayList<>();
+        
+        tms.forEach((TeamManager tm) -> {
+            dtos.add(dtoMapper.teamManagerToDto(tm, TeamManagerDto.class));
+        });
+        
+        return dtos;
     }
     
 }

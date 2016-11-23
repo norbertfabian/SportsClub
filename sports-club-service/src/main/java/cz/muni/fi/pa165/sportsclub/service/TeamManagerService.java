@@ -49,6 +49,6 @@ public interface TeamManagerService {
      * Retrieves all team managers
      * @return list of team managers
      */
-    public List<TeamManager> findAll();
+    public List<TeamManager> getAll();
     
 }

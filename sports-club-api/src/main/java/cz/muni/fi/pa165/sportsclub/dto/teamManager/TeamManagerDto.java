@@ -29,8 +29,13 @@ public class TeamManagerDto extends TeamManagerCreateDto {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public boolean equals(Object o) {
+        if (!super.equals(o) || !(o instanceof TeamManagerDto))
+            return false;
+        
+        TeamManagerDto tmDto = (TeamManagerDto) o;
+        
+        return (tmDto.getId() == this.getId());
     }
 
     @Override
@@ -42,15 +47,10 @@ public class TeamManagerDto extends TeamManagerCreateDto {
     public String toString() {
         return "TeamManagerDto{" + 
                 "id=" + id + 
-                "name=" + super.getName() + 
-                ", address=" + super.getAddress() + 
-                ", contact=" + super.getContact() + 
-                ", teamsCount=" + super.getTeams().size() + 
+                "name=" + getName() + 
+                ", address=" + getAddress() + 
+                ", contact=" + getContact() + 
+                ", teamsCount=" + getTeams().size() + 
                 '}';
     }
-    
-    
-    
-    
-    
 }

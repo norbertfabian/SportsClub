@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.dto.teamManager;
 
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
@@ -36,7 +37,7 @@ public class TeamManagerCreateDto {
         this.name = dto.getName();
         this.address = dto.getAddress();
         this.contact = dto.getContact();
-        this.teams = dto.getTeams();
+        this.teams = Collections.unmodifiableList(dto.getTeams());
     }
 
     public String getName() {
