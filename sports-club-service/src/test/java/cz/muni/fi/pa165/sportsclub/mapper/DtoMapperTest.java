@@ -2,14 +2,13 @@ package cz.muni.fi.pa165.sportsclub.mapper;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
+import cz.muni.fi.pa165.sportsclub.dto.ageGroup.AgeGroupDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
@@ -25,47 +24,38 @@ public class DtoMapperTest extends AbstractTransactionalTestNGSpringContextTests
 
     private static EntityFactoryService entityFactoryService = new EntityFactoryService();
 
-    @DataProvider
-    public static Object[][] teamToDtoDataProvider() {
-        return new Object[][] {
-                {TeamDto.class},
-                {TeamCreateDto.class}
-        };
-    }
-
-    @Test(dataProvider = "teamToDtoDataProvider")
-    public void teamToDtoTest(Class destinationClass) {
+    @Test
+    public void teamToDtoTest() {
         Team team = entityFactoryService.createTeam();
 
-        TeamCreateDto dto = dtoMapper.teamToDto(team, destinationClass);
+        TeamDto dto = dtoMapper.teamToDto(team);
 
         Assert.assertNotNull(dto);
-        Assert.assertTrue(dto.getClass() == destinationClass);
-        if(destinationClass.equals(TeamDto.class)) {
-            Assert.assertEquals(((TeamDto) dto).getId(), team.getId());
-        }
+        Assert.assertEquals(dto.getId(), team.getId());
         Assert.assertEquals(dto.getName(), team.getName());
         Assert.assertEquals(dto.getAgeGroupLabel(), team.getAgeGroup().getLabel());
-        Assert.assertEquals(dto.getAgeGroupLabelsList().size(), 6);
     }
 
-    @DataProvider
-    public static Object[][] dtoToTeamDataProvider() {
-        return new Object[][] {
-                {entityFactoryService.createTeamDto()},
-                {entityFactoryService.createTeamCreateDto()}
-        };
-    }
+    @Test
+    public void dtoToTeamTest() {
+        TeamDto teamDto = entityFactoryService.createTeamDto();
 
-    @Test(dataProvider = "dtoToTeamDataProvider")
-    public void dtoToTeamTest(TeamCreateDto dto) {
-        Team team = dtoMapper.dtoToTeam(dto);
+        Team team = dtoMapper.dtoToTeam(teamDto);
 
         Assert.assertNotNull(team);
-        if(dto instanceof TeamDto) {
-            Assert.assertEquals(team.getId(), ((TeamDto) dto).getId());
-        }
-        Assert.assertEquals(team.getName(), dto.getName());
-        Assert.assertEquals(team.getAgeGroup(), AgeGroup.getByLabel(dto.getAgeGroupLabel()));
+        Assert.assertEquals(team.getName(), teamDto.getName());
+        Assert.assertEquals(team.getAgeGroup(), AgeGroup.getByLabel(teamDto.getAgeGroupLabel()));
+    }
+
+    @Test
+    public void mapToTest() {
+        AgeGroup ageGroup = AgeGroup.JUNIOR;
+        AgeGroupDto dto = new AgeGroupDto();
+
+        dtoMapper.mapTo(ageGroup, dto);
+
+        Assert.assertEquals(dto.getLabel(), ageGroup.getLabel());
+        Assert.assertEquals(dto.getAgeFrom(), ageGroup.getAgeFrom());
+        Assert.assertEquals(dto.getAgeTo(), ageGroup.getAgeTo());
     }
 }

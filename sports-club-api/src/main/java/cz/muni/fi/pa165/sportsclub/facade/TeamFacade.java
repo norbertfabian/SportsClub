@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
+import cz.muni.fi.pa165.sportsclub.dto.ageGroup.AgeGroupDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public interface TeamFacade {
      *
      * @param dto TeamDto with the team data
      */
-    void createTeam(TeamCreateDto dto);
+    void createTeam(TeamDto dto);
 
     /**
      * Deletes a team with the given id.
@@ -45,4 +45,11 @@ public interface TeamFacade {
      * @return Team with the given id
      */
     TeamDto getTeam(long id);
+
+    /**
+     * Returns list of all AgeGroupDtos
+     *
+     * @return List of AgeGroupDto
+     */
+    List<AgeGroupDto> getAgeGroups();
 }
