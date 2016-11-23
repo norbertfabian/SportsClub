@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
@@ -31,11 +32,12 @@ public interface DtoMapper {
     /**
      * Maps a player entity to a PlayerDto.
      *
+     * @param <T> implementation of PlayerCreateDto
      * @param player Player entity
-     * @param PlayerDtoClass 
-     * @return Mapped PlayerDto
+     * @param maptoClass Dto type
+     * @return Mapped Dto of the given type
      */
-    PlayerDto playerToDto(Player player, Class<PlayerDto> PlayerDtoClass);
+    <T extends PlayerCreateDto> T playerToDto(Player player, Class<T> maptoClass);
 
     /**
      * Maps a playerDto to an entity.

@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
@@ -36,8 +37,8 @@ public class DtoMapperImpl implements DtoMapper {
     }
     
     @Override
-    public PlayerDto playerToDto(Player player, Class<PlayerDto> PlayerDtoClass) {
-        return dtoMapper.map(player, PlayerDtoClass);
+    public <T extends PlayerCreateDto> T playerToDto(Player player, Class<T> destinationClass) {
+        return dtoMapper.map(player, destinationClass);
     }
 
     @Override
