@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.sportsclub.service.impl;
 
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.exception.SportsClubServiceException;
 import cz.muni.fi.pa165.sportsclub.service.TeamService;
 import org.springframework.stereotype.Service;
 
@@ -29,11 +30,19 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public void createTeam(Team team) {
+        Team persistedTeam = teamDao.getByName(team.getName());
+        if(persistedTeam != null) {
+            throw new SportsClubServiceException("Team name already exists.");
+        }
         teamDao.create(team);
     }
 
     @Override
     public Team updateTeam(Team team) {
+        Team persistedTeam = teamDao.getByName(team.getName());
+        if(persistedTeam != null && persistedTeam.getId() != team.getId()) {
+            throw new SportsClubServiceException("Team name already exists.");
+        }
         return teamDao.update(team);
     }
 

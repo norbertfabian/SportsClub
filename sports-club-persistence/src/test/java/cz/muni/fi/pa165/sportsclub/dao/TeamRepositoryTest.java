@@ -74,6 +74,17 @@ public class TeamRepositoryTest extends AbstractTestNGSpringContextTests {
         Assert.assertTrue(result.contains(team2));
     }
 
+    @Test
+    public void shouldReturnTeamByName() {
+        Team team = entityFactoryPersistence.createTeam("TeamName");
+        teamDao.create(team);
+
+        Team result = teamDao.getByName("TeamName");
+
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result, team);
+    }
+
     @Test(expectedExceptions = ConstraintViolationException.class)
     public void shouldNotCreateTeamWithNullName() {
         Team team = entityFactoryPersistence.createTeam();

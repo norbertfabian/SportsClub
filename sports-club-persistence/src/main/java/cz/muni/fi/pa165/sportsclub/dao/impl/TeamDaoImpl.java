@@ -7,7 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
@@ -45,5 +47,16 @@ public class TeamDaoImpl implements TeamDao {
     public List<Team> getAll() {
         CriteriaQuery<Team> criteria = em.getCriteriaBuilder().createQuery(Team.class);
         return em.createQuery(criteria.select(criteria.from(Team.class))).getResultList();
+    }
+
+    @Override
+    public Team getByName(String name) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Team> teamCriteria = criteriaBuilder.createQuery(Team.class);
+        Root<Team> teamRoot = teamCriteria.from(Team.class);
+        teamCriteria.select(teamRoot);
+        teamCriteria.where(criteriaBuilder.equal(teamRoot.get("name"), name));
+        List<Team> resultList = em.createQuery(teamCriteria).getResultList();
+        return resultList.isEmpty() ? null : resultList.get(0);
     }
 }
