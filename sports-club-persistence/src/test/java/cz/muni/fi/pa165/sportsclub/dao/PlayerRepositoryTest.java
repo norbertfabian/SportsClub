@@ -80,14 +80,14 @@ public class PlayerRepositoryTest extends AbstractTestNGSpringContextTests {
         entityFactoryPersistence.createPersistedPlayer("secondPlayer", playerDao);
         entityFactoryPersistence.createPersistedPlayer("thirdPlayer", playerDao);
 
-        Assert.assertEquals(3, playerDao.findAll().size());
+        Assert.assertEquals(3, playerDao.getAll().size());
     }
 
     @Test
     public void deletePlayerTest() {
         Player player = entityFactoryPersistence.createPersistedPlayer(playerDao);
-        playerDao.remove(player);
-        Assert.assertTrue(playerDao.findAll().isEmpty());
+        playerDao.remove(player.getId());
+        Assert.assertTrue(playerDao.getAll().isEmpty());
     }
 
     @Test(expectedExceptions = ConstraintViolationException.class)

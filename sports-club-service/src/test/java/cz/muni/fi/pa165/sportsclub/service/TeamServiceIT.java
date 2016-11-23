@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.exception.SportsClubServiceException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
@@ -69,5 +70,23 @@ public class TeamServiceIT extends AbstractTransactionalTestNGSpringContextTests
         long id = teamToRemove.getId();
         teamService.removeTeam(teamToRemove.getId());
         Assert.assertNull(teamDao.findById(id));
+    }
+
+    @Test(expectedExceptions = SportsClubServiceException.class)
+    public void addTeamWithExistingNameTest() {
+        entityFactoryService.createPersistedTeam("TeamName", teamDao);
+
+        teamService.createTeam(entityFactoryService.createTeam("TeamName"));
+    }
+
+    @Test(expectedExceptions = SportsClubServiceException.class)
+    public void updateTeamWithExistingNameTest() {
+        entityFactoryService.createPersistedTeam("ExistingTeamName", teamDao);
+        Team teamToUpdate = entityFactoryService.createPersistedTeam("TeamName", teamDao);
+        Team detachedTeam = new Team();
+        detachedTeam.setId(teamToUpdate.getId());
+        detachedTeam.setName("ExistingTeamName");
+
+        teamService.updateTeam(detachedTeam);
     }
 }

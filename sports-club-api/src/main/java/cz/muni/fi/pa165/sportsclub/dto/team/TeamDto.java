@@ -1,23 +1,46 @@
 package cz.muni.fi.pa165.sportsclub.dto.team;
 
+import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
+
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Fabian Norbert
  */
-public class TeamDto extends TeamCreateDto {
+public class TeamDto{
+
+    private long id;
 
     @NotNull
-    private long id;
+    @Size(min = 3, max = 50)
+    private String name;
+
+    private Set<MembershipDto> memberships;
+
+    private TeamManagerDto teamManager;
+
+    private String ageGroupLabel;
+    
+    private List<String> ageGroupLabelsList;
 
     public TeamDto() {
 
     }
 
     public TeamDto(TeamDto dto) {
-        super(dto);
         this.id = dto.getId();
+        this.name = dto.getName();
+        this.memberships = Collections.unmodifiableSet(dto.getMemberships());
+        this.teamManager = dto.getTeamManager();
+        this.ageGroupLabel = dto.getAgeGroupLabel();
     }
+
+
 
     public long getId() {
         return id;
@@ -27,28 +50,58 @@ public class TeamDto extends TeamCreateDto {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<String> getAgeGroupLabelsList() {
+        return ageGroupLabelsList;
+    }
+
+    public void setAgeGroupLabelsList(List<String> ageGroupLabelsList) {
+        this.ageGroupLabelsList = ageGroupLabelsList;
+    }
+
+    public Set<MembershipDto> getMemberships() {
+        return memberships;
+    }
+
+    public void setMemberships(Set<MembershipDto> memberships) {
+        this.memberships = memberships;
+    }
+
+    public TeamManagerDto getTeamManager() {
+        return teamManager;
+    }
+
+    public void setTeamManager(TeamManagerDto teamManager) {
+        this.teamManager = teamManager;
+    }
+
+    public String getAgeGroupLabel() {
+        return ageGroupLabel;
+    }
+
+    public void setAgeGroupLabel(String ageGroupLabel) {
+        this.ageGroupLabel = ageGroupLabel;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o) || !(o instanceof TeamDto))
-            return false;
+        if (this == o) return true;
+        if (!(o instanceof TeamDto)) return false;
+
         TeamDto teamDto = (TeamDto) o;
-        return (teamDto.getId() == this.getId());
+
+        return getName() != null ? getName().equals(teamDto.getName()) : teamDto.getName() == null;
     }
 
     @Override
     public int hashCode() {
-        return getName().hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "TeamDto{" +
-                "id=" + id +
-                ", name='" + getName() + '\'' +
-                ", memberships=" + getMemberships() +
-                ", teamManager=" + getTeamManager() +
-                ", ageGroupLabel=" + getAgeGroupLabel() +
-                '}';
+        return getName() != null ? getName().hashCode() : 0;
     }
 }

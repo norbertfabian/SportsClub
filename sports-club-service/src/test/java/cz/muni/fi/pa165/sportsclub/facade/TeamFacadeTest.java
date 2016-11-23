@@ -49,7 +49,7 @@ public class TeamFacadeTest {
 
     @Test
     public void getTeamTest() {
-        Mockito.when(dtoMapper.teamToDto(Mockito.any(), Mockito.any()))
+        Mockito.when(dtoMapper.teamToDto(Mockito.any()))
                 .thenReturn(entityFactoryService.createTeamDto());
         Mockito.when(teamService.findById(Mockito.anyLong()))
                 .thenReturn(entityFactoryService.createTeam());
@@ -74,7 +74,7 @@ public class TeamFacadeTest {
 
     @Test
     public void createTeamTest() {
-        teamFacade.createTeam(entityFactoryService.createTeamCreateDto());
+        teamFacade.createTeam(entityFactoryService.createTeamDto());
 
         Mockito.verify(teamService, Mockito.times(1)).createTeam(Mockito.any(Team.class));
     }

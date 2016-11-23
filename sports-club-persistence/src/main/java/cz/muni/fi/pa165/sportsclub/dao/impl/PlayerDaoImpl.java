@@ -33,8 +33,8 @@ public class PlayerDaoImpl implements PlayerDao{
     }
 
     @Override
-    public void remove(Player player) {
-        em.remove(player);
+    public void remove(Long id) {
+        em.remove(findById(id));
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PlayerDaoImpl implements PlayerDao{
     }
 
     @Override
-    public List<Player> findAll() {
+    public List<Player> getAll() {
         CriteriaQuery<Player> criteria = em.getCriteriaBuilder().createQuery(Player.class);
         return em.createQuery(criteria.select(criteria.from(Player.class))).getResultList();
     }

@@ -29,9 +29,9 @@ public interface PlayerDao {
     /**
      * Removes Player.
      * 
-     * @param player to be removed.
+     * @param id of player to be removed.
      */
-    void remove(Player player);
+    void remove(Long id);
     
     /**
      * Finds Player by provided ID.
@@ -46,5 +46,5 @@ public interface PlayerDao {
      *
      * @return List of Players.
      */
-    List<Player> findAll();
+    List<Player> getAll();
 }

@@ -47,4 +47,12 @@ public interface TeamDao {
      * @return List of teams
      */
     List<Team> getAll();
+
+    /**
+     * Returns team by name;
+     *
+     * @param name Name of the team;
+     * @return Team
+     */
+    public Team getByName(String name);
 }
