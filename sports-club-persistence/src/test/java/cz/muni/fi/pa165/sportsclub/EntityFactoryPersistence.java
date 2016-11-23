@@ -12,6 +12,8 @@ import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -28,11 +30,19 @@ public class EntityFactoryPersistence {
     public Team createTeam() {
         return createTeam("team");
     }
-
-    public Team createTeam(TeamDao dao) {
-        Team team = createTeam();
+    
+    public Team createPersistedTeam(String name, TeamDao dao) {
+        Team team = createTeam(name);
         dao.create(team);
         return team;
+    }
+    
+    public Team createPersistedTeam(TeamDao dao) {
+        return createPersistedTeam("team" + getCurrentLocalDateTimeStamp(), dao);
+    }
+    
+    private String getCurrentLocalDateTimeStamp() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
     }
 
     public Player createPlayer(String firstName, Integer height, Integer weight) {

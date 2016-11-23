@@ -6,7 +6,7 @@ import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import java.util.List;
 
 /**
- * Created by norbert on 19.11.16.
+ * @author Fabian Norbert
  */
 public interface TeamFacade {
 

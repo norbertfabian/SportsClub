@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by norbert on 5.11.16.
+ * @author Fabian Norbert
  */
 
 @Service

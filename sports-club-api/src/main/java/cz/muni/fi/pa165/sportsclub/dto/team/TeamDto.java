@@ -6,10 +6,11 @@ import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 /**
- * Created by norbert on 19.11.16.
+ * @author Fabian Norbert
  */
 public class TeamDto{
 
@@ -24,7 +25,7 @@ public class TeamDto{
     private TeamManagerDto teamManager;
 
     private String ageGroupLabel;
-
+    
     public TeamDto() {
 
     }

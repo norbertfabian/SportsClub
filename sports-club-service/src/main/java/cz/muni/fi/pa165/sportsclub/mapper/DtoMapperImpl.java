@@ -2,24 +2,34 @@ package cz.muni.fi.pa165.sportsclub.mapper;
 
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerCreateDto;
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
+
 import org.dozer.Mapper;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
 /**
- * Created by norbert on 20.11.16.
+ * @author Fabian Norbert
  */
 @Component
 public class DtoMapperImpl implements DtoMapper {
 
     @Inject
     private Mapper dtoMapper;
+    
+    @Override
+    public void mapTo(Object source, Object destination) {
+        dtoMapper.map(source, destination);
+    }
 
+    @Override
     public TeamDto teamToDto(Team team) {
         TeamDto dto = new TeamDto();
         dtoMapper.map(team, dto);
@@ -34,7 +44,7 @@ public class DtoMapperImpl implements DtoMapper {
         team.setAgeGroup(AgeGroup.getByLabel(dto.getAgeGroupLabel()));
         return team;
     }
-
+    
     @Override
     public <T extends PlayerCreateDto> T playerToDto(Player player, Class<T> destinationClass) {
         return dtoMapper.map(player, destinationClass);
@@ -46,9 +56,17 @@ public class DtoMapperImpl implements DtoMapper {
         dtoMapper.map(dto, player);
         return player;
     }
+    
+    @Override
+    public TeamManager dtoToTeamManager(TeamManagerCreateDto dto) {
+        TeamManager tm = new TeamManager();
+        dtoMapper.map(dto, tm);
+        return tm;
+    }
 
     @Override
-    public void mapTo(Object source, Object destination) {
-        dtoMapper.map(source, destination);
+    public TeamManagerDto teamManagerToDto(TeamManager tm, Class<TeamManagerDto> mapToClass) {
+        TeamManagerDto dto = dtoMapper.map(tm, mapToClass);
+        return dto;
     }
 }

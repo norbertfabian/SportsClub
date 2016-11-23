@@ -1,8 +1,10 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +36,11 @@ public class TeamManager {
     private String contact;
 
     @OneToMany(mappedBy = "teamManager")
-    private List<Team> teams;
+    private Set<Team> teams;
+    
+    public TeamManager() {
+        this.teams = new HashSet<>();
+    }
 
     public Long getId() {
         return id;
@@ -78,8 +84,8 @@ public class TeamManager {
      * 
      * @return list of teams
      */
-    public List<Team> getTeams() {
-        return Collections.unmodifiableList(teams);
+    public Set<Team> getTeams() {
+        return Collections.unmodifiableSet(teams);
     }
     
     /**
@@ -111,12 +117,13 @@ public class TeamManager {
      * @return this TeamManager
      */
     public TeamManager removeTeamById(long id) {
-        for (Team t: this.teams) {
-            if (t.getId() == id) {
-                this.teams.remove(this.teams.indexOf(t));
-                break;
+        for (Iterator<Team> iterator = this.teams.iterator(); iterator.hasNext();) {
+            Team team =  iterator.next();
+            if (team.getId() == id) {
+                iterator.remove();
             }
         }
+        
         return this;
     }
 

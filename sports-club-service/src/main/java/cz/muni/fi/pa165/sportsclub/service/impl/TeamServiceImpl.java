@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by norbert on 5.11.16.
+ * @author Fabian Norbert
  */
 @Service
 public class TeamServiceImpl implements TeamService {

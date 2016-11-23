@@ -15,7 +15,7 @@ public interface TeamManagerDao {
      * 
      * @param tm team manager to be created.
      */
-    void create(TeamManager tm);
+    public void create(TeamManager tm);
 
     /**
      * Updates existing TeamManager.
@@ -23,14 +23,14 @@ public interface TeamManagerDao {
      * @param tm team manager to be updated
      * @return updated TeamManager
      */
-    TeamManager update(TeamManager tm);
+    public TeamManager update(TeamManager tm);
 
     /**
      * Removes TeamManager.
      * 
-     * @param tm team manager to be removed.
+     * @param id ID of team manager to be removed
      */
-    void remove(TeamManager tm);
+    public void remove(long id);
 
     /**
      * Finds TeamManager by provided ID.
@@ -38,8 +38,21 @@ public interface TeamManagerDao {
      * @param id ID of TeamManager.
      * @return TeamManager with provided ID.
      */
-    TeamManager findById(Long id);
+    public TeamManager findById(long id);
     
-    List<TeamManager> findAll();
+    /**
+     * Finds all team managers
+     * 
+     * @return list of team managers
+     */
+    public List<TeamManager> getAll();
+
+    /**
+     * Finds team managers by name
+     * 
+     * @param name name of team manager
+     * @return list of tam managers matching the given name
+     */
+    public List<TeamManager> findByName(String name);
     
 }

@@ -32,19 +32,27 @@ public class TeamManagerDaoImpl implements TeamManagerDao {
     }
 
     @Override
-    public void remove(TeamManager tm) {
-        em.remove(tm);
+    public void remove(long id) {
+        em.remove(findById(id));
     }
 
     @Override
-    public TeamManager findById(Long id) {
+    public TeamManager findById(long id) {
         return em.find(TeamManager.class, id);
     }
 
     @Override
-    public List<TeamManager> findAll() {
+    public List<TeamManager> getAll() {
         CriteriaQuery<TeamManager> criteria = em.getCriteriaBuilder().createQuery(TeamManager.class);
         return em.createQuery(criteria.select(criteria.from(TeamManager.class))).getResultList();
     }
     
+    @Override
+    public List<TeamManager> findByName(String name) {
+        return em.createQuery(
+                "SELECT tm FROM TeamManager tm WHERE tm.name = :name", TeamManager.class)
+                    .setParameter("name", name)
+                    .getResultList();
+    }
+
 }
