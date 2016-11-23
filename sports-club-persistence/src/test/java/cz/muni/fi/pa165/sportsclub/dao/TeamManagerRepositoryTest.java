@@ -63,7 +63,7 @@ public class TeamManagerRepositoryTest extends AbstractTestNGSpringContextTests 
     @Test
     public void testFindAll() {
         teamManagerDao.create(entityFactoryPersistence.createTeamManager("anotherTeamManager"));
-        assertEquals(teamManagerDao.findAll().size(), 2);
+        assertEquals(teamManagerDao.getAll().size(), 2);
     }
     
     @Test

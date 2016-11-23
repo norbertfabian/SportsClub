@@ -38,14 +38,14 @@ public interface TeamManagerDao {
      * @param id ID of TeamManager.
      * @return TeamManager with provided ID.
      */
-    public TeamManager findById(Long id);
+    public TeamManager findById(long id);
     
     /**
      * Finds all team managers
      * 
      * @return list of team managers
      */
-    public List<TeamManager> findAll();
+    public List<TeamManager> getAll();
 
     /**
      * Finds team managers by name

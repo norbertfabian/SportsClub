@@ -36,10 +36,10 @@ public class TeamManager {
     private String contact;
 
     @OneToMany(mappedBy = "teamManager")
-    private Set<Team> teams = new HashSet<Team>();
+    private Set<Team> teams;
     
     public TeamManager() {
-        
+        this.teams = new HashSet<>();
     }
 
     public Long getId() {

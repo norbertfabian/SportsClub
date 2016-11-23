@@ -37,12 +37,12 @@ public class TeamManagerDaoImpl implements TeamManagerDao {
     }
 
     @Override
-    public TeamManager findById(Long id) {
+    public TeamManager findById(long id) {
         return em.find(TeamManager.class, id);
     }
 
     @Override
-    public List<TeamManager> findAll() {
+    public List<TeamManager> getAll() {
         CriteriaQuery<TeamManager> criteria = em.getCriteriaBuilder().createQuery(TeamManager.class);
         return em.createQuery(criteria.select(criteria.from(TeamManager.class))).getResultList();
     }

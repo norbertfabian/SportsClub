@@ -40,7 +40,7 @@ public class TeamManagerServiceImpl implements TeamManagerService {
 
     @Override
     public List<TeamManager> getAll() {
-        return tmDao.findAll();
+        return tmDao.getAll();
     }
 
     @Override
