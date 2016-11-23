@@ -26,8 +26,6 @@ public class TeamDto{
 
     private String ageGroupLabel;
     
-    private List<String> ageGroupLabelsList;
-
     public TeamDto() {
 
     }
@@ -56,14 +54,6 @@ public class TeamDto{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<String> getAgeGroupLabelsList() {
-        return ageGroupLabelsList;
-    }
-
-    public void setAgeGroupLabelsList(List<String> ageGroupLabelsList) {
-        this.ageGroupLabelsList = ageGroupLabelsList;
     }
 
     public Set<MembershipDto> getMemberships() {

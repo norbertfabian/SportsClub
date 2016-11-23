@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;

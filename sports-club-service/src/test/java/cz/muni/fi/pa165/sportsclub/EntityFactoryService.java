@@ -44,7 +44,7 @@ public class EntityFactoryService {
     
     public TeamManager createTeamManager(String tmName) {
         TeamManager tm = new TeamManager();
-//        tm.setId(1L);
+        tm.setId(1L);
         tm.setName(tmName);
         tm.setAddress("Test Address");
         tm.setContact("Test Contact");
