@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
+import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import org.dozer.Mapper;
@@ -17,6 +19,7 @@ public class DtoMapperImpl implements DtoMapper {
     @Inject
     private Mapper dtoMapper;
 
+    @Override
     public <T extends TeamCreateDto> T teamToDto(Team team, Class<T> destinationClass) {
         T dto = dtoMapper.map(team, destinationClass);
         dto.setAgeGroupLabelsList(AgeGroup.getAllLabels());
@@ -24,10 +27,23 @@ public class DtoMapperImpl implements DtoMapper {
         return dto;
     }
 
+    @Override
     public Team dtoToTeam(TeamCreateDto dto) {
         Team team = new Team();
         dtoMapper.map(dto, team);
         team.setAgeGroup(AgeGroup.getByLabel(dto.getAgeGroupLabel()));
         return team;
+    }
+    
+    @Override
+    public PlayerDto playerToDto(Player player, Class<PlayerDto> PlayerDtoClass) {
+        return dtoMapper.map(player, PlayerDtoClass);
+    }
+
+    @Override
+    public Player dtoToPlayer(PlayerDto dto) {
+        Player player = new Player();
+        dtoMapper.map(dto, player);
+        return player;
     }
 }
