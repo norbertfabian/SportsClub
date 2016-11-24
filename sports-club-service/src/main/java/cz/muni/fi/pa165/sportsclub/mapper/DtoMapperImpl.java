@@ -1,10 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
-import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
-import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
-import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
@@ -59,18 +56,6 @@ public class DtoMapperImpl implements DtoMapper {
         dtoMapper.map(dto, team);
         team.setAgeGroup(AgeGroup.getByLabel(dto.getAgeGroupLabel()));
         return team;
-    }
-    
-    @Override
-    public <T extends PlayerCreateDto> T playerToDto(Player player, Class<T> destinationClass) {
-        return dtoMapper.map(player, destinationClass);
-    }
-
-    @Override
-    public Player dtoToPlayer(PlayerDto dto) {
-        Player player = new Player();
-        dtoMapper.map(dto, player);
-        return player;
     }
     
     @Override
