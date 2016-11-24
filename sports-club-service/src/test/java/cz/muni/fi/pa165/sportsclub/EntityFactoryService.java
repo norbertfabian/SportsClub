@@ -1,19 +1,24 @@
 package cz.muni.fi.pa165.sportsclub;
 
+import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
+import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
+
+import java.util.Calendar;
 
 /**
  * @author Fabian Norbert
  */
 public class EntityFactoryService {
 
-    public TeamDto createTeamDto(){
+    public TeamDto createTeamDto() {
         TeamDto team = new TeamDto();
         team.setName("TestTeamDto");
         team.setAgeGroupLabel(AgeGroup.JUNIOR.getLabel());
@@ -24,7 +29,7 @@ public class EntityFactoryService {
         return createTeam("TestTeam");
     }
 
-    public Team createTeam(String name){
+    public Team createTeam(String name) {
         Team team = new Team();
         team.setName(name);
         team.setAgeGroup(AgeGroup.JUNIOR);
@@ -40,7 +45,7 @@ public class EntityFactoryService {
         dao.create(team);
         return team;
     }
-    
+
     public TeamManager createTeamManager(String tmName) {
         TeamManager tm = new TeamManager();
         tm.setName(tmName);
@@ -48,22 +53,56 @@ public class EntityFactoryService {
         tm.setContact("Test Contact");
         return tm;
     }
-    
+
     public TeamManager createTeamManager() {
         return createTeamManager("John Doe");
     }
-    
+
     public TeamManager createPersistedTeamManager(String tmName, TeamManagerDao dao) {
         TeamManager tm = createTeamManager(tmName);
         dao.create(tm);
         return tm;
     }
-    
+
     public TeamManagerDto createTeamManagerDto() {
         TeamManagerDto tmDto = new TeamManagerDto();
         tmDto.setAddress("TestAddress");
         tmDto.setContact("TestContact");
         tmDto.setName("Test TeamManager");
         return tmDto;
+    }
+
+    public PlayerDto createPlayerDto() {
+        PlayerDto player = new PlayerDto();
+        player.setFirstName("TestPlayerDto");
+        player.setLastName("LastName");
+        Calendar cal = Calendar.getInstance();
+        cal.set(2000, 1, 1);
+        player.setDateOfBirth(cal.getTime());
+        return player;
+    }
+
+    public Player createPlayer() {
+        return createPlayer("TestPlayer");
+    }
+
+    public Player createPlayer(String name) {
+        Player player = new Player();
+        player.setFirstName(name);
+        player.setLastName("LastName");
+        Calendar cal = Calendar.getInstance();
+        cal.set(2000, 1, 1);
+        player.setDateOfBirth(cal.getTime());
+        return player;
+    }
+
+    public Player createPersistedPlayer(PlayerDao dao) {
+        return createPersistedPlayer("TestPlayer", dao);
+    }
+
+    public Player createPersistedPlayer(String name, PlayerDao dao) {
+        Player player = createPlayer(name);
+        dao.create(player);
+        return player;
     }
 }

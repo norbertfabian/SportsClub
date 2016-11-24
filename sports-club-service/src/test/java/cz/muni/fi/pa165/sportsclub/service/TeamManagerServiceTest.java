@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.service.impl.TeamManagerServiceImpl;
-
+import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -15,7 +15,6 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.hibernate.service.spi.ServiceException;
 
 /**
  *
@@ -45,6 +44,7 @@ public class TeamManagerServiceTest {
     @Test
     public void removeTeamManagerTest() {
         TeamManager tm = entityFactoryService.createTeamManager();
+        tm.setId(1L);
         tmService.removeTeamManager(tm.getId());
         Mockito.verify(tmDao, Mockito.times(1)).remove(Mockito.anyLong());
     }

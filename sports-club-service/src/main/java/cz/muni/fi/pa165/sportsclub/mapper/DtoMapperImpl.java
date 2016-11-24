@@ -13,6 +13,9 @@ import org.dozer.Mapper;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Fabian Norbert
@@ -22,7 +25,21 @@ public class DtoMapperImpl implements DtoMapper {
 
     @Inject
     private Mapper dtoMapper;
-    
+
+    @Override
+    public <T> List<T> mapTo(Collection<?> objects, Class<T> mapToClass) {
+        List<T> mappedCollection = new ArrayList<>();
+        for (Object object : objects) {
+            mappedCollection.add(dtoMapper.map(object, mapToClass));
+        }
+        return mappedCollection;
+    }
+
+    @Override
+    public <T> T mapTo(Object u, Class<T> mapToClass) {
+        return dtoMapper.map(u, mapToClass);
+    }
+
     @Override
     public void mapTo(Object source, Object destination) {
         dtoMapper.map(source, destination);
@@ -65,7 +82,6 @@ public class DtoMapperImpl implements DtoMapper {
 
     @Override
     public TeamManagerDto teamManagerToDto(TeamManager tm, Class<TeamManagerDto> mapToClass) {
-        TeamManagerDto dto = dtoMapper.map(tm, mapToClass);
-        return dto;
+        return dtoMapper.map(tm, mapToClass);
     }
 }
