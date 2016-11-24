@@ -37,7 +37,9 @@ public class TeamManagerServiceTest {
     
     @Test
     public void createTeamManagerTest() {
-        tmService.createTeamManager(entityFactoryService.createTeamManager());
+        TeamManager tm = entityFactoryService.createTeamManager();
+        tm.setId(1L);
+        tmService.createTeamManager(tm);
         Mockito.verify(tmDao, Mockito.times(1)).create(Mockito.any());
     }
     
@@ -52,6 +54,7 @@ public class TeamManagerServiceTest {
     @Test
     public void updateTeamManagerTest() {
         TeamManager tm = entityFactoryService.createTeamManager();
+        tm.setId(1L);
         Mockito.when(tmDao.update(Mockito.any())).thenReturn(tm);
         TeamManager test = tmService.updateTeamManager(tm);
         Mockito.verify(tmDao, Mockito.times(1)).update(Mockito.any());
@@ -65,7 +68,8 @@ public class TeamManagerServiceTest {
 
         TeamManager result = tmService.findById(1L);
 
-        Mockito.verify(tmDao, Mockito.times(1)).findById(Mockito.anyLong());
+        // called 2x - verification + actual search
+        Mockito.verify(tmDao, Mockito.times(2)).findById(Mockito.anyLong());
         Assert.assertNotNull(result);
     }
     
