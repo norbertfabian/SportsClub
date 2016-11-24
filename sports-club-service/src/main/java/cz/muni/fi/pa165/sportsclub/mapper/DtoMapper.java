@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
-import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
@@ -60,7 +59,7 @@ public interface DtoMapper {
      * @param dto DTO to map
      * @return Mapped team manager entity
      */
-    public TeamManager dtoToTeamManager(TeamManagerCreateDto dto);
+    public TeamManager dtoToTeamManager(TeamManagerDto dto);
 
     /**
      * Maps a team manager entity to a dto of type TeamManagerDto

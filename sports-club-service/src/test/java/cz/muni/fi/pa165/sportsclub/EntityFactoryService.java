@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.sportsclub;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
-import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
@@ -44,7 +43,6 @@ public class EntityFactoryService {
     
     public TeamManager createTeamManager(String tmName) {
         TeamManager tm = new TeamManager();
-        tm.setId(1L);
         tm.setName(tmName);
         tm.setAddress("Test Address");
         tm.setContact("Test Contact");
@@ -63,18 +61,9 @@ public class EntityFactoryService {
     
     public TeamManagerDto createTeamManagerDto() {
         TeamManagerDto tmDto = new TeamManagerDto();
-        tmDto.setId(1L);
         tmDto.setAddress("TestAddress");
         tmDto.setContact("TestContact");
         tmDto.setName("Test TeamManager");
-        return tmDto;
-    }
-    
-    public TeamManagerCreateDto createTeamManagerCreateDto() {
-        TeamManagerCreateDto tmDto = new TeamManagerCreateDto();
-        tmDto.setAddress("TestAddress");
-        tmDto.setContact("TestContact");
-        tmDto.setName("Test TeamManagerCreate");
         return tmDto;
     }
 }
