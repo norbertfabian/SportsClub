@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
-import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
@@ -27,7 +26,7 @@ public class TeamManagerFacadeImpl implements TeamManagerFacade {
     private TeamManagerService tmService;
 
     @Override
-    public void createTeamManager(TeamManagerCreateDto dto) {
+    public void createTeamManager(TeamManagerDto dto) {
         TeamManager tm = dtoMapper.dtoToTeamManager(dto);
         tmService.createTeamManager(tm);
     }

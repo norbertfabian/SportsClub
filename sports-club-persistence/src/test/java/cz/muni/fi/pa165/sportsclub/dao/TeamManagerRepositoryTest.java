@@ -114,4 +114,13 @@ public class TeamManagerRepositoryTest extends AbstractTestNGSpringContextTests 
         tm.setContact(null);
         teamManagerDao.create(tm);
     }
+    
+    @Test
+    public void findByNameTest() {
+        String name = "John Doe";
+        teamManager.setName(name);
+        teamManagerDao.update(teamManager);
+        assertEquals(teamManagerDao.findByName(name).size(), 1);
+        assertEquals(teamManagerDao.findByName(name).get(0).getName(), name);
+    }
 }

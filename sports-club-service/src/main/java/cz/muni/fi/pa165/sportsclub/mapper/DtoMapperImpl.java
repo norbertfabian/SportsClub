@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.sportsclub.mapper;
 
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
-import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
@@ -58,7 +57,7 @@ public class DtoMapperImpl implements DtoMapper {
     }
     
     @Override
-    public TeamManager dtoToTeamManager(TeamManagerCreateDto dto) {
+    public TeamManager dtoToTeamManager(TeamManagerDto dto) {
         TeamManager tm = new TeamManager();
         dtoMapper.map(dto, tm);
         return tm;

@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
-import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import java.util.List;
 
@@ -14,7 +13,7 @@ public interface TeamManagerFacade {
      * Creates a team manager
      * @param dto Team manager DTO with data
      */
-    public void createTeamManager(TeamManagerCreateDto dto);
+    public void createTeamManager(TeamManagerDto dto);
     
     /**
      * Deletes team manager with given id
