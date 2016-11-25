@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class TeamManager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @NotNull
     private String name;
@@ -42,11 +43,11 @@ public class TeamManager {
         this.teams = new HashSet<>();
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public TeamManager setId(Long id) {
+    public TeamManager setId(long id) {
         this.id = id;
         return this;
     }

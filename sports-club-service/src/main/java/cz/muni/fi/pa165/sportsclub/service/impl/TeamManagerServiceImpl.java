@@ -36,10 +36,6 @@ public class TeamManagerServiceImpl implements TeamManagerService {
 
     @Override
     public TeamManager updateTeamManager(TeamManager tm) {
-        TeamManager testTm = tmDao.findById(tm.getId());
-        if (testTm != null && !testTm.equals(tm)) {
-            throw new SportsClubServiceException("Team manager with given ID already exists.");
-        }
         return tmDao.update(tm);
     }
 

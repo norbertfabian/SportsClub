@@ -34,21 +34,36 @@ public class TeamManagerFacadeIT extends AbstractTransactionalTestNGSpringContex
  
     @Test
     public void createTeamManagerIT() {
-        TeamManagerDto dto = entityFactoryService.createTeamManagerDto();
+        TeamManagerDto tmDto = entityFactoryService.createTeamManagerDto();
         
-        tmFacade.createTeamManager(dto);
+        tmFacade.createTeamManager(tmDto);
         
-        List<TeamManager> tms = tmDao.getAll();
-        TeamManager test = tms.get(0);
-        Assert.assertEquals(test.getName(), dto.getName());
+        Assert.assertEquals(tmDao.getAll().size(), 1);
+        TeamManager tm = tmDao.getAll().get(0);
+        Assert.assertNotNull(tm.getId());
+        Assert.assertEquals(tm.getName(), tmDto.getName());
+        Assert.assertEquals(tm.getAddress(), tmDto.getAddress());
+        Assert.assertEquals(tm.getContact(), tmDto.getContact());
     }
     
     @Test
     public void deleteTeamManagerIT() {
+        TeamManager tm = entityFactoryService.createPersistedTeamManager("Test", tmDao);
+        
+        tmFacade.deleteTeamManager(tm.getId());
+        
+        Assert.assertNull(tmDao.findById(tm.getId()));
     }
     
     @Test
     public void updateTeamManagerIT() {
+        TeamManager tm = entityFactoryService.createPersistedTeamManager("TestName", tmDao);
+        TeamManagerDto tmDto = dtoMapper.teamManagerToDto(tm);
+        tmDto.setAddress("TestAddress2");
+        
+        tmFacade.updateTeamManager(tmDto);
+        
+        Assert.assertEquals(tmDao.findById(tmDto.getId()).getAddress(), "TestAddress2");
     }
     
     @Test
@@ -58,6 +73,18 @@ public class TeamManagerFacadeIT extends AbstractTransactionalTestNGSpringContex
         TeamManagerDto dto = tmFacade.getTeamManager(tm.getId());
         
         Assert.assertEquals(tm, dtoMapper.dtoToTeamManager(dto));
+    }
+    
+    @Test
+    public void getAllTeamManagersTest() {
+        TeamManager tm = entityFactoryService.createPersistedTeamManager("TestName1", tmDao);
+        TeamManager tm2 = entityFactoryService.createPersistedTeamManager("TestName2", tmDao);
+        
+        List<TeamManagerDto> dtos = tmFacade.getAllTeamManagers();
+        
+        Assert.assertEquals(dtos.size(), 2);
+        Assert.assertEquals(dtos.get(0).getName(), "TestName1");
+        Assert.assertEquals(dtos.get(1).getName(), "TestName2");
     }
     
 }
