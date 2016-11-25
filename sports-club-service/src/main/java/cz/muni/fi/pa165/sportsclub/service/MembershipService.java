@@ -30,7 +30,7 @@ public interface MembershipService {
      * Removes membership
      * @param id Id of the membership to remove
      */
-    void removeMembership(long id);
+    void removeMembership(Membership membership);
 
     /**
      * Finds Membership by specified id

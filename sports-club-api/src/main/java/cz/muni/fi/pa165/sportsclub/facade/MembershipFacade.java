@@ -2,8 +2,8 @@ package cz.muni.fi.pa165.sportsclub.facade;
 
 import java.util.List;
 
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamCreateDto;
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipCreateDto;
+import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 
 /**
  * Created by jsmolar on 11/22/16.
@@ -22,7 +22,7 @@ public interface MembershipFacade {
      *
      * @param id Id of the membership to delete
      */
-    void deleteMembership(long id);
+    void deleteMembership(MembershipDto dto);
 
     /**
      * Updates the membership data.
@@ -36,7 +36,7 @@ public interface MembershipFacade {
      *
      * @return List of all memberships
      */
-    List<TeamDto> findAllMemberships();
+    List<MembershipDto> findAllMemberships();
 
     /**
      * Returns a membership with the specified id.
@@ -44,6 +44,6 @@ public interface MembershipFacade {
      * @param id Id of the membership
      * @return Membership with the given id
      */
-    TeamDto getMembership(long id);
+    MembershipDto findMembership(long id);
 
 }
