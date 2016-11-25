@@ -2,9 +2,12 @@ package cz.muni.fi.pa165.sportsclub;
 
 import java.util.Calendar;
 
+import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
+import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipCreateDto;
+import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
@@ -19,6 +22,7 @@ import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
  */
 public class EntityFactoryService {
 
+    //TEAM factory methods
     public TeamDto createTeamDto() {
         TeamDto team = new TeamDto();
         team.setName("TestTeamDto");
@@ -47,6 +51,7 @@ public class EntityFactoryService {
         return team;
     }
 
+    //TEAM MANAGER factory methods
     public TeamManager createTeamManager(String tmName) {
         TeamManager tm = new TeamManager();
         tm.setName(tmName);
@@ -73,6 +78,7 @@ public class EntityFactoryService {
         return tmDto;
     }
 
+    //PLAYER factory methods
     public PlayerDto createPlayerDto() {
         PlayerDto player = new PlayerDto();
         player.setFirstName("TestPlayerDto");
@@ -107,12 +113,51 @@ public class EntityFactoryService {
         return player;
     }
 
+    //MEMBERSHIP factory methods
+    public Membership createMembership(){
+        return createMembership("testMembership");
+    }
+
     public Membership createMembership(String name) {
         Membership membership = new Membership();
-        Team team = createTeam("team" + name);
-        Player player = createPlayer("player" + name);
+        membership.setTeam(createTeam("team" + name));
+        membership.setPlayer(createPlayer("player" + name));
         membership.setJerseyNumber(10);
 
+        return membership;
+    }
+
+    public Membership createPersistedMembership(MembershipDao dao) {
+        return createPersistedMembership("TestMembership", dao);
+    }
+
+    public Membership createPersistedMembership(MembershipDao dao, long id) {
+        Membership membership = createMembership();
+        membership.setId(id);
+        dao.create(membership);
+        return membership;
+    }
+
+    public Membership createPersistedMembership(String name, MembershipDao dao) {
+        Membership membership = createMembership(name);
+        dao.create(membership);
+        return membership;
+    }
+
+    public MembershipCreateDto createMembershipCreateDto() {
+        MembershipCreateDto membership = new MembershipCreateDto();
+        membership.setTeam(createTeam());
+        membership.setPlayer(createPlayer());
+        membership.setJerseyNumber(10);
+        return membership;
+    }
+
+    public MembershipDto createMembershipDto() {
+        MembershipDto membership = new MembershipDto();
+        membership.setId(3L);
+        membership.setTeam(createTeamDto());
+        membership.setPlayer(createPlayerDto());
+        membership.setJerseyNumber(10);
         return membership;
     }
 }

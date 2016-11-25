@@ -59,7 +59,7 @@ public class DtoMapperImpl implements DtoMapper {
         team.setAgeGroup(AgeGroup.getByLabel(dto.getAgeGroupLabel()));
         return team;
     }
-    
+
     @Override
     public PlayerDto playerToDto(Player player) {
         PlayerDto dto = new PlayerDto();
@@ -73,7 +73,7 @@ public class DtoMapperImpl implements DtoMapper {
         dtoMapper.map(dto, player);
         return player;
     }
-    
+
     @Override
     public TeamManager dtoToTeamManager(TeamManagerDto dto) {
         TeamManager tm = new TeamManager();
