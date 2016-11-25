@@ -69,7 +69,7 @@ public class PlayerFacadeIT extends AbstractTransactionalTestNGSpringContextTest
     @Test
     public void updatePlayerIT() {
         Player persistedPlayer = entityFactoryService.createPersistedPlayer(playerDao);
-        PlayerDto updatedPlayerDto = dtoMapper.mapTo(persistedPlayer, PlayerDto.class);
+        PlayerDto updatedPlayerDto = dtoMapper.playerToDto(persistedPlayer);
         updatedPlayerDto.setFirstName("UpdatedName");
 
         playerFacade.updatePlayer(updatedPlayerDto);

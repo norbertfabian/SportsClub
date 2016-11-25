@@ -108,9 +108,9 @@ public class Player {
         return Collections.unmodifiableSet(memberships);
     }
 
-    public void setMemberships(Set<Membership> memberships) {
-        this.memberships = memberships;
-    }
+//    public void setMemberships(Set<Membership> memberships) {
+//        this.memberships = memberships;
+//    }
 
     public void addMembership(Membership membership) {
         memberships.add(membership);

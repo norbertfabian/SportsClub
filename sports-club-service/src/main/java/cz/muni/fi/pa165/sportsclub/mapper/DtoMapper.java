@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 
@@ -69,4 +71,8 @@ public interface DtoMapper {
      * @return Mapped dto
      */
     TeamManagerDto teamManagerToDto(TeamManager tm);
+    
+    Player dtoToPlayer(PlayerDto dto);
+    
+    PlayerDto playerToDto(Player player);
 }

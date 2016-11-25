@@ -47,19 +47,19 @@ public class TeamManagerFacadeTest {
     }
     
     @Test
-    public void createTeamTest() {
+    public void createTeamManagerTest() {
         tmFacade.createTeamManager(entityFactoryService.createTeamManagerDto());
         Mockito.verify(tmService, Mockito.times(1)).createTeamManager(Mockito.any());
     }
     
     @Test
-    public void deleteTeamTest() {
+    public void deleteTeamManagerTest() {
         tmFacade.deleteTeamManager(1L);
         Mockito.verify(tmService, Mockito.times(1)).removeTeamManager(Mockito.anyLong());
     }
     
     @Test
-    public void updateTeamTest() {
+    public void updateTeamManagerTest() {
         tmFacade.updateTeamManager(entityFactoryService.createTeamManagerDto());
         Mockito.verify(tmService, Mockito.times(1)).updateTeamManager(Mockito.any());
     }
