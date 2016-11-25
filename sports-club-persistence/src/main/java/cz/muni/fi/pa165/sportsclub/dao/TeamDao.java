@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.dao;
 
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 
 import java.util.List;
 
@@ -54,5 +55,13 @@ public interface TeamDao {
      * @param name Name of the team;
      * @return Team
      */
-    public Team getByName(String name);
+    Team getByName(String name);
+
+    /**
+     * Returns teams by age group;
+     *
+     * @param ageGroup ageGroup of the team;
+     * @return Team
+     */
+    List<Team> getByAgeGroup(AgeGroup ageGroup);
 }

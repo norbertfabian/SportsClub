@@ -2,7 +2,9 @@ package cz.muni.fi.pa165.sportsclub.service;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
+import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import cz.muni.fi.pa165.sportsclub.service.impl.TeamServiceImpl;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
@@ -14,6 +16,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**

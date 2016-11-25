@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.sportsclub.dao.impl;
 
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,5 +59,16 @@ public class TeamDaoImpl implements TeamDao {
         teamCriteria.where(criteriaBuilder.equal(teamRoot.get("name"), name));
         List<Team> resultList = em.createQuery(teamCriteria).getResultList();
         return resultList.isEmpty() ? null : resultList.get(0);
+    }
+
+    @Override
+    public List<Team> getByAgeGroup(AgeGroup ageGroup) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Team> teamCriteria = criteriaBuilder.createQuery(Team.class);
+        Root<Team> teamRoot = teamCriteria.from(Team.class);
+        teamCriteria.select(teamRoot);
+        teamCriteria.where(criteriaBuilder.equal(teamRoot.get("ageGroup"), ageGroup));
+        List<Team> resultList = em.createQuery(teamCriteria).getResultList();
+        return resultList.isEmpty() ? null : resultList;
     }
 }
