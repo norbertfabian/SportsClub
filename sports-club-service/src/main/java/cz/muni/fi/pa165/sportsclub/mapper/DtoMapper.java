@@ -1,14 +1,14 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
+import java.util.Collection;
+import java.util.List;
+
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
-import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
-
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author Fabian Norbert
@@ -57,7 +57,7 @@ public interface DtoMapper {
      * @return Mapped team entity
      */
     Team dtoToTeam(TeamDto dto);
-    
+
     /**
      * Maps a team manager DTO to a an entity
      * @param dto DTO to map
@@ -71,8 +71,8 @@ public interface DtoMapper {
      * @return Mapped dto
      */
     TeamManagerDto teamManagerToDto(TeamManager tm);
-    
+
     Player dtoToPlayer(PlayerDto dto);
-    
+
     PlayerDto playerToDto(Player player);
 }

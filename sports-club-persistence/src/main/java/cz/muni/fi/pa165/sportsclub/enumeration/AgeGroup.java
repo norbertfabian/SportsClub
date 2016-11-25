@@ -23,7 +23,7 @@ public enum AgeGroup {
     private final Date dateFrom;
     private final Date dateTo;
     private final String label;
-    
+
 
     AgeGroup(int ageFrom, int ageTo, String label) {
         this.ageFrom = ageFrom;
@@ -40,7 +40,7 @@ public enum AgeGroup {
     public int getAgeTo() {
         return ageTo;
     }
-    
+
     public Date getDateFrom() {
         return new Date(dateFrom.getTime());
     }
@@ -89,6 +89,13 @@ public enum AgeGroup {
                 return group;
         }
         return AgeGroup.NOT_CATEGORIZED;
+    }
+
+    public static AgeGroup getOlderGroup(AgeGroup ageGroup) {
+        if (ageGroup == NOT_CATEGORIZED) {
+            return NOT_CATEGORIZED;
+        }
+        return AgeGroup.values()[ageGroup.ordinal() + 1];
     }
 
     private Date yearAgoFromNow(int years) {

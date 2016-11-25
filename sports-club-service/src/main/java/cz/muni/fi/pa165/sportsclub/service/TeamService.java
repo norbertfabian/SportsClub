@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.service;
 
+import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import org.springframework.stereotype.Service;
 
@@ -47,4 +48,12 @@ public interface TeamService {
      * @param id Id of the team to remove
      */
     void removeTeam(long id);
+
+    /**
+     * Returns teams in which can player participate along to his age group
+     *
+     * @param player to be queried
+     * @return Teams
+     */
+    List<Team> getAllowedTeams(Player player);
 }

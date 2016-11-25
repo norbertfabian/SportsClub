@@ -1,7 +1,9 @@
 package cz.muni.fi.pa165.sportsclub.service.impl;
 
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
+import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import cz.muni.fi.pa165.sportsclub.exception.SportsClubServiceException;
 import cz.muni.fi.pa165.sportsclub.service.TeamService;
 import org.springframework.stereotype.Service;
@@ -49,5 +51,15 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public void removeTeam(long id) {
         teamDao.remove(id);
+    }
+
+    @Override
+    public List<Team> getAllowedTeams(Player player) {
+        AgeGroup ageGroup = AgeGroup.getByDate(player.getDateOfBirth());
+        AgeGroup olderAgeGroup = AgeGroup.getOlderGroup(ageGroup);
+
+        List<Team> result = teamDao.getByAgeGroup(ageGroup);
+        result.addAll(teamDao.getByAgeGroup(olderAgeGroup));
+        return result;
     }
 }

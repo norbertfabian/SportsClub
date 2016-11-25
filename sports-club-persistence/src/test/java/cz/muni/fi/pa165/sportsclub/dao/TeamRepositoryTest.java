@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.sportsclub.dao;
 import cz.muni.fi.pa165.sportsclub.EntityFactoryPersistence;
 import cz.muni.fi.pa165.sportsclub.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -83,6 +84,18 @@ public class TeamRepositoryTest extends AbstractTestNGSpringContextTests {
 
         Assert.assertNotNull(result);
         Assert.assertEquals(result, team);
+    }
+
+    @Test
+    public void shouldReturnTeamsByAgeGroup() {
+        Team team = entityFactoryPersistence.createTeam("TeamName");
+        team.setAgeGroup(AgeGroup.JUNIOR);
+        teamDao.create(team);
+
+        List<Team> result = teamDao.getByAgeGroup(team.getAgeGroup());
+
+        Assert.assertNotNull(result);
+        Assert.assertTrue(result.contains(team));
     }
 
     @Test(expectedExceptions = ConstraintViolationException.class)

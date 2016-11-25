@@ -62,6 +62,25 @@ public class AgeGroupTest {
         Assert.assertEquals(result, expected);
     }
 
+    @DataProvider
+    public static Object[][] getOlderGroupDataProvider() {
+        return new Object[][] {
+                {AgeGroup.JUVENILE, AgeGroup.JUNIOR},
+                {AgeGroup.JUNIOR, AgeGroup.YOUTH},
+                {AgeGroup.YOUTH, AgeGroup.ADULT},
+                {AgeGroup.ADULT, AgeGroup.SENIOR},
+                {AgeGroup.SENIOR, AgeGroup.NOT_CATEGORIZED},
+                {AgeGroup.NOT_CATEGORIZED, AgeGroup.NOT_CATEGORIZED},
+        };
+    }
+
+    @Test(dataProvider = "getOlderGroupDataProvider")
+    public void getOlderGroupTest(AgeGroup tested, AgeGroup expected){
+        AgeGroup result = AgeGroup.getOlderGroup(tested);
+
+        Assert.assertEquals(result, expected);
+    }
+
     @Test
     public void getAllLabels() {
         List<String> result = AgeGroup.getAllLabels();
