@@ -3,10 +3,8 @@ package cz.muni.fi.pa165.sportsclub.facade;
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
-import cz.muni.fi.pa165.sportsclub.dto.ageGroup.AgeGroupDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
-import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
@@ -17,7 +15,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by norbert on 19.11.16.
+ * 
  */
 
 @ContextConfiguration(classes = SpringContextConfiguration.class)
