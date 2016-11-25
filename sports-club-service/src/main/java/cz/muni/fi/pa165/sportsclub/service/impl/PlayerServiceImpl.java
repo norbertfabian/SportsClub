@@ -18,7 +18,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Inject
     PlayerDao playerDao;
-    
+
     @Override
     public Player findById(long id) {
         return playerDao.findById(id);
@@ -30,7 +30,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
-    public void createPLayer(Player player) {
+    public void createPlayer(Player player) {
         playerDao.create(player);
     }
 
@@ -43,5 +43,5 @@ public class PlayerServiceImpl implements PlayerService {
     public void removePlayer(long id) {
         playerDao.remove(id);
     }
-    
+
 }
