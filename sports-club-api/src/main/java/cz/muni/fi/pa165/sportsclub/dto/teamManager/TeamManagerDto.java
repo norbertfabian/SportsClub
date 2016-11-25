@@ -13,7 +13,6 @@ import javax.validation.constraints.Size;
  */
 public class TeamManagerDto {
     
-    @NotNull
     private long id;
     
     @NotNull
@@ -90,9 +89,9 @@ public class TeamManagerDto {
         if ((o == null) || !(o instanceof TeamManagerDto)) 
             return false;
 
-        TeamManagerDto tmCreateDto = (TeamManagerDto) o;
+        TeamManagerDto tmDto = (TeamManagerDto) o;
 
-        return getTeams().equals(tmCreateDto.getTeams());
+        return getTeams().equals(tmDto.getTeams());
     }
 
     @Override

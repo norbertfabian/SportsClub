@@ -81,7 +81,9 @@ public class DtoMapperImpl implements DtoMapper {
     }
 
     @Override
-    public TeamManagerDto teamManagerToDto(TeamManager tm, Class<TeamManagerDto> mapToClass) {
-        return dtoMapper.map(tm, mapToClass);
+    public TeamManagerDto teamManagerToDto(TeamManager tm) {
+        TeamManagerDto dto = new TeamManagerDto();
+        dtoMapper.map(tm, dto);
+        return dto;
     }
 }

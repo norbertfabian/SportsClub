@@ -49,13 +49,13 @@ public class EntityFactoryService {
     public TeamManager createTeamManager(String tmName) {
         TeamManager tm = new TeamManager();
         tm.setName(tmName);
-        tm.setAddress("Test Address");
-        tm.setContact("Test Contact");
+        tm.setAddress("TestAddress");
+        tm.setContact("TestContact");
         return tm;
     }
 
     public TeamManager createTeamManager() {
-        return createTeamManager("John Doe");
+        return createTeamManager("TestManager");
     }
 
     public TeamManager createPersistedTeamManager(String tmName, TeamManagerDao dao) {
@@ -68,7 +68,7 @@ public class EntityFactoryService {
         TeamManagerDto tmDto = new TeamManagerDto();
         tmDto.setAddress("TestAddress");
         tmDto.setContact("TestContact");
-        tmDto.setName("Test TeamManager");
+        tmDto.setName("TestManager");
         return tmDto;
     }
 

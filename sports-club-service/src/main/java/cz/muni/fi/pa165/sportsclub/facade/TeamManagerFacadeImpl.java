@@ -45,7 +45,7 @@ public class TeamManagerFacadeImpl implements TeamManagerFacade {
     @Override
     public TeamManagerDto getTeamManager(long id) {
         TeamManager tm = tmService.findById(id);
-        return dtoMapper.teamManagerToDto(tm, TeamManagerDto.class);
+        return dtoMapper.teamManagerToDto(tm);
     }
 
     @Override
@@ -54,7 +54,7 @@ public class TeamManagerFacadeImpl implements TeamManagerFacade {
         List<TeamManagerDto> dtos = new ArrayList<>();
         
         tms.forEach((TeamManager tm) -> {
-            dtos.add(dtoMapper.teamManagerToDto(tm, TeamManagerDto.class));
+            dtos.add(dtoMapper.teamManagerToDto(tm));
         });
         
         return dtos;
