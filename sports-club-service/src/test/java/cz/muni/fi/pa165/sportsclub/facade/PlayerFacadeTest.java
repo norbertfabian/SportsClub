@@ -42,14 +42,14 @@ public class PlayerFacadeTest {
 
     @BeforeMethod
     public void setUpMethod() {
-        Mockito.when(dtoMapper.mapTo(Mockito.any(), Player.class))
+        Mockito.when(dtoMapper.dtoToPlayer(Mockito.any()))
                 .thenReturn(entityFactoryService.createPlayer());
     }
 
 
     @Test
     public void getPlayerTest() {
-        Mockito.when(dtoMapper.mapTo(Mockito.any(Player.class), PlayerDto.class))
+        Mockito.when(dtoMapper.playerToDto(Mockito.any()))
                 .thenReturn(entityFactoryService.createPlayerDto());
         Mockito.when(playerService.findById(Mockito.anyLong()))
                 .thenReturn(entityFactoryService.createPlayer());

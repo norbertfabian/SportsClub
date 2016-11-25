@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
@@ -62,8 +61,10 @@ public class DtoMapperImpl implements DtoMapper {
     }
     
     @Override
-    public <T extends PlayerCreateDto> T playerToDto(Player player, Class<T> destinationClass) {
-        return dtoMapper.map(player, destinationClass);
+    public PlayerDto playerToDto(Player player) {
+        PlayerDto dto = new PlayerDto();
+        dtoMapper.map(player, dto);
+        return dto;
     }
 
     @Override

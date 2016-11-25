@@ -26,7 +26,8 @@ public class PlayerFacadeImpl implements PlayerFacade{
     
     @Override
     public void createPlayer(PlayerDto dto) {
-        playerService.createPlayer(dtoMapper.mapTo(dto, Player.class));
+        Player player = dtoMapper.dtoToPlayer(dto);
+        playerService.createPlayer(player);
     }
 
     @Override
@@ -36,7 +37,8 @@ public class PlayerFacadeImpl implements PlayerFacade{
 
     @Override
     public void updatePlayer(PlayerDto dto) {
-        playerService.updatePlayer(dtoMapper.mapTo(dto, Player.class));
+        Player player = dtoMapper.dtoToPlayer(dto);
+        playerService.updatePlayer(player);
     }
 
     @Override
@@ -47,7 +49,8 @@ public class PlayerFacadeImpl implements PlayerFacade{
 
     @Override
     public PlayerDto getPlayer(long id) {
-        return dtoMapper.mapTo(playerService.findById(id), PlayerDto.class);
+        Player player = playerService.findById(id);
+        return dtoMapper.playerToDto(player);
     }
     
 }
