@@ -10,10 +10,14 @@ import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.MembershipService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by jsmolar on 11/23/16.
  */
+@Service
+@Transactional
 public class MembershipFacadeImpl implements MembershipFacade {
 
     @Inject
@@ -55,4 +59,9 @@ public class MembershipFacadeImpl implements MembershipFacade {
         Membership membership = membershipService.findById(id);
         return dtoMapper.mapTo(membership, MembershipDto.class);
     }
+
+
+//    public void assignPlayersToTeam(List<Player> players){
+//
+//    }
 }
