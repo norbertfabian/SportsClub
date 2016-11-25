@@ -1,9 +1,11 @@
 package cz.muni.fi.pa165.sportsclub.exception;
 
+import org.springframework.dao.DataAccessException;
+
 /**
- * Created by norbert on 22.11.16.
+ * @author Norbert Fabian.
  */
-public class SportsClubServiceException extends RuntimeException {
+public class SportsClubServiceException extends DataAccessException {
 
     public SportsClubServiceException(String msg) {
         super(msg);
