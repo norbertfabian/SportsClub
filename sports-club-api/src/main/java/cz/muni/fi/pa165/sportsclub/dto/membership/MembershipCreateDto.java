@@ -1,42 +1,40 @@
 package cz.muni.fi.pa165.sportsclub.dto.membership;
 
-import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import cz.muni.fi.pa165.sportsclub.entity.Player;
+import cz.muni.fi.pa165.sportsclub.entity.Team;
 
 /**
- * Created by jsmolar on 11/20/16.
+ * Created by jsmolar on 11/22/16.
  */
-public class MembershipDto {
+public class MembershipCreateDto {
 
-    private Long id;
+    @NotNull
+    private Team team;
 
-    private TeamDto team;
+    @NotNull
+    private Player player;
 
-    private PlayerDto player;
-
+    @Min(1)
+    @Max(99)
     private int jerseyNumber;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public TeamDto getTeam() {
+    public Team getTeam() {
         return team;
     }
 
-    public void setTeam(TeamDto team) {
+    public void setTeam(Team team) {
         this.team = team;
     }
 
-    public PlayerDto getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(PlayerDto player) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 
@@ -55,11 +53,9 @@ public class MembershipDto {
         if (o == null || getClass() != o.getClass())
             return false;
 
-        MembershipDto that = (MembershipDto) o;
+        MembershipCreateDto that = (MembershipCreateDto) o;
 
         if (getJerseyNumber() != that.getJerseyNumber())
-            return false;
-        if (!getId().equals(that.getId()))
             return false;
         if (!getTeam().equals(that.getTeam()))
             return false;
@@ -69,8 +65,7 @@ public class MembershipDto {
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + getTeam().hashCode();
+        int result = getTeam().hashCode();
         result = 31 * result + getPlayer().hashCode();
         result = 31 * result + getJerseyNumber();
         return result;
@@ -78,9 +73,8 @@ public class MembershipDto {
 
     @Override
     public String toString() {
-        return "MembershipDto{" +
-            "id=" + id +
-            ", team=" + team +
+        return "MembershipCreateDto{" +
+            "team=" + team +
             ", player=" + player +
             ", jerseyNumber=" + jerseyNumber +
             '}';

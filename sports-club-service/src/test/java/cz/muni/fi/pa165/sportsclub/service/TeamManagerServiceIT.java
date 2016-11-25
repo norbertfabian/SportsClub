@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
+import cz.muni.fi.pa165.sportsclub.exception.SportsClubServiceException;
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,31 +29,8 @@ public class TeamManagerServiceIT extends AbstractTransactionalTestNGSpringConte
     private EntityFactoryService entityFactoryService = new EntityFactoryService();
 
     @Test
-    public void findByIdIT() {
-        TeamManager tm = entityFactoryService.createPersistedTeamManager("Test Name", tmDao);
-        Assert.assertNotNull(tmService.findById(tm.getId()));
-    }
-
-    @Test
-    void getAllIT() {
-        TeamManager tm1 = entityFactoryService.createPersistedTeamManager("Test Name 1", tmDao);
-        TeamManager tm2 = entityFactoryService.createPersistedTeamManager("Test Name 2", tmDao);
-        TeamManager tm3 = entityFactoryService.createPersistedTeamManager("Test Name 3", tmDao);
-
-        List<TeamManager> res = tmDao.getAll();
-
-        Assert.assertNotNull(res);
-        Assert.assertEquals(3, res.size());
-        Assert.assertTrue(res.contains(tm1));
-        Assert.assertTrue(res.contains(tm2));
-        Assert.assertTrue(res.contains(tm3));
-    }
-
-    @Test
     public void createTeamManagerIT() {
-        TeamManager tm = entityFactoryService.createTeamManager();
-        tmService.createTeamManager(tm);
-        Assert.assertTrue(tm.getId() > 0);
+        TeamManager tm = entityFactoryService.createPersistedTeamManager("TestManager", tmDao);
         Assert.assertNotNull(tmDao.findById(tm.getId()));
     }
 
@@ -71,6 +49,43 @@ public class TeamManagerServiceIT extends AbstractTransactionalTestNGSpringConte
         long id = tmToRemove.getId();
         tmService.removeTeamManager(tmToRemove.getId());
         Assert.assertNull(tmDao.findById(id));
+    }
+    
+    @Test
+    public void findByIdIT() {
+        TeamManager tm = entityFactoryService.createPersistedTeamManager("TestManager", tmDao);
+        Assert.assertNotNull(tmService.findById(tm.getId()));
+    }
+
+    @Test
+    void getAllIT() {
+        TeamManager tm1 = entityFactoryService.createPersistedTeamManager("TestManager1", tmDao);
+        TeamManager tm2 = entityFactoryService.createPersistedTeamManager("TestManager2", tmDao);
+        TeamManager tm3 = entityFactoryService.createPersistedTeamManager("TestManager3", tmDao);
+
+        List<TeamManager> res = tmDao.getAll();
+
+        Assert.assertNotNull(res);
+        Assert.assertEquals(3, res.size());
+        Assert.assertTrue(res.contains(tm1));
+        Assert.assertTrue(res.contains(tm2));
+        Assert.assertTrue(res.contains(tm3));
+    }
+    
+    @Test(expectedExceptions = SportsClubServiceException.class)
+    public void createTeamManagerWithSameIdTest() {
+        TeamManager tm1 = entityFactoryService.createPersistedTeamManager("Test", tmDao);
+        TeamManager tm2 = entityFactoryService.createPersistedTeamManager("Test2", tmDao);
+        tm2.setId(tm1.getId());
+        tmService.createTeamManager(tm2);
+    }
+    
+    @Test(expectedExceptions = SportsClubServiceException.class)
+    public void updateTeamManagerWithSameIdTest() {
+        TeamManager tm1 = entityFactoryService.createPersistedTeamManager("Test", tmDao);
+        TeamManager tm2 = entityFactoryService.createPersistedTeamManager("Test2", tmDao);
+        tm2.setId(tm1.getId());
+        tmService.updateTeamManager(tm2);
     }
     
 }

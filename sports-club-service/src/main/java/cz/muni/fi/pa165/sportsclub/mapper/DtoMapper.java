@@ -65,9 +65,8 @@ public interface DtoMapper {
 
     /**
      * Maps a team manager entity to a dto of type TeamManagerDto
-     * @param tm Team manager entity 
-     * @param mapToClass Dto type - Team Manager Dto
+     * @param tm Team manager entity
      * @return Mapped dto
      */
-    TeamManagerDto teamManagerToDto(TeamManager tm, Class<TeamManagerDto> mapToClass);
+    TeamManagerDto teamManagerToDto(TeamManager tm);
 }

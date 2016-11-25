@@ -4,7 +4,9 @@ import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
 import cz.muni.fi.pa165.sportsclub.dto.ageGroup.AgeGroupDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
@@ -57,5 +59,28 @@ public class DtoMapperTest extends AbstractTransactionalTestNGSpringContextTests
         Assert.assertEquals(dto.getLabel(), ageGroup.getLabel());
         Assert.assertEquals(dto.getAgeFrom(), ageGroup.getAgeFrom());
         Assert.assertEquals(dto.getAgeTo(), ageGroup.getAgeTo());
+    }
+    
+    @Test
+    public void teamManagerToDtoTest() {
+        TeamManager tm = entityFactoryService.createTeamManager();
+        TeamManagerDto tmDto = dtoMapper.teamManagerToDto(tm);
+        
+        Assert.assertNotNull(tmDto);
+        Assert.assertEquals(tm.getId(), tmDto.getId());
+        Assert.assertEquals(tm.getName(), tmDto.getName());
+        Assert.assertEquals(tm.getContact(), tmDto.getContact());
+        Assert.assertEquals(tm.getAddress(), tmDto.getAddress());
+    }
+    
+    @Test
+    public void dtoToTeamManager() {
+        TeamManagerDto tmDto = entityFactoryService.createTeamManagerDto();
+        TeamManager tm = dtoMapper.dtoToTeamManager(tmDto);
+        
+        Assert.assertNotNull(tm);
+        Assert.assertEquals(tm.getName(), tmDto.getName());
+        Assert.assertEquals(tm.getContact(), tmDto.getContact());
+        Assert.assertEquals(tm.getAddress(), tmDto.getAddress());
     }
 }

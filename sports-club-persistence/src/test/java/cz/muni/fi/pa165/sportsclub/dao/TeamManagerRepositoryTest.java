@@ -77,9 +77,9 @@ public class TeamManagerRepositoryTest extends AbstractTestNGSpringContextTests 
     
     @Test
     public void testRemoveTeamById() {
-        Team t1 = entityFactoryPersistence.createPersistedTeam(teamDao);
-        Team t2 = entityFactoryPersistence.createPersistedTeam(teamDao);
-        Team t3 = entityFactoryPersistence.createPersistedTeam(teamDao);
+        Team t1 = entityFactoryPersistence.createPersistedTeam("team1", teamDao);
+        Team t2 = entityFactoryPersistence.createPersistedTeam("team2", teamDao);
+        Team t3 = entityFactoryPersistence.createPersistedTeam("team3", teamDao);
         
         teamManager.addTeam(t1);
         teamManager.addTeam(t2);

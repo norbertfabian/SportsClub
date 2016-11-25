@@ -1,18 +1,21 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
-import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
-import cz.muni.fi.pa165.sportsclub.entity.Team;
-import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
-import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
-
-import org.dozer.Mapper;
-import org.springframework.stereotype.Component;
-
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import javax.inject.Inject;
+
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
+import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
+import cz.muni.fi.pa165.sportsclub.entity.Player;
+import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
+import org.dozer.Mapper;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Fabian Norbert
@@ -59,6 +62,18 @@ public class DtoMapperImpl implements DtoMapper {
     }
     
     @Override
+    public <T extends PlayerCreateDto> T playerToDto(Player player, Class<T> destinationClass) {
+        return dtoMapper.map(player, destinationClass);
+    }
+
+    @Override
+    public Player dtoToPlayer(PlayerDto dto) {
+        Player player = new Player();
+        dtoMapper.map(dto, player);
+        return player;
+    }
+    
+    @Override
     public TeamManager dtoToTeamManager(TeamManagerDto dto) {
         TeamManager tm = new TeamManager();
         dtoMapper.map(dto, tm);
@@ -66,7 +81,9 @@ public class DtoMapperImpl implements DtoMapper {
     }
 
     @Override
-    public TeamManagerDto teamManagerToDto(TeamManager tm, Class<TeamManagerDto> mapToClass) {
-        return dtoMapper.map(tm, mapToClass);
+    public TeamManagerDto teamManagerToDto(TeamManager tm) {
+        TeamManagerDto dto = new TeamManagerDto();
+        dtoMapper.map(tm, dto);
+        return dto;
     }
 }

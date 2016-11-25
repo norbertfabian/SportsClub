@@ -38,6 +38,10 @@ public class EntityFactoryPersistence {
     }
     
     public Team createPersistedTeam(TeamDao dao) {
+        return createPersistedTeam("team", dao);
+    }
+    
+    public Team createNewPersistedTeam(TeamDao dao) {
         return createPersistedTeam("team" + getCurrentLocalDateTimeStamp(), dao);
     }
     
