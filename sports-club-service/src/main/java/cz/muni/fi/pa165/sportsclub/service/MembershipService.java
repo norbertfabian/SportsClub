@@ -6,7 +6,7 @@ import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by jsmolar on 11/20/16.
+ * @author Jakub Smolar
  */
 @Service
 public interface MembershipService {

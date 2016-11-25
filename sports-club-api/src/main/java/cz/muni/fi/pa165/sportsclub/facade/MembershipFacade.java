@@ -6,7 +6,7 @@ import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 
 /**
- * Created by jsmolar on 11/22/16.
+ * @author Jakub Smolar
  */
 public interface MembershipFacade {
 
@@ -20,7 +20,7 @@ public interface MembershipFacade {
     /**
      * Deletes a membership with the given id.
      *
-     * @param id Id of the membership to delete
+     * @param dto Membership dto to be deleted
      */
     void deleteMembership(MembershipDto dto);
 

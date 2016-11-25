@@ -12,7 +12,7 @@ import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.MembershipService;
 
 /**
- * Created by jsmolar on 11/23/16.
+ * @author Jakub Smolar     
  */
 public class MembershipFacadeImpl implements MembershipFacade {
 

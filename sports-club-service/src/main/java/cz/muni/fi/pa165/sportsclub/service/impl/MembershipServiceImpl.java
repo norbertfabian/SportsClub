@@ -9,7 +9,7 @@ import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.service.MembershipService;
 
 /**
- * Created by jsmolar on 11/20/16.
+ * @author Jakub Smolar
  */
 public class MembershipServiceImpl implements MembershipService {
 

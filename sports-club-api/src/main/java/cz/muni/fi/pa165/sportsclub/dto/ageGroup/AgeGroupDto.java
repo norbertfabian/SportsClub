@@ -1,7 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.dto.ageGroup;
 
 /**
- * Created by norbert on 23.11.16.
+ * @author Fabian Norbert
  */
 public class AgeGroupDto {
 
