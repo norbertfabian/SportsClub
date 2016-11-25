@@ -36,7 +36,7 @@ public class Player {
 
     @OneToMany
     @Transient
-    private Set<Membership> memberships = new HashSet<Membership>();
+    private Set<Membership> memberships = new HashSet<>();
 
     public Player() {
    
@@ -106,6 +106,10 @@ public class Player {
 
     public Set<Membership> getMemberships() {
         return Collections.unmodifiableSet(memberships);
+    }
+
+    public void setMemberships(Set<Membership> memberships) {
+        this.memberships = memberships;
     }
 
     public void addMembership(Membership membership) {

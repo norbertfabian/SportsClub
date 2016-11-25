@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.PlayerService;
-import java.util.ArrayList;
+
 import java.util.List;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
@@ -26,8 +26,7 @@ public class PlayerFacadeImpl implements PlayerFacade{
     
     @Override
     public void createPlayer(PlayerDto dto) {
-        Player player = dtoMapper.dtoToPlayer(dto);
-        playerService.createPLayer(player);
+        playerService.createPlayer(dtoMapper.mapTo(dto, Player.class));
     }
 
     @Override
@@ -37,24 +36,18 @@ public class PlayerFacadeImpl implements PlayerFacade{
 
     @Override
     public void updatePlayer(PlayerDto dto) {
-        Player player = dtoMapper.dtoToPlayer(dto);
-        playerService.updatePlayer(player);
+        playerService.updatePlayer(dtoMapper.mapTo(dto, Player.class));
     }
 
     @Override
     public List<PlayerDto> getAllPlayers() {
         List<Player> players = playerService.getAll();
-        List<PlayerDto> playerDtos = new ArrayList<>();
-        for (Player player : players){
-            playerDtos.add(dtoMapper.playerToDto(player, PlayerDto.class));
-        }
-        return playerDtos;
+        return dtoMapper.mapTo(players, PlayerDto.class);
     }
 
     @Override
     public PlayerDto getPlayer(long id) {
-        Player player = playerService.findById(id);
-        return dtoMapper.playerToDto(player, PlayerDto.class);
+        return dtoMapper.mapTo(playerService.findById(id), PlayerDto.class);
     }
     
 }

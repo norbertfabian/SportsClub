@@ -1,21 +1,21 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
-import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
-
 import org.dozer.Mapper;
 import org.springframework.stereotype.Component;
-
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * @author Fabian Norbert

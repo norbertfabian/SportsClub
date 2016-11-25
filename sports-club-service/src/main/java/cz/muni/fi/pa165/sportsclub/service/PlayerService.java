@@ -32,7 +32,7 @@ public interface PlayerService {
      *
      * @param player Player to create
      */
-    void createPLayer(Player player);
+    void createPlayer(Player player);
 
     /**
      * Updates player.
