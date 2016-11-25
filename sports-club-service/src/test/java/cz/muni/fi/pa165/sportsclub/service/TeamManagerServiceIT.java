@@ -80,12 +80,4 @@ public class TeamManagerServiceIT extends AbstractTransactionalTestNGSpringConte
         tmService.createTeamManager(tm2);
     }
     
-    @Test(expectedExceptions = SportsClubServiceException.class)
-    public void updateTeamManagerWithSameIdTest() {
-        TeamManager tm1 = entityFactoryService.createPersistedTeamManager("Test", tmDao);
-        TeamManager tm2 = entityFactoryService.createPersistedTeamManager("Test2", tmDao);
-        tm2.setId(tm1.getId());
-        tmService.updateTeamManager(tm2);
-    }
-    
 }
