@@ -8,7 +8,7 @@ import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 
 /**
- * Created by jsmolar on 11/22/16.
+ * @author Jakub Smolar
  */
 public class MembershipCreateDto {
 

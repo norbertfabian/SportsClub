@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by norbert on 19.11.16.
+ * @author Fabian Norbert
  */
 
 @ContextConfiguration(classes = SpringContextConfiguration.class)

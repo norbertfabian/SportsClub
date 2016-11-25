@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
  *
  * @author Marian Sulgan
  */
-
 @Service
 public class TeamManagerServiceImpl implements TeamManagerService {
     

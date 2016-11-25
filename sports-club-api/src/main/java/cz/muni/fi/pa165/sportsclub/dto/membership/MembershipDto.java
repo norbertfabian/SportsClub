@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 
 /**
- * Created by jsmolar on 11/20/16.
+ * @author Jakub Smolar
  */
 public class MembershipDto {
 

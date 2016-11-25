@@ -3,7 +3,7 @@ package cz.muni.fi.pa165.sportsclub.exception;
 import org.springframework.dao.DataAccessException;
 
 /**
- * @author Norbert Fabian.
+ * @author Fabian Norbert
  */
 public class SportsClubServiceException extends DataAccessException {
 

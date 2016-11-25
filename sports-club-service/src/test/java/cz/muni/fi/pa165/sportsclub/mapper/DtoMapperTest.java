@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import javax.inject.Inject;
 
 /**
- * Created by norbert on 20.11.16.
+ * @author Fabian Norbert
  */
 @ContextConfiguration(classes = SpringContextConfiguration.class)
 public class DtoMapperTest extends AbstractTransactionalTestNGSpringContextTests {

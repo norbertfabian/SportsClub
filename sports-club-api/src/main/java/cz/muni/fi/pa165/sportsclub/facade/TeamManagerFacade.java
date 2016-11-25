@@ -39,12 +39,4 @@ public interface TeamManagerFacade {
      * @return List of all team managers
      */
     public List<TeamManagerDto> getAllTeamManagers();
-    
-    /**
-     * Adds a team to team manager
-     * @param dto Team manager DTO
-     * @param teamId ID of team to be assigned to given team manager
-     */
-//    public void addTeamToManager(TeamManagerDto dto, long teamId);
-    
 }
