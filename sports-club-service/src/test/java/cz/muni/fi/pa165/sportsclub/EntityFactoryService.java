@@ -1,17 +1,18 @@
 package cz.muni.fi.pa165.sportsclub;
 
+import java.util.Calendar;
+
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
+import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
-
-import java.util.Calendar;
 
 /**
  * @author Fabian Norbert
@@ -104,5 +105,14 @@ public class EntityFactoryService {
         Player player = createPlayer(name);
         dao.create(player);
         return player;
+    }
+
+    public Membership createMembership(String name) {
+        Membership membership = new Membership();
+        Team team = createTeam("team" + name);
+        Player player = createPlayer("player" + name);
+        membership.setJerseyNumber(10);
+
+        return membership;
     }
 }

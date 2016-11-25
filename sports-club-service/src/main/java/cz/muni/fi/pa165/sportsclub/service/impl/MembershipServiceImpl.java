@@ -27,8 +27,8 @@ public class MembershipServiceImpl implements MembershipService {
     }
 
     @Override
-    public void removeMembership(long id) {
-        membershipDao.remove(membershipDao.findById(id));
+    public void removeMembership(Membership membership) {
+        membershipDao.remove(membership);
     }
 
     @Override
