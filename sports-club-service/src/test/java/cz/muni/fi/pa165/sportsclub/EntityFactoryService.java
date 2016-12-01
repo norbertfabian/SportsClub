@@ -6,7 +6,6 @@ import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
-import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
@@ -141,14 +140,6 @@ public class EntityFactoryService {
     public Membership createPersistedMembership(String name, MembershipDao dao) {
         Membership membership = createMembership(name);
         dao.create(membership);
-        return membership;
-    }
-
-    public MembershipCreateDto createMembershipCreateDto() {
-        MembershipCreateDto membership = new MembershipCreateDto();
-        membership.setTeam(createTeam());
-        membership.setPlayer(createPlayer());
-        membership.setJerseyNumber(10);
         return membership;
     }
 

@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.sportsclub.facade;
 
 import java.util.List;
 
-import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 
 /**
@@ -15,7 +14,7 @@ public interface MembershipFacade {
      *
      * @param dto MembershipDto with the membership data
      */
-    void createMembership(MembershipCreateDto dto);
+    void createMembership(MembershipDto dto);
 
     /**
      * Deletes a membership with the given id.

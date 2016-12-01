@@ -1,15 +1,10 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
-import static org.testng.Assert.assertEquals;
-
-import java.util.List;
-
 import javax.inject.Inject;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
 import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
-import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
@@ -41,17 +36,12 @@ public class MembershipFacadeIT extends AbstractTransactionalTestNGSpringContext
 
     @BeforeMethod
     public void setUp(){
-        membership = entityFactoryService.createPersistedMembership(membershipDao);
+        membershipDto = entityFactoryService.createMembershipDto();
     }
 
     @Test
     public void createMembershipIT(){
-        MembershipCreateDto membershipCreateDto = entityFactoryService.createMembershipCreateDto();
-        membershipFacade.createMembership(membershipCreateDto);
 
-        List<Membership> memberships = membershipDao.findAll();
-
-        assertEquals(memberships.get(0), membership);
     }
 
 //    @Test

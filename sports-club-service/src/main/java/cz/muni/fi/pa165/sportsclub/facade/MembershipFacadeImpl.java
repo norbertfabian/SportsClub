@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
@@ -27,7 +26,7 @@ public class MembershipFacadeImpl implements MembershipFacade {
     private MembershipService membershipService;
 
     @Override
-    public void createMembership(MembershipCreateDto dto) {
+    public void createMembership(MembershipDto dto) {
         Membership membership =  dtoMapper.mapTo(dto, Membership.class);
         membershipService.createMembership(membership);
     }
