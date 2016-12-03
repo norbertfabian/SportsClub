@@ -21,9 +21,9 @@
         </dependency>
 
         <dependency>
-            <groupId>cz.muni.fi.pa165</groupId>
+            <groupId>${groupId}</groupId>
             <artifactId>sports-club-persistence</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
