@@ -10,36 +10,49 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>cz.muni.fi.pa165.sportsclub</groupId>
     <artifactId>sports-club-service</artifactId>
 
     <dependencies>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>sports-club-persistence</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>cz.muni.fi.pa165</groupId>
-            <artifactId>sports-club-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>jar</type>
+            <artifactId>sports-club-persistence</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
 
-        <!-- mapping -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
-            <version>5.5.1</version>
         </dependency>
 
-        <!-- Tests -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <scope>test</scope><!-- conflicts with tomcat libraries, but needed for tests -->
+        </dependency>
+
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>2.2.17</version>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope><!-- logging implementation should not be part of a library, but is needed for tests -->
+        </dependency>
+
     </dependencies>
 </project>
