@@ -72,6 +72,25 @@ public class TeamController {
         return "redirect:" + uriBuilder.path("/team").toUriString();
     }
 
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String updateTeam(@PathVariable long id, Model model) {
+        TeamDto team = teamFacade.getTeam(id);
+        if (team == null) {
+            return "redirect:/team";
+        }
+        model.addAttribute("team", team);
+        return "team/update";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String updateTrip(@ModelAttribute("team") TeamDto team, @PathVariable("id") long id,
+                             Model model, UriComponentsBuilder uriBuilder) {
+        team.setId(id);
+        team.setTeamManager(teamManagerFacade.getTeamManager(team.getTeamManagerId()));
+        teamFacade.updateTeam(team);
+        return "redirect:" + uriBuilder.path("/team").toUriString();
+    }
+
     @ModelAttribute("teamManagers")
     public List<TeamManagerDto> categories() {
         return teamManagerFacade.getAllTeamManagers();
