@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.config;
 
-import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
+import cz.fi.muni.pa165.sportsclub.config.SampleDataConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@Import(SpringContextConfiguration.class)
+@Import(SampleDataConfiguration.class)
 @ComponentScan(basePackages = "cz.muni.fi.pa165.sportsclub.controller")
 public class MvcApplicationContext extends WebMvcConfigurerAdapter {
 

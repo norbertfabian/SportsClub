@@ -18,7 +18,7 @@
 
         <dependency>
             <groupId>${groupId}</groupId>
-            <artifactId>sports-club-service</artifactId>
+            <artifactId>sports-club-sampleData</artifactId>
             <version>${project.version}</version>
         </dependency>
 

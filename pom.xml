@@ -49,6 +49,7 @@
     <module>sports-club-api</module>
     <module>sports-club-persistence</module>
     <module>sports-club-service</module>
+    <module>sports-club-sampleData</module>
     <module>sports-club-mvc</module>
   </modules>
 </project>
