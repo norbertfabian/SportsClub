@@ -52,13 +52,19 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
 
         //PLAYERS
         Player player1 = new Player().setFirstName("Norbert").setLastName("Fabian").setHeight(190).setWeight(110)
-                .setDateOfBirth(new Date());
+                .setDateOfBirth(createDate("03/08/2005"));
         Player player2 = new Player().setFirstName("David").setLastName("Foser").setHeight(183).setWeight(98)
-                .setDateOfBirth(new Date());
+                .setDateOfBirth(createDate("15/01/2007"));
+        Player player3 = new Player().setFirstName("Roland").setLastName("Keen").setHeight(1730).setWeight(85)
+                .setDateOfBirth(createDate("28/02/1963"));
+        Player player4 = new Player().setFirstName("Frank").setLastName("Kuzo").setHeight(195).setWeight(112)
+                .setDateOfBirth(createDate("02/10/1950"));
 
-        //MEMBERSHIP
+        //MEMBERSHIPS
         Membership membership1 = new Membership().setTeam(team1).setPlayer(player1).setJerseyNumber(1);
         Membership membership2 = new Membership().setTeam(team1).setPlayer(player2).setJerseyNumber(7);
+        Membership membership3 = new Membership().setTeam(team2).setPlayer(player3).setJerseyNumber(10);
+        Membership membership4 = new Membership().setTeam(team2).setPlayer(player4).setJerseyNumber(8);
 
         //PERSISTING
         teamManagerService.createTeamManager(teamManager1);
@@ -67,18 +73,26 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
         teamService.createTeam(team2);
         playerService.createPlayer(player1);
         playerService.createPlayer(player2);
+        playerService.createPlayer(player3);
+        playerService.createPlayer(player1);
         membershipService.createMembership(membership1);
         membershipService.createMembership(membership2);
+        membershipService.createMembership(membership3);
+        membershipService.createMembership(membership4);
 
         //ASSIGNING
         team1.setTeamManager(teamManager1);
         team2.setTeamManager(teamManager2);
         team1.addMembership(membership1);
         team1.addMembership(membership2);
+        team2.addMembership(membership3);
+        team2.addMembership(membership4);
         teamManager1.addTeam(team1);
         teamManager2.addTeam(team2);
         player1.addMembership(membership1);
         player2.addMembership(membership2);
+        player3.addMembership(membership3);
+        player4.addMembership(membership4);
     }
 
     /**

@@ -50,9 +50,9 @@ public class SampleDataLoaderTest extends AbstractTransactionalTestNGSpringConte
         List<Membership> memberships = membershipService.findAll();
 
         Assert.assertEquals(teams.size(), 2, "Wrong amount of teams.");
-        Assert.assertEquals(players.size(), 2, "Wrong amount of players.");
+        Assert.assertEquals(players.size(), 4, "Wrong amount of players.");
         Assert.assertEquals(teamManagers.size(), 2, "Wrong amount of team managers.");
-        Assert.assertEquals(memberships.size(), 2, "Wrong amount og memberships");
+        Assert.assertEquals(memberships.size(), 4, "Wrong amount og memberships");
 
         Assert.assertEquals(teams.get(0).getMemberships().size(), 2);
     }

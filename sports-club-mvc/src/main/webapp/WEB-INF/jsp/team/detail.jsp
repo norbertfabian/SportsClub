@@ -8,6 +8,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" trimDirectiveWhitespaces="true" session="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <body>
 
@@ -69,7 +71,7 @@
                         <td><c:out value="${membership.player.lastName}"/></td>
                         <td><c:out value="${membership.player.height}"/></td>
                         <td><c:out value="${membership.player.weight}"/></td>
-                        <td><c:out value="${membership.player.dateOfBirth}"/></td>
+                        <td><fmt:formatDate value="${membership.player.dateOfBirth}" pattern="dd.MM.yyyy" /></td>
                     </tr>
                 </c:forEach>
             </table>
