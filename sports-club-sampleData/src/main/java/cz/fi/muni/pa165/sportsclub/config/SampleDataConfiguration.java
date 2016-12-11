@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Import;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  * @author Fabian Norbert
@@ -27,7 +28,7 @@ public class SampleDataConfiguration {
     private SampleDataLoader loader;
 
     @PostConstruct
-    public void dataLoading() throws IOException {
+    public void dataLoading() throws IOException, ParseException {
         log.debug("dataLoading()");
         loader.loadData();
     }

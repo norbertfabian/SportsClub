@@ -1,6 +1,7 @@
 package cz.fi.muni.pa165.sportsclub.loader;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 /**
  * @author Fabian Norbert
@@ -12,5 +13,5 @@ public interface SampleDataLoader {
      *
      * @throws IOException
      */
-    void loadData() throws IOException;
+    void loadData() throws IOException, ParseException;
 }
