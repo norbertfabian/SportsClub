@@ -23,6 +23,8 @@ public class TeamDto{
 
     private TeamManagerDto teamManager;
 
+    private long teamManagerId;
+
     private String ageGroupLabel;
     
     public TeamDto() {
@@ -77,6 +79,14 @@ public class TeamDto{
 
     public void setAgeGroupLabel(String ageGroupLabel) {
         this.ageGroupLabel = ageGroupLabel;
+    }
+
+    public long getTeamManagerId() {
+        return teamManagerId;
+    }
+
+    public void setTeamManagerId(long teamManagerId) {
+        this.teamManagerId = teamManagerId;
     }
 
     @Override

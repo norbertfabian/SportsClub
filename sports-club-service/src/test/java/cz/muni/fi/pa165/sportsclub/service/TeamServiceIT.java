@@ -2,8 +2,15 @@ package cz.muni.fi.pa165.sportsclub.service;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
+import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
+import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
+import cz.muni.fi.pa165.sportsclub.dao.TeamManagerDao;
+import cz.muni.fi.pa165.sportsclub.entity.Membership;
+import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
+import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import cz.muni.fi.pa165.sportsclub.exception.SportsClubServiceException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
@@ -11,6 +18,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +33,15 @@ public class TeamServiceIT extends AbstractTransactionalTestNGSpringContextTests
 
     @Inject
     private TeamDao teamDao;
+
+    @Inject
+    private MembershipDao membershipDao;
+
+    @Inject
+    private TeamManagerDao teamManagerDao;
+
+    @Inject
+    private PlayerDao playerDao;
 
     private EntityFactoryService entityFactoryService = new EntityFactoryService();
 
@@ -70,6 +87,27 @@ public class TeamServiceIT extends AbstractTransactionalTestNGSpringContextTests
         long id = teamToRemove.getId();
         teamService.removeTeam(teamToRemove.getId());
         Assert.assertNull(teamDao.findById(id));
+    }
+
+    @Test
+    public void getTeamWithPlayers() {
+        Player player = new Player().setFirstName("FirstName").setLastName("LastName").setHeight(150).setWeight(160)
+                .setDateOfBirth(new Date());
+        TeamManager teamManager = new TeamManager().setName("TeamManager").setAddress("Address").setContact("Contact");
+        Team team = new Team().setName("Team").setAgeGroup(AgeGroup.JUNIOR).setTeamManager(teamManager);
+        Membership membership = new Membership().setTeam(team).setPlayer(player).setJerseyNumber(1);
+        team.addMembership(membership);
+        player.addMembership(membership);
+
+        teamManagerDao.create(teamManager);
+        teamDao.create(team);
+        playerDao.create(player);
+        membershipDao.create(membership);
+
+        Team result = teamService.findById(team.getId());
+        Assert.assertEquals(1, result.getMemberships().size());
+        result.getMemberships().stream().forEach(m ->
+                Assert.assertEquals("FirstName", m.getPlayer().getFirstName()));
     }
 
     @Test(expectedExceptions = SportsClubServiceException.class)

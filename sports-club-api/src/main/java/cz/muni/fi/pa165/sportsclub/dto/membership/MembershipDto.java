@@ -1,5 +1,9 @@
 package cz.muni.fi.pa165.sportsclub.dto.membership;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 
@@ -10,10 +14,14 @@ public class MembershipDto {
 
     private Long id;
 
+    @NotNull
     private TeamDto team;
 
+    @NotNull
     private PlayerDto player;
 
+    @Min(1)
+    @Max(99)
     private int jerseyNumber;
 
     public Long getId() {

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
-import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipCreateDto;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
@@ -36,14 +35,11 @@ public class MembershipFacadeTest {
 
     private MembershipDto membershipDto;
 
-    private MembershipCreateDto membershipCreateDto;
-
     private Membership m1;
 
     @BeforeMethod
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        membershipCreateDto = entityFactoryService.createMembershipCreateDto();
         membershipDto = entityFactoryService.createMembershipDto();
         m1 = entityFactoryService.createMembership();
         m1.setId(1L);
@@ -51,8 +47,8 @@ public class MembershipFacadeTest {
 
     @Test
     public void testCreateMembership(){
-        membershipFacade.createMembership(membershipCreateDto);
-        Membership m = dtoMapper.mapTo(membershipCreateDto, Membership.class);
+        membershipFacade.createMembership(membershipDto);
+        Membership m = dtoMapper.mapTo(membershipDto, Membership.class);
 
         verify(membershipService).createMembership(m);
     }
