@@ -36,7 +36,7 @@
         </div>
 
         <br/>
-        <button class="btn btn-primary" type="submit">Create team</button>
+        <button class="btn btn-primary" type="submit">Update team</button>
     </form:form>
 </body>
 </html>

@@ -22,7 +22,7 @@
                     <a href="/pa165/team/${team.id}" class="btn btn-primary">Detail</a>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/team/update/${team.id}" class="btn btn-primary">Update</a>
+                    <a href="${pageContext.request.contextPath}/team/update/${team.id}" class="btn btn-primary">Edit</a>
                 </td>
                 <td>
                     <form data="get" action="${pageContext.request.contextPath}/team/delete/${team.id}">
