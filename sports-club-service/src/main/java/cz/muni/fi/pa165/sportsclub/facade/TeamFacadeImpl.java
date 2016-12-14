@@ -27,9 +27,9 @@ public class TeamFacadeImpl implements TeamFacade {
     private TeamService teamService;
 
     @Override
-    public void createTeam(TeamDto dto) {
+    public TeamDto createTeam(TeamDto dto) {
         Team team = dtoMapper.dtoToTeam(dto);
-        teamService.createTeam(team);
+        return dtoMapper.teamToDto(teamService.createTeam(team));
     }
 
     @Override
@@ -38,9 +38,9 @@ public class TeamFacadeImpl implements TeamFacade {
     }
 
     @Override
-    public void updateTeam(TeamDto dto) {
+    public TeamDto updateTeam(TeamDto dto) {
         Team team = dtoMapper.dtoToTeam(dto);
-        teamService.updateTeam(team);
+        return dtoMapper.teamToDto(teamService.updateTeam(team));
     }
 
     @Override

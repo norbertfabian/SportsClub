@@ -32,8 +32,9 @@ public interface TeamService {
      * Method creates new team
      *
      * @param team Team to create
+     * @return Created team
      */
-    void createTeam(Team team);
+    Team createTeam(Team team);
 
     /**
      * Updates team

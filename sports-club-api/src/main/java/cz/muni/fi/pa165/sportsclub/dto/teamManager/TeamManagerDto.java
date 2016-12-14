@@ -1,11 +1,12 @@
 package cz.muni.fi.pa165.sportsclub.dto.teamManager;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 
-import java.util.List;
-import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -26,7 +27,8 @@ public class TeamManagerDto {
     @NotNull
     @Size(min = 2, max = 60)
     private String contact;
-    
+
+    @JsonBackReference
     private List<TeamDto> teams;
     
     public TeamManagerDto() {

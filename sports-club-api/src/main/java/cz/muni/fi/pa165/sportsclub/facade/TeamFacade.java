@@ -14,8 +14,9 @@ public interface TeamFacade {
      * Creates a new team.
      *
      * @param dto TeamDto with the team data
+     * @return TeamDto of the created Team
      */
-    void createTeam(TeamDto dto);
+    TeamDto createTeam(TeamDto dto);
 
     /**
      * Deletes a team with the given id.
@@ -28,8 +29,9 @@ public interface TeamFacade {
      * Updates the team data.
      *
      * @param dto TeamDto with the updated data
+     * @return Updated TeamDto
      */
-    void updateTeam(TeamDto dto);
+    TeamDto updateTeam(TeamDto dto);
 
     /**
      * Returns a list of all teams.
