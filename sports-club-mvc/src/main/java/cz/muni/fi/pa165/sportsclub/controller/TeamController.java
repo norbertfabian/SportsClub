@@ -1,9 +1,14 @@
 package cz.muni.fi.pa165.sportsclub.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
+import cz.muni.fi.pa165.sportsclub.facade.PlayerFacade;
 import cz.muni.fi.pa165.sportsclub.facade.TeamFacade;
 import cz.muni.fi.pa165.sportsclub.facade.TeamManagerFacade;
 import org.springframework.stereotype.Controller;
@@ -13,9 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.inject.Inject;
-import java.util.List;
 
 /**
  * @author Fabian Norbert
@@ -30,6 +32,9 @@ public class TeamController {
 
     @Inject
     TeamManagerFacade teamManagerFacade;
+
+    @Inject
+    PlayerFacade playerFacade;
 
     @Inject
     PlayerDao playerDao;
@@ -89,6 +94,26 @@ public class TeamController {
         team.setTeamManager(teamManagerFacade.getTeamManager(team.getTeamManagerId()));
         teamFacade.updateTeam(team);
         return "redirect:" + uriBuilder.path("/team").toUriString();
+    }
+
+//    @RequestMapping(value = "/{id}/membership", method = RequestMethod.GET)
+    //    public String managePlayers(@PathVariable("id") long id, Model model){
+    //        TeamDto team = teamFacade.getTeam(id);
+    //        model.addAttribute("team", team);
+    //        model.addAttribute("memberships", team.getMemberships());
+    //        model.addAttribute("freePlayers", playerFacade.);
+    //
+    //        return "/membership/manage";
+    //    }
+
+    @RequestMapping(value = "/{id}/managePlayers", method = RequestMethod.GET)
+    public MembershipController managePlayers(@PathVariable("id") long id, Model model){
+        TeamDto team = teamFacade.getTeam(id);
+        model.addAttribute("team", team);
+        model.addAttribute("memberships", team.getMemberships());
+//        model.addAttribute("freePlayers", playerFacade.);
+
+        return new MembershipController();
     }
 
     @ModelAttribute("teamManagers")
