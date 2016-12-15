@@ -126,19 +126,16 @@ public class EntityFactoryService {
         return membership;
     }
 
-    public Membership createPersistedMembership(MembershipDao dao) {
-        return createPersistedMembership("TestMembership", dao);
+    public Membership createPersistedMembership(MembershipDao dao, TeamDao teamDao, PlayerDao playerDao) {
+        return createPersistedMembership("TestMembership", dao, teamDao, playerDao);
     }
 
-    public Membership createPersistedMembership(MembershipDao dao, long id) {
-        Membership membership = createMembership();
-        membership.setId(id);
-        dao.create(membership);
-        return membership;
-    }
-
-    public Membership createPersistedMembership(String name, MembershipDao dao) {
+    public Membership createPersistedMembership(String name, MembershipDao dao, TeamDao teamDao, PlayerDao playerDao) {
         Membership membership = createMembership(name);
+        Team team = createPersistedTeam("team" + name, teamDao);
+        Player player = createPersistedPlayer("player" + name, playerDao);
+        membership.setTeam(team);
+        membership.setPlayer(player);
         dao.create(membership);
         return membership;
     }
