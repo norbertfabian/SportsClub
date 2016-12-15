@@ -96,24 +96,15 @@ public class TeamController {
         return "redirect:" + uriBuilder.path("/team").toUriString();
     }
 
-//    @RequestMapping(value = "/{id}/membership", method = RequestMethod.GET)
-    //    public String managePlayers(@PathVariable("id") long id, Model model){
-    //        TeamDto team = teamFacade.getTeam(id);
-    //        model.addAttribute("team", team);
-    //        model.addAttribute("memberships", team.getMemberships());
-    //        model.addAttribute("freePlayers", playerFacade.);
-    //
-    //        return "/membership/manage";
-    //    }
-
-    @RequestMapping(value = "/{id}/managePlayers", method = RequestMethod.GET)
-    public MembershipController managePlayers(@PathVariable("id") long id, Model model){
+    @RequestMapping(value = "/{id}/membership", method = RequestMethod.GET)
+    public String managePlayers(@PathVariable("id") long id, Model model){
         TeamDto team = teamFacade.getTeam(id);
         model.addAttribute("team", team);
         model.addAttribute("memberships", team.getMemberships());
-//        model.addAttribute("freePlayers", playerFacade.);
+        System.out.print(playerFacade.getAllPlayers());
+        model.addAttribute("freePlayers", playerFacade.getAllPlayers());
 
-        return new MembershipController();
+        return "/membership/manage";
     }
 
     @ModelAttribute("teamManagers")

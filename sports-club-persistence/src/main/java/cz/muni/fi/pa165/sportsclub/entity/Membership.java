@@ -74,11 +74,13 @@ public class Membership {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (o == null || !(o instanceof Membership))
+        if (o == null || getClass() != o.getClass())
             return false;
 
         Membership that = (Membership) o;
 
+        if (getId() != that.getId())
+            return false;
         if (getJerseyNumber() != that.getJerseyNumber())
             return false;
         if (getTeam() != null ? !getTeam().equals(that.getTeam()) : that.getTeam() != null)
@@ -89,7 +91,8 @@ public class Membership {
 
     @Override
     public int hashCode() {
-        int result = getTeam() != null ? getTeam().hashCode() : 0;
+        int result = (int) (getId() ^ (getId() >>> 32));
+        result = 31 * result + (getTeam() != null ? getTeam().hashCode() : 0);
         result = 31 * result + (getPlayer() != null ? getPlayer().hashCode() : 0);
         result = 31 * result + getJerseyNumber();
         return result;

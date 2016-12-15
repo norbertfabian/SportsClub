@@ -1,5 +1,12 @@
 package cz.fi.muni.pa165.sportsclub.loader;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.inject.Inject;
+
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
@@ -11,12 +18,6 @@ import cz.muni.fi.pa165.sportsclub.service.TeamManagerService;
 import cz.muni.fi.pa165.sportsclub.service.TeamService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author Fabian Norbert
@@ -59,12 +60,22 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
                 .setDateOfBirth(createDate("28/02/1963"));
         Player player4 = new Player().setFirstName("Frank").setLastName("Kuzo").setHeight(195).setWeight(112)
                 .setDateOfBirth(createDate("02/10/1950"));
+        Player player5 = new Player().setFirstName("Adam").setLastName("Rezen").setHeight(166).setWeight(80)
+                .setDateOfBirth(createDate("02/10/1950"));
+        Player player6 = new Player().setFirstName("Jozef").setLastName("Salat").setHeight(167).setWeight(89)
+            .setDateOfBirth(createDate("04/12/1959"));
 
         //MEMBERSHIPS
         Membership membership1 = new Membership().setTeam(team1).setPlayer(player1).setJerseyNumber(1);
         Membership membership2 = new Membership().setTeam(team1).setPlayer(player2).setJerseyNumber(7);
         Membership membership3 = new Membership().setTeam(team2).setPlayer(player3).setJerseyNumber(10);
         Membership membership4 = new Membership().setTeam(team2).setPlayer(player4).setJerseyNumber(8);
+
+        //ASSIGNING
+        team1.setTeamManager(teamManager1);
+        team2.setTeamManager(teamManager2);
+        teamManager1.addTeam(team1);
+        teamManager2.addTeam(team2);
 
         //PERSISTING
         teamManagerService.createTeamManager(teamManager1);
@@ -74,25 +85,13 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
         playerService.createPlayer(player1);
         playerService.createPlayer(player2);
         playerService.createPlayer(player3);
-        playerService.createPlayer(player1);
+        playerService.createPlayer(player4);
+        playerService.createPlayer(player5);
+        playerService.createPlayer(player6);
         membershipService.createMembership(membership1);
         membershipService.createMembership(membership2);
         membershipService.createMembership(membership3);
         membershipService.createMembership(membership4);
-
-        //ASSIGNING
-        team1.setTeamManager(teamManager1);
-        team2.setTeamManager(teamManager2);
-        team1.addMembership(membership1);
-        team1.addMembership(membership2);
-        team2.addMembership(membership3);
-        team2.addMembership(membership4);
-        teamManager1.addTeam(team1);
-        teamManager2.addTeam(team2);
-        player1.addMembership(membership1);
-        player2.addMembership(membership2);
-        player3.addMembership(membership3);
-        player4.addMembership(membership4);
     }
 
     /**

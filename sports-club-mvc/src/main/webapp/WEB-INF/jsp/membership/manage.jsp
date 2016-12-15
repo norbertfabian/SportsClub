@@ -37,7 +37,7 @@
                         <td><c:out value="${membership.player.weight}"/></td>
                         <td><fmt:formatDate value="${membership.player.dateOfBirth}" pattern="dd.MM.yyyy" /></td>
                         <td>
-                            <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/membership/delete/${membership.player.id}">
+                            <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/membership/delete/${membership.id}">
                                 <button type="submit" class="btn btn-primary">Delete</button>
                             </form>
                         </td>
@@ -62,16 +62,16 @@
                     <th>Weight</th>
                     <th>Date of birth</th>
                 </tr>
-                <c:forEach items="${memberships}" var="membership">
+                <c:forEach items="${freePlayers}" var="freePlayer">
                     <tr>
-                        <td><c:out value="${membership.player.firstName}"/></td>
-                        <td><c:out value="${membership.player.lastName}"/></td>
-                        <td><c:out value="${membership.player.height}"/></td>
-                        <td><c:out value="${membership.player.weight}"/></td>
-                        <td><fmt:formatDate value="${membership.player.dateOfBirth}" pattern="dd.MM.yyyy" /></td>
+                        <td><c:out value="${freePlayer.firstName}"/></td>
+                        <td><c:out value="${freePlayer.lastName}"/></td>
+                        <td><c:out value="${freePlayer.height}"/></td>
+                        <td><c:out value="${freePlayer.weight}"/></td>
+                        <td><fmt:formatDate value="${freePlayer.dateOfBirth}" pattern="dd.MM.yyyy" /></td>
                         <td>
-                            <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/membership/delete/${membership.player.id}">
-                                <button type="submit" class="btn btn-primary">Delete</button>
+                            <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/membership/add/${freePlayer.id}">
+                                <button type="submit" class="btn btn-primary">Add</button>
                             </form>
                         </td>
                     </tr>
