@@ -59,8 +59,4 @@ public class MembershipFacadeImpl implements MembershipFacade {
         return dtoMapper.mapTo(membership, MembershipDto.class);
     }
 
-
-//    public void assignPlayersToTeam(List<Player> players){
-//
-//    }
 }

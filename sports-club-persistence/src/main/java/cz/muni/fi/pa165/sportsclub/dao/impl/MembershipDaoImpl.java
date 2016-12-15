@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
 
 import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
@@ -37,7 +38,8 @@ public class MembershipDaoImpl implements MembershipDao {
 
     @Override
     public List<Membership> findAll() {
-        return em.createQuery("SELECT m FROM Membership m", Membership.class).getResultList();
+        CriteriaQuery<Membership> criteria = em.getCriteriaBuilder().createQuery(Membership.class);
+        return em.createQuery(criteria.select(criteria.from(Membership.class))).getResultList();
     }
 
     @Override

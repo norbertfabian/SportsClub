@@ -1,16 +1,21 @@
 package cz.muni.fi.pa165.sportsclub.service;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
+import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
+import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
+import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
+import cz.muni.fi.pa165.sportsclub.entity.Team;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import javax.inject.Inject;
-import java.util.List;
 
 /**
  * @author Patrik Novak.
@@ -23,6 +28,12 @@ public class PlayerServiceIT extends AbstractTransactionalTestNGSpringContextTes
 
     @Inject
     private PlayerDao playerDao;
+
+    @Inject
+    private TeamDao teamDao;
+
+    @Inject
+    private MembershipDao membershipDao;
 
     private EntityFactoryService entityFactoryService = new EntityFactoryService();
 
@@ -68,6 +79,25 @@ public class PlayerServiceIT extends AbstractTransactionalTestNGSpringContextTes
         long id = playerToRemove.getId();
         playerService.removePlayer(playerToRemove.getId());
         Assert.assertNull(playerDao.findById(id));
+    }
+
+    @Test
+    public void removeWithReference() {
+        Team team = entityFactoryService.createPersistedTeam(teamDao);
+        Player player = entityFactoryService.createPersistedPlayer(playerDao);
+        Membership membership = new Membership().setPlayer(player).setTeam(team).setJerseyNumber(1);
+
+        team.addMembership(membership);
+        player.addMembership(membership);
+        membershipDao.create(membership);
+        long id = player.getId();
+        long membershipId = membership.getId();
+
+        playerService.removePlayer(id);
+
+        Assert.assertEquals(playerDao.findById(id), null, "Player hasn't been removed.");
+        Assert.assertEquals(membershipDao.findById(membershipId), null, "Membership hasn't been removed.");
+        Assert.assertEquals(teamDao.findById(team.getId()), team, "Team has been removed,");
     }
 }
 

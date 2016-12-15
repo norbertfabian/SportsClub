@@ -1,5 +1,8 @@
 package cz.muni.fi.pa165.sportsclub.dao;
 
+import javax.inject.Inject;
+import javax.validation.ConstraintViolationException;
+
 import cz.muni.fi.pa165.sportsclub.EntityFactoryPersistence;
 import cz.muni.fi.pa165.sportsclub.PersistenceSampleApplicationContext;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
@@ -14,9 +17,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.inject.Inject;
-import javax.validation.ConstraintViolationException;
-
 /**
  *
  * @author Marian Sulgan
@@ -29,12 +29,11 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
     
     @Inject
     private MembershipDao membershipDao;
-    
-    @Inject
-    private TeamDao teamDao;
-    
+
     @Inject
     private PlayerDao playerDao;
+
+    @Inject TeamDao teamDao;
     
     private final EntityFactoryPersistence entityFactoryPersistence = new EntityFactoryPersistence();
     
@@ -53,6 +52,13 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
 
         t1 = entityFactoryPersistence.createTeam("team1");
         t2 = entityFactoryPersistence.createTeam("team2");
+
+        playerDao.create(p1);
+        playerDao.create(p2);
+        playerDao.create(p3);
+
+        teamDao.create(t1);
+        teamDao.create(t2);
     }
     
     @Test
@@ -102,8 +108,8 @@ public class MembershipRepositoryTest extends AbstractTestNGSpringContextTests {
         Assert.assertEquals(membershipDao.findById(m1.getId()), m1);
         Assert.assertEquals(membershipDao.findById(m3.getId()), m3);
     }
-    
-    @Test 
+
+    @Test
     public void shouldFindAllMemberships() {
         entityFactoryPersistence.createMembership(p1, t1, membershipDao);
         entityFactoryPersistence.createMembership(p2, t1, membershipDao);

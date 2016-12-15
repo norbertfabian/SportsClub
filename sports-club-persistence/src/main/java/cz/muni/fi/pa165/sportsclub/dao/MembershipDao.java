@@ -36,7 +36,7 @@ public interface MembershipDao {
     /**
      * Returns all Memberships from the database.
      *
-     * @return List of MEmberships.
+     * @return List of Memberships.
      */
     List<Membership> findAll();
 

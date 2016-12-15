@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -35,8 +36,8 @@ public class Team {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "team")
-    private Set<Membership> memberships;
+    @OneToMany(cascade = {CascadeType.ALL})
+    private Set<Membership> memberships= new HashSet<>();
 
     @ManyToOne
     private TeamManager teamManager;
@@ -45,7 +46,7 @@ public class Team {
     private AgeGroup ageGroup;
 
     public Team() {
-        this.memberships = new HashSet<>();
+//        this.memberships = new HashSet<>();
     }
 
     public long getId() {
