@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
 import cz.muni.fi.pa165.sportsclub.dto.ageGroup.AgeGroupDto;
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 
 import java.util.List;
@@ -54,4 +55,12 @@ public interface TeamFacade {
      * @return List of AgeGroupDto
      */
     List<AgeGroupDto> getAgeGroups();
+
+    /**
+     * Returns teams in which can player participate along to his age group
+     *
+     * @param player to be queried
+     * @return Teams
+     */
+    List<TeamDto> getAllowedTeams(PlayerDto player);
 }

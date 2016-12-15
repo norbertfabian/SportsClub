@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
 import cz.muni.fi.pa165.sportsclub.dto.ageGroup.AgeGroupDto;
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
@@ -68,5 +69,15 @@ public class TeamFacadeImpl implements TeamFacade {
             ageGroupDtos.add(dto);
         }
         return ageGroupDtos;
+    }
+
+    @Override
+    public List<TeamDto> getAllowedTeams(PlayerDto player) {
+        List<Team> teams = teamService.getAllowedTeams(dtoMapper.dtoToPlayer(player));
+        List<TeamDto> teamDtos = new ArrayList<>();
+        for(Team team: teams) {
+            teamDtos.add(dtoMapper.teamToDto(team));
+        }
+        return teamDtos;
     }
 }
