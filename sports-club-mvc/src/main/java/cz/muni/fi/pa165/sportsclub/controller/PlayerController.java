@@ -91,13 +91,13 @@ public class PlayerController {
         return "redirect:" + uriBuilder.path("/player").toUriString();
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/available-teams", method = RequestMethod.GET)
     public String getAvailableTeams(@PathVariable("id") long id, Model model) {
         PlayerDto player = playerFacade.getPlayer(id);
         List<TeamDto> teams = teamFacade.getAllowedTeams(player);
 
         model.addAttribute("teams", teams);
 
-        return "team/list";
+        return "team/list/available";
     }
 }
