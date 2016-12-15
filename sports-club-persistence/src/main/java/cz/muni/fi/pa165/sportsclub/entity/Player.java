@@ -34,12 +34,11 @@ public class Player {
     @Past
     private Date dateOfBirth;
 
-    @OneToMany
-    @Transient
+    @OneToMany(cascade = {CascadeType.ALL})
     private Set<Membership> memberships = new HashSet<>();
 
     public Player() {
-   
+
     }
 
     public Player(Long id) {
