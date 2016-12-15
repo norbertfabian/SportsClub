@@ -51,5 +51,6 @@
     <module>sports-club-service</module>
     <module>sports-club-sampleData</module>
     <module>sports-club-mvc</module>
+    <module>sports-club-rest</module>
   </modules>
 </project>

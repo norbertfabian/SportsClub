@@ -1,11 +1,12 @@
 package cz.muni.fi.pa165.sportsclub.dto.membership;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
+import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
-import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 
 /**
  * @author Jakub Smolar
@@ -15,6 +16,7 @@ public class MembershipDto {
     private Long id;
 
     @NotNull
+    @JsonBackReference
     private TeamDto team;
 
     @NotNull

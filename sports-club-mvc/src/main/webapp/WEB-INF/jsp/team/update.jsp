@@ -8,35 +8,49 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<html>
-<body>
-    <form:form method="post" action="${pageContext.request.contextPath}/team/update/${team.id}"
-               modelAttribute="team" cssClass="form-horizontal">
+<t:pagetemplate pageTitle="List of teams">
+    <jsp:attribute name="content">
+        <form:form method="post" action="${pageContext.request.contextPath}/team/update/${team.id}"
+                   modelAttribute="team" cssClass="form-horizontal">
 
-        Name:
-        <form:label path="name" cssClass="col-sm-2 control-label"/>
-        <div class="col-sm-10">
-            <form:input path="name" cssClass="form-control"/>
-            <form:errors path="name" cssClass="help-block"/>
-        </div>
-        Age group:
-        <div class="col-sm-10">
-            <form:select path="ageGroupLabel" cssClass="col-sm-2 control-label">
-                <form:options items="${ageGroups}"/>
-            </form:select>
-        </div>
+            <table class="table">
+                <tr>
+                    <td>Name:</td>
+                    <td>
+                        <div>
+                            <form:label path="name" cssClass="col-xs-6 control-label"/>
+                            <form:input path="name" cssClass="form-control"/>
+                            <form:errors path="name" cssClass="help-block"/>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Age group:</td>
+                    <td>
+                        <div>
+                            <form:select path="ageGroupLabel" cssClass="col-xs-6 control-label">
+                                <form:options items="${ageGroups}"/>
+                            </form:select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>TeamManager:</td>
+                    <td>
+                        <div>
+                            <form:select path="teamManagerId" cssClass="col-xs-6 control-label">
+                                <form:options items="${teamManagers}" itemValue="id" itemLabel="name"/>
+                            </form:select>
+                        </div>
+                    </td>
+                </tr>
+            </table>
 
-        Team manager:
-        <div class="col-sm-10">
+            <button class="btn btn-primary" type="submit">Update team</button>
+            <a href="${pageContext.request.contextPath}/team" class="btn btn-primary pull-right" role="button">Back to list</a>
 
-            <form:select path="teamManagerId" cssClass="col-sm-2 control-label">
-                <form:options items="${teamManagers}" itemValue="id" itemLabel="name"/>
-            </form:select>
-        </div>
-
-        <br/>
-        <button class="btn btn-primary" type="submit">Update team</button>
-    </form:form>
-</body>
-</html>
+        </form:form>
+    </jsp:attribute>
+</t:pagetemplate>

@@ -31,12 +31,13 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public void createTeam(Team team) {
+    public Team createTeam(Team team) {
         Team persistedTeam = teamDao.getByName(team.getName());
         if(persistedTeam != null) {
             throw new SportsClubServiceException("Team name already exists.");
         }
         teamDao.create(team);
+        return team;
     }
 
     @Override
