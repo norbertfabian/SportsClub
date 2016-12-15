@@ -15,7 +15,8 @@
         <form:form method="post" action="${pageContext.request.contextPath}/team/update/${team.id}"
                    modelAttribute="team" cssClass="form-horizontal">
 
-            <table class="table">
+            <h1>Update team</h1>
+            <table class="table vertical-align-table">
                 <tr>
                     <td>Name:</td>
                     <td>
@@ -30,7 +31,7 @@
                     <td>Age group:</td>
                     <td>
                         <div>
-                            <form:select path="ageGroupLabel" cssClass="col-xs-6 control-label">
+                            <form:select path="ageGroupLabel" cssClass="col-xs-6 form-control">
                                 <form:options items="${ageGroups}"/>
                             </form:select>
                         </div>
@@ -40,7 +41,7 @@
                     <td>TeamManager:</td>
                     <td>
                         <div>
-                            <form:select path="teamManagerId" cssClass="col-xs-6 control-label">
+                            <form:select path="teamManagerId" cssClass="col-xs-6 form-control">
                                 <form:options items="${teamManagers}" itemValue="id" itemLabel="name"/>
                             </form:select>
                         </div>
