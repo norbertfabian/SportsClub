@@ -13,10 +13,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>${pageTitle}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/web/apple-touch-icon.png">
+        <link rel="icon" href="${pageContext.request.contextPath}/web/favicon.ico" type="image/x-icon"/>
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/web/css/bootstrap.min.css">
         <style>
@@ -32,7 +33,28 @@
     </head>
     
     <body>
+        
         <div class="container">
+            
+<!--            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}">
+                            <img alt="Brand" src="${pageContext.request.contextPath}/web/img/brand.png" width="20" height="20">
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav nav">
+                            <li>
+                                <a href="#" >Home</a>
+                            </li>
+                            <li>
+                                <a href="#" >About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>-->
             
             <jsp:invoke fragment="content" />
 
@@ -45,6 +67,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="${pageContext.request.contextPath}/web/js/vendor/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.8/validator.js"></script>
         <script src="${pageContext.request.contextPath}/web/js/main.js"></script>      
     </body>
     

@@ -43,12 +43,8 @@ public class TeamManagerController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String getTeamManager(@PathVariable("id") long id, Model model) {
         TeamManagerDto tmDto = tmFacade.getTeamManager(id);
-        if (tmDto != null) {
-            model.addAttribute("teamManager", tmDto);
-            return "team-manager/detail";
-        } else {
-            return null;
-        }
+        model.addAttribute("teamManager", tmDto);
+        return "team-manager/detail";
     }
     
     @RequestMapping(method = RequestMethod.GET)

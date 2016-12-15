@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:pagetemplate pageTitle="List of players">
     <jsp:attribute name="content">
@@ -17,7 +17,7 @@
         Create Player
     </a>
 
-    <table class="table">
+    <table class="table vertical-align-table">
         <thead>
         <tr>
             <th>First name</th>
@@ -25,6 +25,7 @@
             <th>Height</th>
             <th>Weight</th>
             <th>Date of birth</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>

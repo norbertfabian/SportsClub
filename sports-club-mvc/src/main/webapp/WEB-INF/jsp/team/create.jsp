@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: norbert
-  Date: 11.12.16
-  Time: 15:37
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -13,16 +6,17 @@
 
 <t:pagetemplate pageTitle="List of teams">
     <jsp:attribute name="content">
+        <h1>New team</h1>
         <form:form method="post" action="${pageContext.request.contextPath}/team/create"
-                   modelAttribute="team" cssClass="form-horizontal">
+                   modelAttribute="team" cssClass="form-horizontal" data-toggle="validator">
 
-            <table class="table">
+            <table class="table vertical-align-table">
                 <tr>
                     <td>Name:</td>
                     <td>
                         <div>
                             <form:label path="name" cssClass="col-xs-6 control-label"/>
-                            <form:input path="name" cssClass="form-control"/>
+                            <form:input path="name" cssClass="form-control" required="required"/>
                             <form:errors path="name" cssClass="help-block"/>
                         </div>
                     </td>
@@ -31,17 +25,17 @@
                     <td>Age group:</td>
                     <td>
                         <div>
-                            <form:select path="ageGroupLabel" cssClass="col-xs-6 control-label">
+                            <form:select path="ageGroupLabel" cssClass="col-xs-6 form-control" required="required">
                                 <form:options items="${ageGroups}"/>
                             </form:select>
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <td>TeamManager:</td>
+                    <td>Team manager:</td>
                     <td>
                         <div>
-                            <form:select path="teamManagerId" cssClass="col-xs-6 control-label">
+                            <form:select path="teamManagerId" cssClass="col-xs-6 form-control" required="required">
                                 <form:options items="${teamManagers}" itemValue="id" itemLabel="name"/>
                             </form:select>
                         </div>

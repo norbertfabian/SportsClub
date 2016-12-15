@@ -9,6 +9,18 @@
     vertical-align: middle;
 }
 
+.table.vertical-align-table tbody > tr > td {
+    vertical-align: middle;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
 
 
 
