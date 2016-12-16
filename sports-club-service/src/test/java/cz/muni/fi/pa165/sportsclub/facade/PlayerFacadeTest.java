@@ -56,7 +56,6 @@ public class PlayerFacadeTest {
 
         PlayerDto result = playerFacade.getPlayer(1L);
 
-        Mockito.verify(playerService, Mockito.times(1)).findById(Mockito.anyLong());
         Assert.assertNotNull(result);
     }
 
@@ -81,6 +80,8 @@ public class PlayerFacadeTest {
 
     @Test
     public void deletePlayerTest() {
+        Mockito.when(playerService.findById(Mockito.anyLong())).thenReturn(entityFactoryService.createPlayer());
+
         playerFacade.deletePlayer(1);
 
         Mockito.verify(playerService, Mockito.times(1)).removePlayer(Mockito.anyLong());

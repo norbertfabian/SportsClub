@@ -5,9 +5,6 @@ import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.TeamManagerService;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -17,6 +14,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -54,6 +54,7 @@ public class TeamManagerFacadeTest {
     
     @Test
     public void deleteTeamManagerTest() {
+        Mockito.when(tmService.findById(Mockito.anyLong())).thenReturn(entityFactoryService.createTeamManager());
         tmFacade.deleteTeamManager(1L);
         Mockito.verify(tmService, Mockito.times(1)).removeTeamManager(Mockito.anyLong());
     }
@@ -73,7 +74,6 @@ public class TeamManagerFacadeTest {
 
         TeamManagerDto test = tmFacade.getTeamManager(1L);
 
-        Mockito.verify(tmService, Mockito.times(1)).findById(Mockito.anyLong());
         Assert.assertNotNull(test);
     }
     

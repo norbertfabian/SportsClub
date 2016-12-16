@@ -4,11 +4,12 @@ import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.TeamManagerService;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,6 +34,7 @@ public class TeamManagerFacadeImpl implements TeamManagerFacade {
 
     @Override
     public void deleteTeamManager(long id) {
+        tmService.findById(id).getTeams().stream().forEach(t -> t.setTeamManager(null));
         tmService.removeTeamManager(id);
     }
 
