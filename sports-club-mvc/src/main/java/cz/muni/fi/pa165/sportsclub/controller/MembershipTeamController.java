@@ -1,18 +1,18 @@
 package cz.muni.fi.pa165.sportsclub.controller;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.inject.Inject;
 
-import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.facade.MembershipFacade;
 import cz.muni.fi.pa165.sportsclub.facade.PlayerFacade;
 import cz.muni.fi.pa165.sportsclub.facade.TeamFacade;
-import cz.muni.fi.pa165.sportsclub.service.MembershipService;
-import cz.muni.fi.pa165.sportsclub.service.PlayerService;
-import cz.muni.fi.pa165.sportsclub.service.TeamService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,10 +23,7 @@ import org.springframework.web.util.UriComponentsBuilder;
  */
 @Controller
 @RequestMapping("/team/{teamId}/membership")
-public class MembershipController {
-
-    @Inject
-    TeamFacade teamFacade;
+public class MembershipTeamController {
 
     @Inject
     MembershipFacade membershipFacade;
@@ -35,47 +32,50 @@ public class MembershipController {
     PlayerFacade playerFacade;
 
     @Inject
-    MembershipDao membershipDao;
+    TeamFacade teamFacade;
 
-    @Inject
-    MembershipService membershipService;
+    @RequestMapping(value="/refresh", method = RequestMethod.GET)
+    public String getPlayers(@PathVariable("teamId") long teamId, Model model) {
+        TeamDto team = teamFacade.getTeam(teamId);
 
-    @Inject
-    TeamService teamService;
+        Set<MembershipDto> memberships = team.getMemberships();
+        List<PlayerDto> players = playerFacade.getAllPlayers();
 
-    @Inject
-    PlayerService playerService;
+        for (MembershipDto membership : memberships){
+
+            if (players.contains(membership.getPlayer())){
+
+                players.remove(membership.getPlayer());
+            }
+        }
+
+        model.addAttribute("memberships", memberships);
+        model.addAttribute("players", players);
+
+        model.addAttribute("team", team);
+        model.addAttribute("memberships", memberships);
+        model.addAttribute("players", players);
+
+        return "/membership/manage";
+    }
 
     @RequestMapping(value="/delete/{id}", method = RequestMethod.GET)
     public String deletePlayer(@PathVariable("id") long id, @PathVariable("teamId") long teamId,
         UriComponentsBuilder uriBuilder){
-//        System.out.print(membershipFacade.findAllMemberships());
+
         membershipFacade.deleteMembership(membershipFacade.findMembership(id));
 
-        return "redirect:" + uriBuilder.path("/team/" + teamId + "/membership").toUriString();
+        return "redirect:" + uriBuilder.path("/team/" + teamId + "/membership/refresh").toUriString();
     }
 
     @RequestMapping(value="/add/{id}", method = RequestMethod.GET)
     public String addPlayer(@PathVariable("id") long id, @PathVariable("teamId") long teamId,
         UriComponentsBuilder uriBuilder){
 
-        TeamDto team = teamFacade.getTeam(teamId);
-        PlayerDto player = playerFacade.getPlayer(id);
+        MembershipDto membershipDto = new MembershipDto();
+        membershipFacade.createAndAssignMembership(membershipDto, teamId, id);
 
-        MembershipDto membership = new MembershipDto();
-        membership.setTeam(team);
-        membership.setPlayer(player);
-
-//        team.addMembership(membership);
-//        player.addMembership(membership);
-
-
-        membershipFacade.createMembership(membership);
-//        teamFacade.updateTeam(team);
-//        playerFacade.updatePlayer(player);
-
-
-        return "redirect:" + uriBuilder.path("/team/" + teamId + "/membership").toUriString();
+        return "redirect:" + uriBuilder.path("/team/" + teamId + "/membership/refresh").toUriString();
     }
 
 }

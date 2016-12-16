@@ -1,10 +1,13 @@
 package cz.muni.fi.pa165.sportsclub.controller;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import cz.muni.fi.pa165.sportsclub.dao.PlayerDao;
 import cz.muni.fi.pa165.sportsclub.dao.TeamDao;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
-import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import cz.muni.fi.pa165.sportsclub.facade.PlayerFacade;
 import cz.muni.fi.pa165.sportsclub.facade.TeamFacade;
 import org.springframework.stereotype.Controller;
@@ -14,9 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import javax.inject.Inject;
-import java.util.List;
 
 /**
  * @author Patrik Novak.
@@ -99,5 +99,15 @@ public class PlayerController {
         model.addAttribute("teams", teams);
 
         return "team/list/available";
+    }
+
+    @RequestMapping(value = "/{id}/membership", method = RequestMethod.GET)
+    public String assignPlayer(@PathVariable("id") long id, Model model){
+        PlayerDto player = playerFacade.getPlayer(id);
+        model.addAttribute("player", player);
+        model.addAttribute("teams", teamFacade.getAllTeams());
+        model.addAttribute("memberships", player.getMemberships());
+
+        return "/membership/assign";
     }
 }
