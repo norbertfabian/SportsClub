@@ -80,8 +80,8 @@ public class MembershipDto {
     @Override
     public int hashCode() {
         int result = getId().hashCode();
-        result = 31 * result + getTeam().hashCode();
-        result = 31 * result + getPlayer().hashCode();
+        result = 31 * result + (getTeam() == null ? 0 : getTeam().hashCode());
+        result = 31 * result + (getPlayer() == null ? 0 : getPlayer().hashCode());
         result = 31 * result + getJerseyNumber();
         return result;
     }

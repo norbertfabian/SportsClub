@@ -102,7 +102,6 @@ public class TeamManagerDto {
         hash = 47 * hash + Objects.hashCode(this.getName());
         hash = 47 * hash + Objects.hashCode(this.getContact());
         hash = 47 * hash + Objects.hashCode(this.getAddress());
-        hash = 47 * hash + Objects.hashCode(this.getTeams().size());
         return hash;
     }
 
