@@ -55,6 +55,14 @@
                             <li>
                                 <a href="${pageContext.request.contextPath}/team-manager" >Team managers</a>
                             </li>
+                            <li>
+                                <form action="login">
+                                    <button type="submit" class="btn btn-default navbar-btn">
+                                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                        Log in
+                                    </button>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>
