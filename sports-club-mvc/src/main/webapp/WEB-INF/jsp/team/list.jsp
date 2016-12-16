@@ -33,6 +33,11 @@
                             <button type="submit" class="btn btn-primary">Delete</button>
                         </form>
                     </td>
+                    <td>
+                        <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/managePlayers">
+                            <button type="submit" class="btn btn-primary">Manage players</button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
