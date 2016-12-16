@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.dto.player;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -15,6 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 /**
  *  @author Patrik Novak
  */
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class PlayerDto {
 
     private long id;
@@ -38,7 +40,6 @@ public class PlayerDto {
     @Past
     private Date dateOfBirth;
 
-    @JsonBackReference
     private Set<MembershipDto> memberships;
 
     public PlayerDto() {
