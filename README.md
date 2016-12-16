@@ -2,6 +2,10 @@
 
 ###Wiki:
 [SportsClub Wiki on GitHub](../../wiki)
+
+###REST API:
+[SportsClub API on GitHub](../../blob/master/sports-club-rest/README.md)
+
 ###Course: 
 PA165 Vývoj programových systémů v jazyce Java
 ###Project Topic: 
