@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsclub.dto.player;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -37,6 +38,7 @@ public class PlayerDto {
     @Past
     private Date dateOfBirth;
 
+    @JsonBackReference
     private Set<MembershipDto> memberships;
 
     public PlayerDto() {
