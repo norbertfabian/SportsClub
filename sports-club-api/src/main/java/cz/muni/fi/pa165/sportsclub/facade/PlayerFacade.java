@@ -46,10 +46,4 @@ public interface PlayerFacade {
      */
     PlayerDto getPlayer(long id);
 
-    /**
-     * Returns a list of all players.
-     *
-     * @return List of all free players
-     */
-    List<PlayerDto> getAllFreePlayers();
 }

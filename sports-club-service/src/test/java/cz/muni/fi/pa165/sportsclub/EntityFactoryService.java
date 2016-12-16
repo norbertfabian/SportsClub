@@ -142,7 +142,6 @@ public class EntityFactoryService {
 
     public MembershipDto createMembershipDto() {
         MembershipDto membership = new MembershipDto();
-        membership.setId(3L);
         membership.setTeam(createTeamDto());
         membership.setPlayer(createPlayerDto());
         membership.setJerseyNumber(10);
