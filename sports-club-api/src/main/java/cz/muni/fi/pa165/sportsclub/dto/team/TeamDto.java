@@ -1,7 +1,8 @@
 package cz.muni.fi.pa165.sportsclub.dto.team;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 /**
  * @author Fabian Norbert
  */
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class TeamDto{
 
     private long id;
@@ -21,10 +23,8 @@ public class TeamDto{
     @Size(min = 3, max = 50)
     private String name;
 
-    @JsonManagedReference
     private Set<MembershipDto> memberships;
 
-    @JsonManagedReference
     private TeamManagerDto teamManager;
 
     @JsonIgnore
