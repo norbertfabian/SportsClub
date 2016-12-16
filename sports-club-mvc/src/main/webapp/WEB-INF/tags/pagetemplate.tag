@@ -36,25 +36,29 @@
         
         <div class="container">
             
-<!--            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a class="navbar-brand" href="${pageContext.request.contextPath}">
-                            <img alt="Brand" src="${pageContext.request.contextPath}/web/img/brand.png" width="20" height="20">
+                            <img alt="Brand" src="${pageContext.request.contextPath}/web/img/Football.png" width="20" height="20">
                         </a>
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}">Sports club management</a>
                     </div>
                     <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav nav">
+                        <ul class="navbar-nav nav navbar-right">
                             <li>
-                                <a href="#" >Home</a>
+                                <a href="${pageContext.request.contextPath}/team" >Teams</a>
                             </li>
                             <li>
-                                <a href="#" >About</a>
+                                <a href="${pageContext.request.contextPath}/player" >Players</a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/team-manager" >Team managers</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </nav>-->
+            </nav>
             
             <jsp:invoke fragment="content" />
 
