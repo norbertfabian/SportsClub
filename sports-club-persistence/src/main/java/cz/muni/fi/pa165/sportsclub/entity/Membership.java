@@ -1,6 +1,5 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,9 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
- * Entity clas which represents relationshiop between {@link Player} and
+ * Entity class which represents relationshiop between {@link Player} and
  * {@link Team}.
  * 
  * @author Jakub Smolar
@@ -22,10 +22,12 @@ public class Membership {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
+    @NotNull
     private Team team;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
+    @NotNull
     private Player player;
 
     @Min(1)
@@ -72,11 +74,13 @@ public class Membership {
     public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (o == null || !(o instanceof Membership))
+        if (o == null || getClass() != o.getClass())
             return false;
 
         Membership that = (Membership) o;
 
+        if (getId() != that.getId())
+            return false;
         if (getJerseyNumber() != that.getJerseyNumber())
             return false;
         if (getTeam() != null ? !getTeam().equals(that.getTeam()) : that.getTeam() != null)
@@ -87,7 +91,8 @@ public class Membership {
 
     @Override
     public int hashCode() {
-        int result = getTeam() != null ? getTeam().hashCode() : 0;
+        int result = (int) (getId() ^ (getId() >>> 32));
+        result = 31 * result + (getTeam() != null ? getTeam().hashCode() : 0);
         result = 31 * result + (getPlayer() != null ? getPlayer().hashCode() : 0);
         result = 31 * result + getJerseyNumber();
         return result;

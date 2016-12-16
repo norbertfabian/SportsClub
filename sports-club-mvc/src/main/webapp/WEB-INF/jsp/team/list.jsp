@@ -11,15 +11,15 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Age group</th>
-                <th>Team manager</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Name</th>
+            <th>Age group</th>
+            <th>Team manager</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-            <c:forEach items="${teams}" var="team">
+        <c:forEach items="${teams}" var="team">
                 <tr>
                     <td class="vertical-align"><c:out value="${team.name}"/></td>
                     <td class="vertical-align"><c:out value="${team.ageGroupLabel}"/></td>
@@ -31,6 +31,11 @@
 
                         <form data="get" action="${pageContext.request.contextPath}/team/delete/${team.id}" style="display: inline-block">
                             <button type="submit" class="btn btn-primary">Delete</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/managePlayers">
+                            <button type="submit" class="btn btn-primary">Manage players</button>
                         </form>
                     </td>
                 </tr>

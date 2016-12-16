@@ -1,5 +1,10 @@
 package cz.muni.fi.pa165.sportsclub.service;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
 import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
@@ -16,10 +21,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import javax.inject.Inject;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author Fabian Norbert
@@ -126,5 +127,24 @@ public class TeamServiceIT extends AbstractTransactionalTestNGSpringContextTests
         detachedTeam.setName("ExistingTeamName");
 
         teamService.updateTeam(detachedTeam);
+    }
+
+    @Test
+    public void removeWithReference() {
+        Team team = entityFactoryService.createPersistedTeam("TeamToRemove", teamDao);
+        Player player = entityFactoryService.createPersistedPlayer(playerDao);
+        Membership membership = new Membership().setPlayer(player).setTeam(team).setJerseyNumber(1);
+
+        team.addMembership(membership);
+        player.addMembership(membership);
+        membershipDao.create(membership);
+        long id = team.getId();
+        long membershipId = membership.getId();
+
+        teamService.removeTeam(id);
+
+        Assert.assertEquals(teamDao.findById(id), null, "Team hasn't been removed.");
+        Assert.assertEquals(membershipDao.findById(membershipId), null, "Membership hasn't been removed.");
+        Assert.assertEquals(playerDao.findById(player.getId()), player, "Player has been removed,");
     }
 }

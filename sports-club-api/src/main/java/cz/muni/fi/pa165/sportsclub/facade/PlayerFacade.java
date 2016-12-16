@@ -1,7 +1,8 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
-import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import java.util.List;
+
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 
 /**
  *
@@ -44,4 +45,11 @@ public interface PlayerFacade {
      * @return PlayerDto with the given id
      */
     PlayerDto getPlayer(long id);
+
+    /**
+     * Returns a list of all players.
+     *
+     * @return List of all free players
+     */
+    List<PlayerDto> getAllFreePlayers();
 }
