@@ -1,17 +1,8 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.*;
 
 /**
  * Entity class which represents a team manager in SportsClub. Team manager 

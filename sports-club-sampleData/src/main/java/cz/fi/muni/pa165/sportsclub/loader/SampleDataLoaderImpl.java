@@ -1,12 +1,5 @@
 package cz.fi.muni.pa165.sportsclub.loader;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.inject.Inject;
-
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
@@ -18,6 +11,12 @@ import cz.muni.fi.pa165.sportsclub.service.TeamManagerService;
 import cz.muni.fi.pa165.sportsclub.service.TeamService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author Fabian Norbert
@@ -76,6 +75,18 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
         team2.setTeamManager(teamManager2);
         teamManager1.addTeam(team1);
         teamManager2.addTeam(team2);
+        team1.setTeamManager(teamManager1);
+        team2.setTeamManager(teamManager2);
+        team1.addMembership(membership1);
+        team1.addMembership(membership2);
+        team2.addMembership(membership3);
+        team2.addMembership(membership4);
+        teamManager1.addTeam(team1);
+        teamManager2.addTeam(team2);
+        player1.addMembership(membership1);
+        player2.addMembership(membership2);
+        player3.addMembership(membership3);
+        player4.addMembership(membership4);
 
         //PERSISTING
         teamManagerService.createTeamManager(teamManager1);
