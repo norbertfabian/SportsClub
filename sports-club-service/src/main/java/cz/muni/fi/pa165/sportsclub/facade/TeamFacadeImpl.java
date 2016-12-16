@@ -35,6 +35,7 @@ public class TeamFacadeImpl implements TeamFacade {
 
     @Override
     public void deleteTeam(long id) {
+        teamService.findById(id).getMemberships().stream().forEach(m -> m.getPlayer().removeMembership(m));
         teamService.removeTeam(id);
     }
 

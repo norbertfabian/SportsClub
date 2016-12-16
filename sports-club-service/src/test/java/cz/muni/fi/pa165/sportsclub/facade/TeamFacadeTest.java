@@ -56,7 +56,6 @@ public class TeamFacadeTest {
 
         TeamDto result = teamFacade.getTeam(1L);
 
-        Mockito.verify(teamService, Mockito.times(1)).findById(Mockito.anyLong());
         Assert.assertNotNull(result);
     }
 
@@ -81,6 +80,8 @@ public class TeamFacadeTest {
 
     @Test
     public void deleteTeamTest() {
+        Mockito.when(teamService.findById(Mockito.anyLong())).thenReturn(entityFactoryService.createTeam());
+
         teamFacade.deleteTeam(1);
 
         Mockito.verify(teamService, Mockito.times(1)).removeTeam(Mockito.anyLong());

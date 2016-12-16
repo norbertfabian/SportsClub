@@ -1,16 +1,15 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.PlayerService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -34,6 +33,7 @@ public class PlayerFacadeImpl implements PlayerFacade{
 
     @Override
     public void deletePlayer(long id) {
+        playerService.findById(id).getMemberships().stream().forEach(m -> m.getTeam().removeMemebership(m));
         playerService.removePlayer(id);
     }
 
