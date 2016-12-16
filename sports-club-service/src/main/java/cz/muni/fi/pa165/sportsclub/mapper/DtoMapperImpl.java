@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.sportsclub.mapper;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
+import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
@@ -63,7 +64,11 @@ public class DtoMapperImpl implements DtoMapper {
     public PlayerDto playerToDto(Player player) {
         PlayerDto dto = new PlayerDto();
         dtoMapper.map(player, dto);
-        dto.getMemberships().stream().forEach(m -> m.getTeam().setAgeGroupLabel(m.getTeam().getAgeGroup().getLabel()));
+        for(Membership membership: player.getMemberships()) {
+            dto.getMemberships().stream()
+                    .filter(memDto -> membership.getTeam().getId() == memDto.getId())
+                    .forEach(memDto -> memDto.getTeam().setAgeGroupLabel(membership.getTeam().getAgeGroup().getLabel()));
+        }
         return dto;
     }
 
@@ -85,7 +90,11 @@ public class DtoMapperImpl implements DtoMapper {
     public TeamManagerDto teamManagerToDto(TeamManager tm) {
         TeamManagerDto dto = new TeamManagerDto();
         dtoMapper.map(tm, dto);
-        dto.getTeams().stream().forEach(t -> t.setAgeGroupLabel(t.getAgeGroup().getLabel()));
+        for(Team team: tm.getTeams()) {
+            dto.getTeams().stream()
+                    .filter(teamDto -> team.getId() == teamDto.getId())
+                    .forEach(teamDto -> teamDto.setAgeGroupLabel(team.getAgeGroup().getLabel()));
+        }
         return dto;
     }
 }
