@@ -1,15 +1,16 @@
 package cz.muni.fi.pa165.sportsclub.dto.team;
 
+import java.util.Collections;
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Collections;
-import java.util.Set;
 
 /**
  * @author Fabian Norbert
@@ -30,10 +31,10 @@ public class TeamDto{
     @JsonIgnore
     private long teamManagerId;
 
-//    private AgeGroupDto ageGroup;
+    //    private AgeGroupDto ageGroup;
 
     private String ageGroupLabel;
-    
+
     public TeamDto() {
 
     }
@@ -96,13 +97,13 @@ public class TeamDto{
         this.teamManagerId = teamManagerId;
     }
 
-//    public AgeGroupDto getAgeGroup() {
-//        return ageGroup;
-//    }
-//
-//    public void setAgeGroup(AgeGroupDto ageGroup) {
-//        this.ageGroup = ageGroup;
-//    }
+    //    public AgeGroupDto getAgeGroup() {
+    //        return ageGroup;
+    //    }
+    //
+    //    public void setAgeGroup(AgeGroupDto ageGroup) {
+    //        this.ageGroup = ageGroup;
+    //    }
 
     @Override
     public boolean equals(Object o) {

@@ -44,6 +44,11 @@
                         <form data="get" action="${pageContext.request.contextPath}/player/delete/${player.id}" style="display: inline-block">
                             <button type="submit" class="btn btn-primary">Delete</button>
                         </form>
+                    <td>
+                        <form data="get" action="${pageContext.request.contextPath}/player/${player.id}/membership">
+                            <button type="submit" class="btn btn-primary">Assign player</button>
+                        </form>
+                    </td>
                     </td>
                 </tr>
             </c:forEach>

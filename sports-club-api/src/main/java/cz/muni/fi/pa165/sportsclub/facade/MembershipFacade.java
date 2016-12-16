@@ -45,4 +45,6 @@ public interface MembershipFacade {
      */
     MembershipDto findMembership(long id);
 
+    void createAndAssignMembership(MembershipDto dto, long teamId, long playerId);
+
 }
