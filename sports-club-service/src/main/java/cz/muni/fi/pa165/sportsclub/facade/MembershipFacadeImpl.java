@@ -26,8 +26,8 @@ public class MembershipFacadeImpl implements MembershipFacade {
     private MembershipService membershipService;
 
     @Override
-    public void createMembership(MembershipDto dto) {
-        Membership membership =  dtoMapper.mapTo(dto, Membership.class);
+    public void createMembership(MembershipDto dto){
+        Membership membership =  dtoMapper.dtoToMembership(dto);
         membershipService.createMembership(membership);
     }
 

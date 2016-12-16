@@ -1,15 +1,15 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
+import java.util.List;
+
+import javax.inject.Inject;
+
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import cz.muni.fi.pa165.sportsclub.service.PlayerService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -24,7 +24,7 @@ public class PlayerFacadeImpl implements PlayerFacade{
 
     @Inject
     private PlayerService playerService;
-    
+
     @Override
     public void createPlayer(PlayerDto dto) {
         Player player = dtoMapper.dtoToPlayer(dto);
@@ -53,19 +53,6 @@ public class PlayerFacadeImpl implements PlayerFacade{
     public PlayerDto getPlayer(long id) {
         Player player = playerService.findById(id);
         return dtoMapper.playerToDto(player);
-    }
-
-    @Override
-    public List<PlayerDto> getAllFreePlayers() {
-        List<Player> players = playerService.getAll();
-        List<Player> freePlayers = new ArrayList<>();
-        for(Player player : players){
-            if(player.getMemberships() == null){
-                freePlayers.add(player);
-            }
-        }
-
-        return dtoMapper.mapTo(freePlayers, PlayerDto.class);
     }
 
 }

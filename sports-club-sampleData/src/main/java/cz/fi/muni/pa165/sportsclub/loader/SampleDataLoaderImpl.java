@@ -1,22 +1,28 @@
 package cz.fi.muni.pa165.sportsclub.loader;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.inject.Inject;
+
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
+import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
 import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
+import cz.muni.fi.pa165.sportsclub.facade.MembershipFacade;
+import cz.muni.fi.pa165.sportsclub.facade.PlayerFacade;
+import cz.muni.fi.pa165.sportsclub.facade.TeamFacade;
 import cz.muni.fi.pa165.sportsclub.service.MembershipService;
 import cz.muni.fi.pa165.sportsclub.service.PlayerService;
 import cz.muni.fi.pa165.sportsclub.service.TeamManagerService;
 import cz.muni.fi.pa165.sportsclub.service.TeamService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author Fabian Norbert
@@ -38,11 +44,22 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
     @Inject
     private MembershipService membershipService;
 
+    @Inject
+    private MembershipFacade membershipFacade;
+
+    @Inject
+    private TeamFacade teamFacade;
+
+    @Inject
+    private PlayerFacade playerFacade;
+
     @Override
     public void loadData() throws IOException, ParseException {
         //TEAMS
         Team team1 = new Team().setName("Team1").setAgeGroup(AgeGroup.JUNIOR);
         Team team2 = new Team().setName("Team2").setAgeGroup(AgeGroup.SENIOR);
+        TeamDto team = new TeamDto();
+        team.setName("Team3");
 
         //TEAM MANAGERS
         TeamManager teamManager1 = new TeamManager().setName("Chuck Norris").setAddress("World")
@@ -63,6 +80,13 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
                 .setDateOfBirth(createDate("02/10/1950"));
         Player player6 = new Player().setFirstName("Jozef").setLastName("Salat").setHeight(167).setWeight(89)
             .setDateOfBirth(createDate("04/12/1959"));
+
+        PlayerDto player = new PlayerDto();
+        player.setFirstName("Norbert");
+        player.setLastName("Fabian");
+        player.setHeight(190);
+        player.setWeight(110);
+        player.setDateOfBirth(createDate("03/08/2005"));
 
         //MEMBERSHIPS
         Membership membership1 = new Membership().setTeam(team1).setPlayer(player1).setJerseyNumber(1);
@@ -103,6 +127,7 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
         membershipService.createMembership(membership2);
         membershipService.createMembership(membership3);
         membershipService.createMembership(membership4);
+
     }
 
     /**

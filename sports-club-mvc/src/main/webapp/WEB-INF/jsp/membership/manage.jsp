@@ -48,7 +48,7 @@
     </div>
 </table>
 
-<h2>Free players</h2>
+<h2>All players</h2>
 
 </table>
 <table class="table" border="1">
@@ -62,15 +62,15 @@
                     <th>Weight</th>
                     <th>Date of birth</th>
                 </tr>
-                <c:forEach items="${freePlayers}" var="freePlayer">
+                <c:forEach items="${players}" var="player">
                     <tr>
-                        <td><c:out value="${freePlayer.firstName}"/></td>
-                        <td><c:out value="${freePlayer.lastName}"/></td>
-                        <td><c:out value="${freePlayer.height}"/></td>
-                        <td><c:out value="${freePlayer.weight}"/></td>
-                        <td><fmt:formatDate value="${freePlayer.dateOfBirth}" pattern="dd.MM.yyyy" /></td>
+                        <td><c:out value="${player.firstName}"/></td>
+                        <td><c:out value="${player.lastName}"/></td>
+                        <td><c:out value="${player.height}"/></td>
+                        <td><c:out value="${player.weight}"/></td>
+                        <td><fmt:formatDate value="${player.dateOfBirth}" pattern="dd.MM.yyyy" /></td>
                         <td>
-                            <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/membership/add/${freePlayer.id}">
+                            <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/membership/add/${player.id}">
                                 <button type="submit" class="btn btn-primary">Add</button>
                             </form>
                         </td>

@@ -101,8 +101,7 @@ public class TeamController {
         TeamDto team = teamFacade.getTeam(id);
         model.addAttribute("team", team);
         model.addAttribute("memberships", team.getMemberships());
-        System.out.print(playerFacade.getAllPlayers());
-        model.addAttribute("freePlayers", playerFacade.getAllPlayers());
+        model.addAttribute("players", playerFacade.getAllPlayers());
 
         return "/membership/manage";
     }

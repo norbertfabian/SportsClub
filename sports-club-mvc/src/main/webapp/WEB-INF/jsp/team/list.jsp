@@ -34,7 +34,7 @@
                         </form>
                     </td>
                     <td>
-                        <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/managePlayers">
+                        <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/membership">
                             <button type="submit" class="btn btn-primary">Manage players</button>
                         </form>
                     </td>
