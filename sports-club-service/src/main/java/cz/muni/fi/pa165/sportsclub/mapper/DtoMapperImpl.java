@@ -1,11 +1,5 @@
 package cz.muni.fi.pa165.sportsclub.mapper;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
@@ -15,6 +9,11 @@ import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
 import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Component;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Fabian Norbert
@@ -64,6 +63,7 @@ public class DtoMapperImpl implements DtoMapper {
     public PlayerDto playerToDto(Player player) {
         PlayerDto dto = new PlayerDto();
         dtoMapper.map(player, dto);
+        dto.getMemberships().stream().forEach(m -> m.getTeam().setAgeGroupLabel(m.getTeam().getAgeGroup().getLabel()));
         return dto;
     }
 
@@ -85,6 +85,7 @@ public class DtoMapperImpl implements DtoMapper {
     public TeamManagerDto teamManagerToDto(TeamManager tm) {
         TeamManagerDto dto = new TeamManagerDto();
         dtoMapper.map(tm, dto);
+        dto.getTeams().stream().forEach(t -> t.setAgeGroupLabel(t.getAgeGroup().getLabel()));
         return dto;
     }
 }

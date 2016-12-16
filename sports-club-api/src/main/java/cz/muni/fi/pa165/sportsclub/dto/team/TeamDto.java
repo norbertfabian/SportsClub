@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.sportsclub.dto.team;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import cz.muni.fi.pa165.sportsclub.dto.ageGroup.AgeGroupDto;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.dto.teamManager.TeamManagerDto;
 
@@ -29,6 +30,8 @@ public class TeamDto{
 
     @JsonIgnore
     private long teamManagerId;
+
+    private AgeGroupDto ageGroup;
 
     private String ageGroupLabel;
     
@@ -92,6 +95,14 @@ public class TeamDto{
 
     public void setTeamManagerId(long teamManagerId) {
         this.teamManagerId = teamManagerId;
+    }
+
+    public AgeGroupDto getAgeGroup() {
+        return ageGroup;
+    }
+
+    public void setAgeGroup(AgeGroupDto ageGroup) {
+        this.ageGroup = ageGroup;
     }
 
     @Override
