@@ -71,20 +71,6 @@ public class TeamFacadeIT extends AbstractTransactionalTestNGSpringContextTests 
     }
 
     @Test
-    public void updateTeamIT() {
-        Team persistedTeam = entityFactoryService.createPersistedTeam(teamDao);
-        TeamDto updatedTeamDto = dtoMapper.teamToDto(persistedTeam);
-        updatedTeamDto.setName("UpdatedName");
-        updatedTeamDto.setAgeGroupLabel(AgeGroup.SENIOR.getLabel());
-
-        teamFacade.updateTeam(updatedTeamDto);
-
-        Team updateResult = teamDao.findById(persistedTeam.getId());
-        Assert.assertEquals(updateResult.getName(), "UpdatedName");
-        Assert.assertEquals(updateResult.getAgeGroup(), AgeGroup.SENIOR);
-    }
-
-    @Test
     public void getAllTeamsIT() {
         entityFactoryService.createPersistedTeam("Team1", teamDao);
         entityFactoryService.createPersistedTeam("Team2", teamDao);
