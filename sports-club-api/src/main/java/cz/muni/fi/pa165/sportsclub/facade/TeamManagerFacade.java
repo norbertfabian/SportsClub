@@ -30,7 +30,7 @@ public interface TeamManagerFacade {
     /**
      * Returns team manager with given id
      * @param id ID of team manager
-     * @return Team manager with give id
+     * @return Team manager with given id
      */
     public TeamManagerDto getTeamManager(long id);
     
@@ -39,4 +39,11 @@ public interface TeamManagerFacade {
      * @return List of all team managers
      */
     public List<TeamManagerDto> getAllTeamManagers();
+
+    /**
+     * Removes team from team manager's teams
+     * @param tmId ID of team manager
+     * @param id Team to be removed ID
+     */
+    public void removeTeamFromTeamManager(long tmId, long id);
 }

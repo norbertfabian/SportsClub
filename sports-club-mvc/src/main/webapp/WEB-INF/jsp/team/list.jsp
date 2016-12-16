@@ -25,7 +25,7 @@
                     <td class="vertical-align"><c:out value="${team.ageGroupLabel}"/></td>
                     <td class="vertical-align"><c:out value="${team.teamManager.name}"/></td>
                     <td>
-                        <a href="/pa165/team/${team.id}" class="btn btn-primary">Detail</a>
+                        <a href="${pageContext.request.contextPath}/team/${team.id}" class="btn btn-primary">Detail</a>
 
                         <a href="${pageContext.request.contextPath}/team/update/${team.id}" class="btn btn-primary">Edit</a>
 
