@@ -15,7 +15,7 @@
         <form:form method="post" action="${pageContext.request.contextPath}/player/update/${player.id}"
                    modelAttribute="player" cssClass="form-horizontal">
 
-            <table class="table">
+            <table class="table vertical-align-table">
                 <tr>
                     <td>First Name:</td>
                     <td>

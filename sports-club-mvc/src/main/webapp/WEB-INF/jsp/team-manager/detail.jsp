@@ -30,11 +30,16 @@
                     <tr>
                         <th>Team name</th>
                         <th>Age group</th>
+                        <th>Actions</th>
                     </tr>
                     <c:forEach items="${teamManager.teams}" var="team">
                         <tr>
                             <td><c:out value="${team.name}"/></td>
                             <td><c:out value="${team.ageGroupLabel}"/></td>
+                            <td>
+                                <a href="${pageContext.request.contextPath}/team/${team.id}" class="btn btn-default">Detail</a>
+                                <a href="${pageContext.request.contextPath}/team/update/${team.id}" class="btn btn-default">Edit</a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
