@@ -97,13 +97,13 @@ public class TeamController {
     }
 
     @RequestMapping(value = "/{id}/membership", method = RequestMethod.GET)
-    public String managePlayers(@PathVariable("id") long id, Model model){
+    public String managePlayers(@PathVariable("id") long id, Model model, UriComponentsBuilder uriBuilder){
         TeamDto team = teamFacade.getTeam(id);
         model.addAttribute("team", team);
         model.addAttribute("memberships", team.getMemberships());
         model.addAttribute("players", playerFacade.getAllPlayers());
 
-        return "/membership/manage";
+        return "redirect:" + uriBuilder.path("/team/" + id + "/membership/refresh").toUriString();
     }
 
     @ModelAttribute("teamManagers")
