@@ -71,18 +71,6 @@ public class MembershipFacadeTest {
     }
 
     @Test
-    public void testFindById(){
-        Membership m = dtoMapper.mapTo(membershipDto, Membership.class);
-
-        when(membershipService.findById(membershipDto.getId())).thenReturn(m);
-        when(dtoMapper.mapTo(m, MembershipDto.class)).thenReturn(membershipDto);
-        MembershipDto s = membershipFacade.findMembership(membershipDto.getId());
-
-        verify(membershipService).findById(membershipDto.getId());
-        verify(dtoMapper).mapTo(m, MembershipDto.class);
-    }
-
-    @Test
     public void testFindAll(){
         List<Membership> memberships = new ArrayList<>();
         memberships.add(entityFactoryService.createMembership("membership1"));

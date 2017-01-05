@@ -36,7 +36,7 @@ public class Team {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "team")
     private Set<Membership> memberships= new HashSet<>();
 
     @ManyToOne

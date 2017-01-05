@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                         <td><h4><b>Date of birth:</b></h4></td>
-                        <td><h4><fmt:formatDate value="${membership.player.dateOfBirth}" pattern="dd.MM.yyyy" /></h4></td>
+                        <td><h4><fmt:formatDate value="${player.dateOfBirth}" pattern="dd.MM.yyyy" /></h4></td>
                     </tr>
                 </table>
             </div>

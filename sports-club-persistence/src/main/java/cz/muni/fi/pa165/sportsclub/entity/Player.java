@@ -34,7 +34,7 @@ public class Player {
     @Past
     private Date dateOfBirth;
 
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "player")
     private Set<Membership> memberships = new HashSet<>();
 
     public Player() {

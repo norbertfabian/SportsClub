@@ -10,7 +10,6 @@ import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -34,15 +33,19 @@ public class MembershipFacadeIT extends AbstractTransactionalTestNGSpringContext
 
     private MembershipDto membershipDto;
 
-    @BeforeMethod
-    public void setUp(){
-        membershipDto = entityFactoryService.createMembershipDto();
-    }
-
-    @Test
-    public void createMembershipIT(){
-
-    }
+//    @BeforeMethod
+//    public void setUp(){
+//        membershipDto = entityFactoryService.createMembershipDto();
+//        membershipFacade.createMembership(membershipDto);
+//    }
+//
+//    @Test
+//    public void createMembershipIT(){
+//        List<Membership> found = membershipDao.findAll();
+//        assertTrue(found.size() == 1);
+//        Membership membership = found.get(0);
+//        assertNotNull(membership.getId());
+//    }
 
 //    @Test
 //    public void update(){
