@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.sportsclub.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -15,7 +14,8 @@ import java.util.Objects;
  * from the utter beginning.
  * 
  */
-@Entity
+@Entity()
+@Table(name = "sportsclubsuser")
 public class User {
     
     @Id
@@ -27,14 +27,10 @@ public class User {
     private String username;
     
     @NotNull
-    @Size(min=6, max=32)
     private String password;
     
     @NotNull
     private String role;
-
-    @OneToOne
-    private TeamManager teamManager;
 
     public long getId() {
         return id;
@@ -69,15 +65,6 @@ public class User {
 
     public User setRole(String role) {
         this.role = role;
-        return this;
-    }
-
-    public TeamManager getTeamManager() {
-        return teamManager;
-    }
-
-    public User setTeamManager(TeamManager teamManager) {
-        this.teamManager = teamManager;
         return this;
     }
     

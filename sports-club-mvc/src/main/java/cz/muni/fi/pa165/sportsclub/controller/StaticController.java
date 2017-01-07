@@ -16,10 +16,4 @@ public class StaticController {
     public String index(Model model) {
         return "index";
     }
-    
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-        return "login";
-    }
-    
 }

@@ -1,6 +1,8 @@
 <%@tag description="Page template" pageEncoding="UTF-8"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@attribute name="pageTitle" required="true"%>
 <%@attribute name="content" fragment="true" %>
+
 
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -35,7 +37,15 @@
     <body>
         
         <div class="container">
-            
+
+            <div class="row">
+                <div class="pull-right">
+                    <sec:authorize access="isAuthenticated()">
+                        You are logged in as <b><sec:authentication property="principal.username" /></b>
+                    </sec:authorize>
+                </div>
+            </div>
+
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -56,12 +66,22 @@
                                 <a href="${pageContext.request.contextPath}/team-manager" >Team managers</a>
                             </li>
                             <li>
-                                <form action="login">
-                                    <button type="submit" class="btn btn-default navbar-btn">
-                                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                                        Log in
-                                    </button>
-                                </form>
+                                <sec:authorize access="isAuthenticated()">
+                                    <form action="${pageContext.request.contextPath}/logout" method="get">
+                                        <button type="submit" class="btn btn-default navbar-btn">
+                                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                            Log out
+                                        </button>
+                                    </form>
+                                </sec:authorize>
+                                <sec:authorize access="isAnonymous()">
+                                    <form action="${pageContext.request.contextPath}/login" method="get">
+                                        <button type="submit" class="btn btn-default navbar-btn">
+                                            <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+                                            Log in
+                                        </button>
+                                    </form>
+                                </sec:authorize>
                             </li>
                         </ul>
                     </div>
