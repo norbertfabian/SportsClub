@@ -10,7 +10,8 @@ Team project for seminar PA165 at FI MUNI, Brno. For documentation, see below.
 [4. Requirements](#requirements)  
 *[4.1 1st Milestone Project Requirements](#milestone-1)*  
 *[4.2 2nd Milestone Project Requirements](#milestone-2)*  
-*[4.3 3d Milestone Project Requirements](#milestone-3)*
+*[4.3 3d Milestone Project Requirements](#milestone-3)*  
+*[4.4 Final Project Requirements](#final)*
 
 ## <a name="usage"></a>1. Usage:
 Using command line, execute following commands to run the app.
@@ -181,4 +182,31 @@ From this milestone your tutor will also assign you maximum 5 points based on th
 * -1 points if there are test failures
 * minimally -1 point for each of the unmet project requirements
 * -1 point for each occurrence of a team member not contributing enough
-* If a team member was not contributing at all, or very little, you should explicitly say this in your evaluation report. Tutor will follow up on this information 
+* If a team member was not contributing at all, or very little, you should explicitly say this in your evaluation report. Tutor will follow up on this information
+
+### 4.4 <a name="final"></a>Final Project Requirements
+
+Project done: __8. 1. 2017__  
+In general, 72 hours before your defence, which takes place at __Wed 11. 1. 2017, 14:00 - 20:00 in room B130__.
+
+*Available dates and times will be listed in Information System in “Packages and topics” application. Only the team leader will sign up for the defense in the IS and must sign up for the time slot where his/her assigned seminar tutor will be present. All team members must be present. Please come 15 minutes in advance and make sure you set up all HW and SW to be ready to present your application on time.*
+
+#### 4.4.1 Requirements
+
+* Fix all mistakes and bugs in your project that you ever had in your feedback
+* This has to be completed 72 hours before start of your actual defense
+* You will be asked to show some portions of your source code at the defense, be prepared to do so
+* Refine the GUI so that the presented application looks good
+* Dress code is casual
+
+
+#### 4.4.2 Defence
+
+* Prepare slides and present your project to the committee. Also prepare answers to possible questions that your seminar tutor sent you in advance (latest 24 hours before defense). 
+* Your time limit for the defense is 15 minutes (no more, and this is strict), your presentation should be prepared for about 7 minutes and about 2 minutes should be live demo of your application.
+
+__Presentation should cover following topics:__
+* business logic (what is it for and what does it do)
+* technologies used
+* team cooperation (who did what)
+* your feedback (what did you like and what not in PA165)
