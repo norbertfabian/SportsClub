@@ -1,28 +1,18 @@
 package cz.fi.muni.pa165.sportsclub.loader;
 
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
+import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import cz.muni.fi.pa165.sportsclub.entity.*;
+import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
+import cz.muni.fi.pa165.sportsclub.service.*;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import javax.inject.Inject;
-
-import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
-import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
-import cz.muni.fi.pa165.sportsclub.entity.Membership;
-import cz.muni.fi.pa165.sportsclub.entity.Player;
-import cz.muni.fi.pa165.sportsclub.entity.Team;
-import cz.muni.fi.pa165.sportsclub.entity.TeamManager;
-import cz.muni.fi.pa165.sportsclub.enumeration.AgeGroup;
-import cz.muni.fi.pa165.sportsclub.facade.MembershipFacade;
-import cz.muni.fi.pa165.sportsclub.facade.PlayerFacade;
-import cz.muni.fi.pa165.sportsclub.facade.TeamFacade;
-import cz.muni.fi.pa165.sportsclub.service.MembershipService;
-import cz.muni.fi.pa165.sportsclub.service.PlayerService;
-import cz.muni.fi.pa165.sportsclub.service.TeamManagerService;
-import cz.muni.fi.pa165.sportsclub.service.TeamService;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Fabian Norbert
@@ -45,13 +35,7 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
     private MembershipService membershipService;
 
     @Inject
-    private MembershipFacade membershipFacade;
-
-    @Inject
-    private TeamFacade teamFacade;
-
-    @Inject
-    private PlayerFacade playerFacade;
+    private UserService userService;
 
     @Override
     public void loadData() throws IOException, ParseException {
@@ -128,6 +112,10 @@ public class SampleDataLoaderImpl implements SampleDataLoader {
         membershipService.createMembership(membership3);
         membershipService.createMembership(membership4);
 
+        User user = new User().setUsername("user").setPassword("user").setRole("USER");
+        User admin = new User().setUsername("admin").setPassword("admin").setRole("ROLE");
+        userService.create(user);
+        userService.create(admin);
     }
 
     /**

@@ -1,16 +1,12 @@
 package cz.muni.fi.pa165.sportsclub.controller;
 
-import java.util.List;
-import java.util.Set;
-
-import javax.inject.Inject;
-
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.facade.MembershipFacade;
 import cz.muni.fi.pa165.sportsclub.facade.PlayerFacade;
 import cz.muni.fi.pa165.sportsclub.facade.TeamFacade;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Set;
+
 /**
  * Created by jsmolar on 12/16/16.
  */
 @Controller
+@Secured("ROLE_ADMIN")
 @RequestMapping("/player/{playerId}/membership")
 public class MembershipPlayerController {
 
