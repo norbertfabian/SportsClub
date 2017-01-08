@@ -22,14 +22,14 @@
         <link rel="icon" href="${pageContext.request.contextPath}/web/favicon.ico" type="image/x-icon"/>
 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/web/css/bootstrap.min.css">
+        <!--<link rel="stylesheet" href="${pageContext.request.contextPath}/web/css/bootstrap-theme.min.css">-->
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/web/css/main.css">
         <style>
             body {
-                padding-top: 50px;
+                padding-top: 70px;
                 padding-bottom: 20px;
             }
         </style>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/web/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/web/css/main.css">
 
         <script src="${pageContext.request.contextPath}/web/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
     </head>
@@ -46,16 +46,22 @@
                 </div>
             </div>
 
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
                     <div class="navbar-header">
+                        <button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                         <a class="navbar-brand" href="${pageContext.request.contextPath}">
-                            <img alt="Brand" src="${pageContext.request.contextPath}/web/img/Football.png" width="20" height="20">
+                            <span> <img alt="Brand" src="${pageContext.request.contextPath}/web/img/Football.png" width="20" height="20">
+                            Sports club management</span>
                         </a>
-                        <a class="navbar-brand" href="${pageContext.request.contextPath}">Sports club management</a>
                     </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav nav navbar-right">
+                    <div class="collapse navbar-collapse" id="main-navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
                             <li>
                                 <a href="${pageContext.request.contextPath}/team" >Teams</a>
                             </li>
@@ -99,6 +105,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="${pageContext.request.contextPath}/web/js/vendor/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/3374d8c062.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.8/validator.js"></script>
         <script src="${pageContext.request.contextPath}/web/js/main.js"></script>      
     </body>

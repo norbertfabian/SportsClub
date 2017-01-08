@@ -13,6 +13,51 @@
     vertical-align: middle;
 }
 
+span.navbar-form-p {
+    display:block; 
+    padding-left: 15px
+}
+
+.login-header {
+    padding-bottom: 20px;
+}
+
+.login-header h1 {
+    font-size: 2em;
+}
+
+.login-row {
+    padding-top: 10px;
+}
+
+.action-header {
+    border-bottom: 1px solid #e7e7e7;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+form label.semantic {
+    text-align: left;
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.login-vertical-align {
+    position: absolute;
+    top: 30%;
+}
+
+i.fa-4 {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
 footer {
     position: fixed;
     width: 100%;
@@ -21,6 +66,29 @@ footer {
     text-align: center;
 }
 
+/*.container {
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+nav .container {
+    background: inherit;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+}*/
+
+body {
+    background: transparent;
+}
+
+html {
+    min-height: 100%;
+    background-image: url(/pa165/web/img/bg-pattern.jpg);
+    background-size: cover;
+}
 
 
 
