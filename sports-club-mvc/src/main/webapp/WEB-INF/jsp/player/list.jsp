@@ -42,7 +42,8 @@
                         <a href="${pageContext.request.contextPath}/player/update/${player.id}" class="btn btn-primary">Edit</a>
 
                         <form data="get" action="${pageContext.request.contextPath}/player/delete/${player.id}" style="display: inline-block">
-                            <button type="submit" class="btn btn-primary">Delete</button>
+                            <!--<button type="submit" class="btn btn-primary">Delete</button>-->
+                            <t:delete-button></t:delete-button>
                         </form>
                     <td>
                         <form data="get" action="${pageContext.request.contextPath}/player/${player.id}/membership">

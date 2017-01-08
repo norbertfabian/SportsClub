@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${teams}" var="team">
+            <c:forEach items="${teams}" var="team">
                 <tr>
                     <td class="vertical-align"><c:out value="${team.name}"/></td>
                     <td class="vertical-align"><c:out value="${team.ageGroupLabel}"/></td>
@@ -30,7 +30,7 @@
                         <a href="${pageContext.request.contextPath}/team/update/${team.id}" class="btn btn-primary">Edit</a>
 
                         <form data="get" action="${pageContext.request.contextPath}/team/delete/${team.id}" style="display: inline-block">
-                            <button type="submit" class="btn btn-primary">Delete</button>
+                            <t:delete-button></t:delete-button>
                         </form>
                     </td>
                     <td>

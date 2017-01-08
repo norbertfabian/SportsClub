@@ -12,6 +12,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -30,6 +31,14 @@ public class MvcApplicationContext extends WebMvcConfigurerAdapter {
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         log.debug("enabling default servlet for static files");
         configurer.enable();
+    }
+    
+    /*
+    * Redirect root page to login page
+    */
+    @Override
+    public void addViewControllers(ViewControllerRegistry reg) {
+        reg.addRedirectViewController("/", "/login");
     }
 
     /**
