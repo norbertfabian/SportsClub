@@ -9,6 +9,7 @@ import cz.muni.fi.pa165.sportsclub.facade.TeamFacade;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +39,6 @@ public class MembershipTeamController {
     @RequestMapping(value="/refresh", method = RequestMethod.GET)
     public String getPlayers(@PathVariable("teamId") long teamId, Model model) {
         TeamDto team = teamFacade.getTeam(teamId);
-
         Set<MembershipDto> memberships = team.getMemberships();
         List<PlayerDto> players = playerFacade.getAllPlayers();
 
@@ -72,6 +72,31 @@ public class MembershipTeamController {
 
         MembershipDto membershipDto = new MembershipDto();
         membershipFacade.createAndAssignMembership(membershipDto, teamId, id);
+
+        return "redirect:" + uriBuilder.path("/team/" + teamId + "/membership/refresh").toUriString();
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String updateMembership(@PathVariable long id,
+                                    @PathVariable("teamId") long teamId, Model model){
+        MembershipDto membership = membershipFacade.findMembership(id);
+        if (membership == null) {
+            return "redirect:/refresh";
+        }
+        model.addAttribute("membership", membership);
+        model.addAttribute("teamId", teamId);
+        model.addAttribute("action", "/team/" + teamId + "/membership/update/" + id);
+        model.addAttribute("path", "/team/" + teamId + "/membership/refresh");
+        return "/membership/update";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String updateMembership(@ModelAttribute("membership") MembershipDto membership,
+                                    @PathVariable("id") long id,
+                                    @PathVariable("teamId") long teamId,
+                                    UriComponentsBuilder uriBuilder) {
+
+        membershipFacade.updateMembership(membership, id);
 
         return "redirect:" + uriBuilder.path("/team/" + teamId + "/membership/refresh").toUriString();
     }

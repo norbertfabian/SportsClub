@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.sportsclub.entity;
 
+import java.util.Objects;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -28,9 +30,9 @@ public class Membership {
 
     @Min(1)
     @Max(99)
-    private int jerseyNumber;
+    private Integer jerseyNumber;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -57,11 +59,11 @@ public class Membership {
         return this;
     }
 
-    public int getJerseyNumber() {
+    public Integer getJerseyNumber() {
         return jerseyNumber;
     }
 
-    public Membership setJerseyNumber(int jerseyNumber) {
+    public Membership setJerseyNumber(Integer jerseyNumber) {
         this.jerseyNumber = jerseyNumber;
         return this;
     }
@@ -75,20 +77,22 @@ public class Membership {
 
         Membership that = (Membership) o;
 
-        if (getJerseyNumber() != that.getJerseyNumber())
+        if (!getTeam().equals(that.getTeam()))
             return false;
-        if (getTeam() != null ? !getTeam().equals(that.getTeam()) : that.getTeam() != null)
+        if (!getPlayer().equals(that.getPlayer()))
             return false;
-        return getPlayer() != null ? getPlayer().equals(that.getPlayer()) : that.getPlayer() == null;
+        return getJerseyNumber() != null ?
+            getJerseyNumber().equals(that.getJerseyNumber()) :
+            that.getJerseyNumber() == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getId() ^ (getId() >>> 32));
-        result = 31 * result + (getTeam() != null ? getTeam().hashCode() : 0);
-        result = 31 * result + (getPlayer() != null ? getPlayer().hashCode() : 0);
-        result = 31 * result + getJerseyNumber();
+        int result = 7;
+        result = 73 * result + Objects.hashCode(this.getPlayer());
+        result = 73 * result + Objects.hashCode(this.getTeam());
+        result = 73 * result + Objects.hashCode(this.getJerseyNumber());
         return result;
     }
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
+import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 import cz.muni.fi.pa165.sportsclub.entity.Membership;
 import cz.muni.fi.pa165.sportsclub.entity.Player;
 import cz.muni.fi.pa165.sportsclub.entity.Team;
@@ -54,6 +55,18 @@ public class MembershipFacadeImpl implements MembershipFacade {
     }
 
     @Override
+    public void updateMembership(MembershipDto dto, long oldMembershipId) {
+        Membership membership =  dtoMapper.mapTo(dto, Membership.class);
+        Membership oldMembership = membershipService.findById(oldMembershipId);
+
+        membership.setId(oldMembershipId);
+        membership.setTeam(oldMembership.getTeam());
+        membership.setPlayer(oldMembership.getPlayer());
+
+        membershipService.updateMembership(membership);
+    }
+
+    @Override
     public List<MembershipDto> findAllMemberships() {
         List<MembershipDto> result = new ArrayList<>();
         for (Membership membership : membershipService.findAll()) {
@@ -71,11 +84,8 @@ public class MembershipFacadeImpl implements MembershipFacade {
 
     @Override
     public void createAndAssignMembership(MembershipDto dto, long teamId, long playerId) {
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + dto.getJerseyNumber() + "bbbbbbbbbbbbbbbbbbb" + teamId);
         Membership membership = dtoMapper.dtoToMembership(dto);
-        membership.setTeam(teamService.findById(teamId)).setPlayer(playerService.findById(playerId)).setJerseyNumber(13);
-
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + dto.getJerseyNumber() + "bbbbbbbbbbbbbbbbbbb" + membership.getJerseyNumber());
+        membership.setTeam(teamService.findById(teamId)).setPlayer(playerService.findById(playerId));
 
         Team team = teamService.findById(teamId);
         Player player = playerService.findById(playerId);
@@ -85,6 +95,48 @@ public class MembershipFacadeImpl implements MembershipFacade {
         teamService.updateTeam(team);
         playerService.updatePlayer(player);
         membershipService.createMembership(membership);
+    }
+
+    @Override
+    public List<MembershipDto> getAllMembershipsForPlayer(long id) {
+        List<MembershipDto> result = new ArrayList<>();
+        for (Membership membership : playerService.findById(id).getMemberships()) {
+            result.add(dtoMapper.mapTo(membership, MembershipDto.class));
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<MembershipDto> getAllMembershipsForTeam(long id) {
+        List<MembershipDto> result = new ArrayList<>();
+        for (Membership membership : teamService.findById(id).getMemberships()) {
+            result.add(dtoMapper.mapTo(membership, MembershipDto.class));
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<TeamDto> getAllAvailableTeamsForPlayer(long id) {
+        List<Team> teams = teamService.getAll();
+        List<Team> availableTeams = teamService.getAll();
+
+        for(Team team : teams){
+            List<MembershipDto> teamMemberships = getAllMembershipsForTeam(team.getId());
+            for(MembershipDto membership : teamMemberships){
+                if(membership.getPlayer().getId() == id){
+                    availableTeams.remove(team);
+                }
+            }
+        }
+
+        List<TeamDto> result = new ArrayList<>();
+        for (Team team : availableTeams) {
+            result.add(dtoMapper.mapTo(team, TeamDto.class));
+        }
+
+        return result;
     }
 
 }

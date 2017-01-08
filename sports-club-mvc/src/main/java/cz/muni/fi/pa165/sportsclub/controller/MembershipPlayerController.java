@@ -9,6 +9,7 @@ import cz.muni.fi.pa165.sportsclub.facade.TeamFacade;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,20 +39,11 @@ public class MembershipPlayerController {
     @RequestMapping(value="/refresh", method = RequestMethod.GET)
     public String getPlayers(@PathVariable("playerId") long playerId, Model model) {
         PlayerDto player = playerFacade.getPlayer(playerId);
-        Set<MembershipDto> memberships = player.getMemberships();
-        List<TeamDto> teams = teamFacade.getAllTeams();
-
-
-        for(TeamDto team : teams){
-            for(MembershipDto membership : memberships){
-                if((team.getMemberships()).contains(membership)){
-                    teams.remove(team);
-                }
-            }
-        }
+        List<MembershipDto> memberships = membershipFacade.getAllMembershipsForPlayer(playerId);
+        List<TeamDto> availableTeams = membershipFacade.getAllAvailableTeamsForPlayer(playerId);
 
         model.addAttribute("player", player);
-        model.addAttribute("teams", teams);
+        model.addAttribute("teams", availableTeams);
         model.addAttribute("memberships", memberships);
 
         return "/membership/assign";
@@ -71,8 +63,32 @@ public class MembershipPlayerController {
         UriComponentsBuilder uriBuilder){
 
         MembershipDto membershipDto = new MembershipDto();
-        membershipDto.setJerseyNumber(12);
-        membershipFacade.createAndAssignMembership(membershipDto, (long) membershipDto.getJerseyNumber(), playerId);
+        membershipFacade.createAndAssignMembership(membershipDto, id, playerId);
+
+        return "redirect:" + uriBuilder.path("/player/" + playerId + "/membership/refresh").toUriString();
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+    public String updateMembership(@PathVariable long id,
+        @PathVariable("playerId") long playerId, Model model){
+        MembershipDto membership = membershipFacade.findMembership(id);
+        if (membership == null) {
+            return "redirect:/refresh";
+        }
+        model.addAttribute("membership", membership);
+        model.addAttribute("teamId", playerId);
+        model.addAttribute("action", "/player/" + playerId + "/membership/update/" + id);
+        model.addAttribute("path", "/player/" + playerId + "/membership/refresh");
+        return "/membership/update";
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    public String updateMembership(@ModelAttribute("membership") MembershipDto membership,
+        @PathVariable("id") long id,
+        @PathVariable("playerId") long playerId,
+        UriComponentsBuilder uriBuilder) {
+
+        membershipFacade.updateMembership(membership, id);
 
         return "redirect:" + uriBuilder.path("/player/" + playerId + "/membership/refresh").toUriString();
     }

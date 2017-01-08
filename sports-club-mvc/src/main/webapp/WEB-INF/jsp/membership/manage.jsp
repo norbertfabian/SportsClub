@@ -5,8 +5,9 @@
   Time: 7:45 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
 <t:pagetemplate pageTitle="List of teams for managing">
@@ -29,6 +30,7 @@
             <th>Height</th>
             <th>Weight</th>
             <th>Date of birth</th>
+            <th>Jersey number</th>
         </tr>
                 <c:forEach items="${memberships}" var="membership">
                     <tr>
@@ -37,11 +39,14 @@
                         <td><c:out value="${membership.player.height}"/></td>
                         <td><c:out value="${membership.player.weight}"/></td>
                         <td><fmt:formatDate value="${membership.player.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
+                        <td><c:out value="${membership.jerseyNumber}"/></td>
                         <td>
                             <form data="get"
                                   action="${pageContext.request.contextPath}/team/${team.id}/membership/delete/${membership.id}">
                                 <t:delete-button></t:delete-button>
                             </form>
+                            <a href="${pageContext.request.contextPath}/team/${team.id}/membership/update/${membership.id}"
+                               class="btn btn-primary">Edit</a>
                         </td>
                     </tr>
                 </c:forEach>

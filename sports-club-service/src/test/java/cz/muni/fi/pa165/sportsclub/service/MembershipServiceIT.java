@@ -54,7 +54,7 @@ public class MembershipServiceIT extends AbstractTransactionalTestNGSpringContex
         membership.setJerseyNumber(99);
         Membership result = membershipService.updateMembership(membership);
         assertNotNull(result);
-        assertEquals(99 , membershipDao.findById(membership.getId()).getJerseyNumber());
+        assertTrue(99 == membershipDao.findById(membership.getId()).getJerseyNumber());
     }
 
     @Test

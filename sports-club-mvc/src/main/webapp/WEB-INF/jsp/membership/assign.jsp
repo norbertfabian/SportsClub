@@ -14,7 +14,7 @@
                 <th>Name</th>
                 <th>Age group</th>
                 <th>Team manager</th>
-                <th>Actions</th>
+                <th>Jersey number</th>
             </tr>
             </thead>
             <tbody>
@@ -23,11 +23,15 @@
                     <td class="vertical-align"><c:out value="${membership.team.name}"/></td>
                     <td class="vertical-align"><c:out value="${membership.team.ageGroupLabel}"/></td>
                     <td class="vertical-align"><c:out value="${membership.team.teamManager.name}"/></td>
+                    <td><c:out value="${membership.jerseyNumber}"/></td>
                     <td>
                         <form data="get"
                               action="${pageContext.request.contextPath}/player/${player.id}/membership/remove/${membership.id}">
                             <button type="submit" class="btn btn-primary">Remove from a team</button>
                         </form>
+                        <a href="${pageContext.request.contextPath}/player/${player.id}/membership/update/${membership.id}"
+                           class="btn btn-primary">Edit</a>
+                    </td>
                     </td>
                 </tr>
             </c:forEach>
@@ -42,7 +46,6 @@
             <th>Name</th>
             <th>Age group</th>
             <th>Team manager</th>
-            <th>Actions</th>
         </tr>
         </thead>
         <tbody>

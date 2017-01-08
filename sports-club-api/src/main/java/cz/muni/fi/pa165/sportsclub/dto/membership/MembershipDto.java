@@ -1,19 +1,18 @@
 package cz.muni.fi.pa165.sportsclub.dto.membership;
 
+import java.util.Objects;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 
 /**
  * @author Jakub Smolar
  */
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class MembershipDto {
 
     private long id;
@@ -27,7 +26,7 @@ public class MembershipDto {
 
     @Min(1)
     @Max(99)
-    private int jerseyNumber;
+    private Integer jerseyNumber;
 
     public Long getId() {
         return id;
@@ -41,27 +40,24 @@ public class MembershipDto {
         return team;
     }
 
-    public MembershipDto setTeam(TeamDto team) {
+    public void setTeam(TeamDto team) {
         this.team = team;
-        return this;
     }
 
     public PlayerDto getPlayer() {
         return player;
     }
 
-    public MembershipDto setPlayer(PlayerDto player) {
+    public void setPlayer(PlayerDto player) {
         this.player = player;
-        return this;
     }
 
-    public int getJerseyNumber() {
+    public Integer getJerseyNumber() {
         return jerseyNumber;
     }
 
-    public MembershipDto setJerseyNumber(int jerseyNumber) {
+    public void setJerseyNumber(Integer jerseyNumber) {
         this.jerseyNumber = jerseyNumber;
-        return this;
     }
 
     @Override
@@ -73,20 +69,22 @@ public class MembershipDto {
 
         MembershipDto that = (MembershipDto) o;
 
-        if (getJerseyNumber() != that.getJerseyNumber())
-            return false;
         if (!getTeam().equals(that.getTeam()))
             return false;
-        return getPlayer().equals(that.getPlayer());
+        if (!getPlayer().equals(that.getPlayer()))
+            return false;
+        return getJerseyNumber() != null ?
+            getJerseyNumber().equals(that.getJerseyNumber()) :
+            that.getJerseyNumber() == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
-        result = 31 * result + (getTeam() == null ? 0 : getTeam().hashCode());
-        result = 31 * result + (getPlayer() == null ? 0 : getPlayer().hashCode());
-        result = 31 * result + getJerseyNumber();
+        int result = 7;
+        result = 73 * result + Objects.hashCode(this.getPlayer());
+        result = 73 * result + Objects.hashCode(this.getTeam());
+        result = 73 * result + Objects.hashCode(this.getJerseyNumber());
         return result;
     }
 

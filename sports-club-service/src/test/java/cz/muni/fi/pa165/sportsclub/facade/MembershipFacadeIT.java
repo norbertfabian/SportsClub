@@ -65,22 +65,11 @@ public class MembershipFacadeIT extends AbstractTransactionalTestNGSpringContext
         MembershipDto found = membershipFacade.findMembership(getMembershipId(membership1));
         int sizeBefore = membershipFacade.findAllMemberships().size();
 
-        assertEquals(found.getJerseyNumber(), 13);
+        assertTrue(found.getJerseyNumber() == 13);
         found.setJerseyNumber(99);
         membershipFacade.updateMembership(found);
         assertEquals(sizeBefore, membershipFacade.findAllMemberships().size());
-        assertEquals(membershipFacade.findMembership(found.getId()).getJerseyNumber(), 99);
-    }
-
-    @Test
-    public void deleteMembershipIT() {
-        MembershipDto found = membershipFacade.findMembership(getMembershipId(membership1));
-        int sizeBefore = membershipFacade.findAllMemberships().size();
-
-        membershipFacade.deleteMembership(found);
-//        membershipService.removeMembership(found);
-        assertNull(membershipFacade.findMembership(2L));
-        assertEquals(membershipFacade.findAllMemberships().size(), sizeBefore - 1);
+        assertTrue(membershipFacade.findMembership(found.getId()).getJerseyNumber() == 99);
     }
 
     private long getTeamId(TeamDto team){

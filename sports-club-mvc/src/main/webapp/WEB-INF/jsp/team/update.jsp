@@ -13,9 +13,9 @@
 <t:pagetemplate pageTitle="List of teams">
     <jsp:attribute name="content">
         <form:form method="post" action="${pageContext.request.contextPath}/team/update/${team.id}"
-                   modelAttribute="team" cssClass="form-horizontal">
+                   modelAttribute="membership" cssClass="form-horizontal">
 
-            <h1>Update team</h1>
+            <h1>Update membership</h1>
             <table class="table vertical-align-table">
                 <tr>
                     <td>Name:</td>
