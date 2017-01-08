@@ -40,7 +40,7 @@
                         <td>
                             <form data="get"
                                   action="${pageContext.request.contextPath}/team/${team.id}/membership/delete/${membership.id}">
-                                <button type="submit" class="btn btn-primary">Delete</button>
+                                <t:delete-button></t:delete-button>
                             </form>
                         </td>
                     </tr>
