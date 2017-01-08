@@ -43,7 +43,7 @@ public class MembershipDaoImpl implements MembershipDao {
     }
 
     @Override
-    public Membership findById(Long id) {
+    public Membership findById(long id) {
         return em.find(Membership.class, id);
     }
 

@@ -23,8 +23,12 @@ public class EntityFactoryService {
 
     //TEAM factory methods
     public TeamDto createTeamDto() {
+        return createTeamDto("TestTeamDto");
+    }
+
+    public TeamDto createTeamDto(String name){
         TeamDto team = new TeamDto();
-        team.setName("TestTeamDto");
+        team.setName(name);
         team.setAgeGroupLabel(AgeGroup.JUNIOR.getLabel());
         return team;
     }
@@ -79,9 +83,13 @@ public class EntityFactoryService {
 
     //PLAYER factory methods
     public PlayerDto createPlayerDto() {
+        return createPlayerDto("TestPlayerDto", "LastName");
+    }
+
+    public PlayerDto createPlayerDto(String firstName, String lastName){
         PlayerDto player = new PlayerDto();
-        player.setFirstName("TestPlayerDto");
-        player.setLastName("LastName");
+        player.setFirstName(firstName);
+        player.setLastName(lastName);
         Calendar cal = Calendar.getInstance();
         cal.set(2000, 1, 1);
         player.setDateOfBirth(cal.getTime());
@@ -131,11 +139,12 @@ public class EntityFactoryService {
     }
 
     public Membership createPersistedMembership(String name, MembershipDao dao, TeamDao teamDao, PlayerDao playerDao) {
-        Membership membership = createMembership(name);
+        Membership membership = new Membership();
         Team team = createPersistedTeam("team" + name, teamDao);
         Player player = createPersistedPlayer("player" + name, playerDao);
         membership.setTeam(team);
         membership.setPlayer(player);
+        membership.setJerseyNumber(10);
         dao.create(membership);
         return membership;
     }
@@ -145,6 +154,14 @@ public class EntityFactoryService {
         membership.setTeam(createTeamDto());
         membership.setPlayer(createPlayerDto());
         membership.setJerseyNumber(10);
+        return membership;
+    }
+
+    public MembershipDto createMembershipDto(TeamDto team, PlayerDto player, int jersey){
+        MembershipDto membership = new MembershipDto();
+        membership.setTeam(team);
+        membership.setPlayer(player);
+        membership.setJerseyNumber(jersey);
         return membership;
     }
 }

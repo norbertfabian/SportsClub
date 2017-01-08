@@ -46,6 +46,6 @@ public interface MembershipDao {
      * @param id ID of Membership.
      * @return Membership with provided ID.
      */
-    Membership findById(Long id);
+    Membership findById(long id);
 
 }
