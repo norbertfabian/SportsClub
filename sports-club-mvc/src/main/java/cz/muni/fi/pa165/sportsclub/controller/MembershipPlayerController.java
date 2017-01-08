@@ -71,7 +71,8 @@ public class MembershipPlayerController {
         UriComponentsBuilder uriBuilder){
 
         MembershipDto membershipDto = new MembershipDto();
-        membershipFacade.createAndAssignMembership(membershipDto, id, playerId);
+        membershipDto.setJerseyNumber(12);
+        membershipFacade.createAndAssignMembership(membershipDto, (long) membershipDto.getJerseyNumber(), playerId);
 
         return "redirect:" + uriBuilder.path("/player/" + playerId + "/membership/refresh").toUriString();
     }

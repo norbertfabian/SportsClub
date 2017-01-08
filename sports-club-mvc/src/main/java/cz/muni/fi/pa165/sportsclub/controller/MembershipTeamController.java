@@ -50,9 +50,6 @@ public class MembershipTeamController {
             }
         }
 
-        model.addAttribute("memberships", memberships);
-        model.addAttribute("players", players);
-
         model.addAttribute("team", team);
         model.addAttribute("memberships", memberships);
         model.addAttribute("players", players);

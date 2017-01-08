@@ -75,8 +75,6 @@ public class Membership {
 
         Membership that = (Membership) o;
 
-        if (getId() != that.getId())
-            return false;
         if (getJerseyNumber() != that.getJerseyNumber())
             return false;
         if (getTeam() != null ? !getTeam().equals(that.getTeam()) : that.getTeam() != null)

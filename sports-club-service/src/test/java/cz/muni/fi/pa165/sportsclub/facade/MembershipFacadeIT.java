@@ -1,15 +1,18 @@
 package cz.muni.fi.pa165.sportsclub.facade;
 
+import static org.testng.Assert.*;
+
 import javax.inject.Inject;
 
 import cz.muni.fi.pa165.sportsclub.EntityFactoryService;
 import cz.muni.fi.pa165.sportsclub.SpringContextConfiguration;
-import cz.muni.fi.pa165.sportsclub.dao.MembershipDao;
 import cz.muni.fi.pa165.sportsclub.dto.membership.MembershipDto;
-import cz.muni.fi.pa165.sportsclub.entity.Membership;
-import cz.muni.fi.pa165.sportsclub.mapper.DtoMapper;
+import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
+import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
+import cz.muni.fi.pa165.sportsclub.service.MembershipService;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -22,50 +25,76 @@ public class MembershipFacadeIT extends AbstractTransactionalTestNGSpringContext
     private MembershipFacade membershipFacade;
 
     @Inject
-    private MembershipDao membershipDao;
+    private TeamFacade teamFacade;
 
     @Inject
-    private DtoMapper dtoMapper;
+    private PlayerFacade playerFacade;
+
+    @Inject
+    private MembershipService membershipService;
 
     private EntityFactoryService entityFactoryService = new EntityFactoryService();
 
-    private Membership membership;
+    private TeamDto team1;
 
-    private MembershipDto membershipDto;
+    private PlayerDto player1;
 
-//    @BeforeMethod
-//    public void setUp(){
-//        membershipDto = entityFactoryService.createMembershipDto();
-//        membershipFacade.createMembership(membershipDto);
-//    }
-//
-//    @Test
-//    public void createMembershipIT(){
-//        List<Membership> found = membershipDao.findAll();
-//        assertTrue(found.size() == 1);
-//        Membership membership = found.get(0);
-//        assertNotNull(membership.getId());
-//    }
+    private MembershipDto membership1;
 
-//    @Test
-//    public void update(){
-//        Membership persistedMembership = entityFactoryService.createPersistedMembership(membershipDao);
-//        MembershipDto updatedMembershipDto = dtoMapper.membershipToDto(membership);
-//        updatedMembershipDto.setJerseyNumber(99);
-//
-//        membershipFacade.updateMembership(updatedMembershipDto);
-//
-//        Membership updateResult = membershipDao.findById(membership.getId());
-//        assertEquals(updateResult.getJerseyNumber(), 99);
-//    }
+    @BeforeMethod
+    public void setUp(){
+        team1 = entityFactoryService.createTeamDto("team1Dto");
+        player1 = entityFactoryService.createPlayerDto("firstName1", "lastName1");
+        teamFacade.createTeam(team1);
+        playerFacade.createPlayer(player1);
+
+        membership1 = entityFactoryService.createMembershipDto(team1, player1, 13);
+
+        membershipFacade.createAndAssignMembership(membership1, getTeamId(team1), getPlayerId(player1));
+        membership1.setTeam(team1);
+        membership1.setPlayer(player1);
+    }
+
+    @Test
+    public void createMembershipIT(){
+        assertTrue(membershipFacade.findAllMemberships().contains(membership1));
+    }
+
+    @Test
+    public void updateMembershipIT(){
+        MembershipDto found = membershipFacade.findMembership(getMembershipId(membership1));
+        int sizeBefore = membershipFacade.findAllMemberships().size();
+
+        assertEquals(found.getJerseyNumber(), 13);
+        found.setJerseyNumber(99);
+        membershipFacade.updateMembership(found);
+        assertEquals(sizeBefore, membershipFacade.findAllMemberships().size());
+        assertEquals(membershipFacade.findMembership(found.getId()).getJerseyNumber(), 99);
+    }
 
     @Test
     public void deleteMembershipIT() {
-//        entityFactoryService.createPersistedMembership(membershipDao, 47L);
-//
-//        membershipFacade.deleteMembership(membershipFacade.findMembership(47L));
-//
-//        assertNull(membershipDao.findById(47L));
+        MembershipDto found = membershipFacade.findMembership(getMembershipId(membership1));
+        int sizeBefore = membershipFacade.findAllMemberships().size();
+
+        membershipFacade.deleteMembership(found);
+//        membershipService.removeMembership(found);
+        assertNull(membershipFacade.findMembership(2L));
+        assertEquals(membershipFacade.findAllMemberships().size(), sizeBefore - 1);
     }
 
+    private long getTeamId(TeamDto team){
+        int index = teamFacade.getAllTeams().indexOf(team);
+        return teamFacade.getAllTeams().get(index).getId();
+    }
+
+    private long getPlayerId(PlayerDto player){
+        int index = playerFacade.getAllPlayers().indexOf(player);
+        return playerFacade.getAllPlayers().get(index).getId();
+    }
+
+    private long getMembershipId(MembershipDto membership){
+        int index = membershipFacade.findAllMemberships().indexOf(membership);
+        return membershipFacade.findAllMemberships().get(index).getId();
+    }
 }

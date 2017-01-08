@@ -45,6 +45,13 @@ public interface MembershipFacade {
      */
     MembershipDto findMembership(long id);
 
+    /**
+     * Create a new membership with assigned team and player
+     *
+     * @param dto MembershipDto with the membership data
+     * @param teamId Id of assigned team
+     * @param playerId Id of assigned player
+     */
     void createAndAssignMembership(MembershipDto dto, long teamId, long playerId);
 
 }

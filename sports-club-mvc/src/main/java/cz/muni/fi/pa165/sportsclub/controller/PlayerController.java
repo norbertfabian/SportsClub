@@ -108,12 +108,12 @@ public class PlayerController {
 
     @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}/membership", method = RequestMethod.GET)
-    public String assignPlayer(@PathVariable("id") long id, Model model){
+    public String assignPlayer(@PathVariable("id") long id, Model model, UriComponentsBuilder uriBuilder){
         PlayerDto player = playerFacade.getPlayer(id);
         model.addAttribute("player", player);
         model.addAttribute("teams", teamFacade.getAllTeams());
         model.addAttribute("memberships", player.getMemberships());
 
-        return "/membership/assign";
+        return "redirect:" + uriBuilder.path("/player/" + id + "/membership/refresh").toUriString();
     }
 }

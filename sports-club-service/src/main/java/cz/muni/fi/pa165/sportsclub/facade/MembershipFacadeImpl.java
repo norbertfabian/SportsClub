@@ -71,8 +71,11 @@ public class MembershipFacadeImpl implements MembershipFacade {
 
     @Override
     public void createAndAssignMembership(MembershipDto dto, long teamId, long playerId) {
-        Membership membership = new Membership();
-        membership.setTeam(teamService.findById(teamId)).setPlayer(playerService.findById(playerId)).setJerseyNumber(1);
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + dto.getJerseyNumber() + "bbbbbbbbbbbbbbbbbbb" + teamId);
+        Membership membership = dtoMapper.dtoToMembership(dto);
+        membership.setTeam(teamService.findById(teamId)).setPlayer(playerService.findById(playerId)).setJerseyNumber(13);
+
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + dto.getJerseyNumber() + "bbbbbbbbbbbbbbbbbbb" + membership.getJerseyNumber());
 
         Team team = teamService.findById(teamId);
         Player player = playerService.findById(playerId);

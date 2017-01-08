@@ -5,12 +5,15 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import cz.muni.fi.pa165.sportsclub.dto.player.PlayerDto;
 import cz.muni.fi.pa165.sportsclub.dto.team.TeamDto;
 
 /**
  * @author Jakub Smolar
  */
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class MembershipDto {
 
     private long id;
@@ -38,24 +41,27 @@ public class MembershipDto {
         return team;
     }
 
-    public void setTeam(TeamDto team) {
+    public MembershipDto setTeam(TeamDto team) {
         this.team = team;
+        return this;
     }
 
     public PlayerDto getPlayer() {
         return player;
     }
 
-    public void setPlayer(PlayerDto player) {
+    public MembershipDto setPlayer(PlayerDto player) {
         this.player = player;
+        return this;
     }
 
     public int getJerseyNumber() {
         return jerseyNumber;
     }
 
-    public void setJerseyNumber(int jerseyNumber) {
+    public MembershipDto setJerseyNumber(int jerseyNumber) {
         this.jerseyNumber = jerseyNumber;
+        return this;
     }
 
     @Override
@@ -68,8 +74,6 @@ public class MembershipDto {
         MembershipDto that = (MembershipDto) o;
 
         if (getJerseyNumber() != that.getJerseyNumber())
-            return false;
-        if (!getId().equals(that.getId()))
             return false;
         if (!getTeam().equals(that.getTeam()))
             return false;
