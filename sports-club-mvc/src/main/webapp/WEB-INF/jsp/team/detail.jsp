@@ -60,6 +60,7 @@
                         <th>Height</th>
                         <th>Weight</th>
                         <th>Date of birth</th>
+                        <th>Jersey number</th>
                     </tr>
                     <c:forEach items="${memberships}" var="membership">
                         <tr>
@@ -68,6 +69,7 @@
                             <td><c:out value="${membership.player.height}"/></td>
                             <td><c:out value="${membership.player.weight}"/></td>
                             <td><fmt:formatDate value="${membership.player.dateOfBirth}" pattern="dd.MM.yyyy" /></td>
+                            <td><c:out value="${membership.jerseyNumber}"/></td>
                         </tr>
                     </c:forEach>
                 </table>
