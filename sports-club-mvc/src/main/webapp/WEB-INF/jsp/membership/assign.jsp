@@ -1,6 +1,7 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:pagetemplate pageTitle="List of teams for managing">
     <jsp:attribute name="content">
@@ -8,7 +9,7 @@
 
         <h2>Player is assign in teams</h2>
 
-        <table class="table">
+        <table class="table vertical-align-table">
             <thead>
             <tr>
                 <th>Name</th>
@@ -26,12 +27,12 @@
                     <td><c:out value="${membership.jerseyNumber}"/></td>
                     <td>
                         <form data="get"
-                              action="${pageContext.request.contextPath}/player/${player.id}/membership/remove/${membership.id}">
-                            <button type="submit" class="btn btn-primary">Remove from a team</button>
+                              action="${pageContext.request.contextPath}/player/${player.id}/membership/remove/${membership.id}"
+                              style="display: inline-block">
+                            <t:delete-button></t:delete-button>
                         </form>
                         <a href="${pageContext.request.contextPath}/player/${player.id}/membership/update/${membership.id}"
                            class="btn btn-primary">Edit</a>
-                    </td>
                     </td>
                 </tr>
             </c:forEach>
@@ -40,7 +41,7 @@
 
         <h2>All teams</h2>
 
-    <table class="table">
+    <table class="table vertical-align-table">
         <thead>
         <tr>
             <th>Name</th>

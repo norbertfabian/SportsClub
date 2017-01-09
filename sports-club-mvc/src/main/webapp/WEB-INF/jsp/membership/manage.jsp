@@ -5,25 +5,18 @@
   Time: 7:45 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <t:pagetemplate pageTitle="List of teams for managing">
     <jsp:attribute name="content">
 
-<html>
-<head>
-    <title>Manage players</title>
-</head>
-<body>
-
 <h2>Players in team</h2>
 
-</table>
-<table class="table" border="1">
-    <table class="table" border="1">
+
+    <table class="table vertical-align-table">
         <tr>
             <th>First name</th>
             <th>Last name</th>
@@ -41,23 +34,21 @@
                         <td><fmt:formatDate value="${membership.player.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
                         <td><c:out value="${membership.jerseyNumber}"/></td>
                         <td>
-                            <form data="get"
-                                  action="${pageContext.request.contextPath}/team/${team.id}/membership/delete/${membership.id}">
+                            <form data="get" action="${pageContext.request.contextPath}/team/${team.id}/membership/delete/${membership.id}"
+                                  style="display: inline-block">
                                 <t:delete-button></t:delete-button>
                             </form>
+
                             <a href="${pageContext.request.contextPath}/team/${team.id}/membership/update/${membership.id}"
                                class="btn btn-primary">Edit</a>
                         </td>
                     </tr>
                 </c:forEach>
     </table>
-</table>
 
 <h2>All players</h2>
 
-</table>
-<table class="table" border="1">
-    <table class="table" border="1">
+    <table class="table vertical-align-table">
         <tr>
             <th>First name</th>
             <th>Last name</th>
@@ -81,9 +72,6 @@
                     </tr>
                 </c:forEach>
     </table>
-</table>
 
-</body>
-</html>
 </jsp:attribute>
 </t:pagetemplate>
