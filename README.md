@@ -30,6 +30,16 @@ For example, in this case, that would be:
 ```
 http://localhost:8080/pa165/
 ```
+To log in to example app, use credentials:
+
+__Admin__  
+username: `admin`  
+password: `admin`
+
+__User__  
+username: `user`  
+password: `user`
+
 --------------------------------
 
 ## <a name="description"></a>2. Description
