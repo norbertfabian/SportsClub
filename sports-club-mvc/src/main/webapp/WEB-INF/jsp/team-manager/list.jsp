@@ -5,14 +5,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <t:pagetemplate pageTitle="List of team managers">
     <jsp:attribute name="content">
-        
-    <a href="${pageContext.request.contextPath}/team-manager/create" class="btn btn-primary">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Create Team Manager
-    </a>
+    
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="${pageContext.request.contextPath}/team-manager/create" class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Create Team Manager
+        </a>
+    </sec:authorize>
 
     <table class="table vertical-align-table">
         <thead>
@@ -33,11 +36,17 @@
     
                     <!-- actions to perform -->
                     <td>
-                        <a href="/pa165/team-manager/${teamManager.id}" class="btn btn-primary">Detail</a>
-                        <a href="${pageContext.request.contextPath}/team-manager/update/${teamManager.id}" class="btn btn-primary">Edit</a>
-                        <form data="get" action="${pageContext.request.contextPath}/team-manager/delete/${teamManager.id}" style="display: inline-block">
-                            <t:delete-button></t:delete-button>
-                        </form>
+                        <t:detail-button link="${pageContext.request.contextPath}/team-manager/${teamManager.id}"></t:detail-button>
+                        
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <a href="${pageContext.request.contextPath}/team-manager/update/${teamManager.id}" class="btn btn-primary">Edit</a>
+                        </sec:authorize>
+                        
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <form data="get" action="${pageContext.request.contextPath}/team-manager/delete/${teamManager.id}" style="display: inline-block">
+                                <t:delete-button></t:delete-button>
+                            </form>
+                        </sec:authorize>
                     </td>
                     
                 </tr>

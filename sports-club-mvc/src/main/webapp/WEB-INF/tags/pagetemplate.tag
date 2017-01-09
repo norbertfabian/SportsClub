@@ -27,7 +27,7 @@
         <style>
             body {
                 padding-top: 70px;
-                padding-bottom: 20px;
+                padding-bottom: 40px;
             }
         </style>
 
@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="pull-right">
                     <sec:authorize access="isAuthenticated()">
-                        You are logged in as <b><sec:authentication property="principal.username" /></b>
+                        <p style="margin: 0 10px 0 0">You are logged in as <b><sec:authentication property="principal.username" /></b></p>
                     </sec:authorize>
                 </div>
             </div>
@@ -105,6 +105,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
         <script src="${pageContext.request.contextPath}/web/js/vendor/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/3374d8c062.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.8/validator.js"></script>
         <script src="${pageContext.request.contextPath}/web/js/main.js"></script>      
     </body>

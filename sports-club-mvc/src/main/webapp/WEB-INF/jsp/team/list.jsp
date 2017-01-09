@@ -29,10 +29,10 @@
                     <td class="vertical-align"><c:out value="${team.ageGroupLabel}"/></td>
                     <td class="vertical-align"><c:out value="${team.teamManager.name}"/></td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/team/${team.id}" class="btn btn-primary">Detail</a>
+                        <t:detail-button link="${pageContext.request.contextPath}/team/${team.id}"></t:detail-button>
 
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
-                            <a href="${pageContext.request.contextPath}/team/update/${team.id}" class="btn btn-primary">Edit</a>
+                            <t:edit-button link="${pageContext.request.contextPath}/team/update/${team.id}"></t:edit-button>
                             <form data="get" action="${pageContext.request.contextPath}/team/delete/${team.id}" style="display: inline-block">
                                 <t:delete-button></t:delete-button>
                             </form>

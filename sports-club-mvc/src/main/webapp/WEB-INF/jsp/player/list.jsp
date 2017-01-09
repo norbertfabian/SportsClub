@@ -9,13 +9,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <t:pagetemplate pageTitle="List of players">
     <jsp:attribute name="content">
-    <a href="${pageContext.request.contextPath}/player/create" class="btn btn-primary">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Create Player
-    </a>
+    
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="${pageContext.request.contextPath}/player/create" class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Create Player
+        </a>
+    </sec:authorize>
 
     <table class="table vertical-align-table">
         <thead>
@@ -37,18 +41,20 @@
                     <td><c:out value="${player.weight}"/></td>
                     <td><fmt:formatDate value="${player.dateOfBirth}" pattern="dd.MM.yyyy" /></td>
                     <td>
-                        <a href="/pa165/player/${player.id}" class="btn btn-primary">Detail</a>
+                        <t:detail-button link="${pageContext.request.contextPath}/player/${player.id}"></t:detail-button>
 
-                        <a href="${pageContext.request.contextPath}/player/update/${player.id}" class="btn btn-primary">Edit</a>
-
-                        <form data="get" action="${pageContext.request.contextPath}/player/delete/${player.id}" style="display: inline-block">
-                            <!--<button type="submit" class="btn btn-primary">Delete</button>-->
-                            <t:delete-button></t:delete-button>
-                        </form>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <t:edit-button link="${pageContext.request.contextPath}/player/update/${player.id}"></t:edit-button>
+                            <form data="get" action="${pageContext.request.contextPath}/player/delete/${player.id}" style="display: inline-block">
+                                <t:delete-button></t:delete-button>
+                            </form>
+                        </sec:authorize>
                     <td>
-                        <form data="get" action="${pageContext.request.contextPath}/player/${player.id}/membership">
-                            <button type="submit" class="btn btn-primary">Assign player</button>
-                        </form>
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <form data="get" action="${pageContext.request.contextPath}/player/${player.id}/membership">
+                                <button type="submit" class="btn btn-primary">Assign player</button>
+                            </form>
+                        </sec:authorize>
                     </td>
                     </td>
                 </tr>
