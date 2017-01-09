@@ -29,28 +29,28 @@ public class TeamManagerController {
     @Inject
     TeamFacade teamFacade;
 
-    @Secured("ROLEA_ADMIN")
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createTeamManager(Model model) {
         model.addAttribute("teamManager", new TeamManagerDto());
         return "team-manager/create";
     }
 
-    @Secured("ROLEA_ADMIN")
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createTeamManager(@ModelAttribute("teamManager") TeamManagerDto tm, UriComponentsBuilder uriBuilder) {
         tmFacade.createTeamManager(tm);
         return "redirect:" + uriBuilder.path("/team-manager").toUriString();
     }
 
-    @Secured("ROLEA_ADMIN")
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteTeamManager(@PathVariable long id, UriComponentsBuilder uriBuilder) {
         tmFacade.deleteTeamManager(id);
         return "redirect:" + uriBuilder.path("/team-manager").toUriString();
     }
 
-    @Secured("ROLEA_ADMIN")
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
     public String updateTeamManager(@PathVariable long id, Model model) {
         TeamManagerDto tm = tmFacade.getTeamManager(id);
@@ -60,7 +60,7 @@ public class TeamManagerController {
         return "team-manager/update";
     }
 
-    @Secured("ROLEA_ADMIN")
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public String updateTeamManager(@ModelAttribute("teamManager") TeamManagerDto tm, @PathVariable("id") long id, Model model, UriComponentsBuilder uriBuilder) {
         tm.setId(id);
