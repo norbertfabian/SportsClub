@@ -27,7 +27,7 @@
         <style>
             body {
                 padding-top: 70px;
-                padding-bottom: 20px;
+                padding-bottom: 40px;
             }
         </style>
 
@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="pull-right">
                     <sec:authorize access="isAuthenticated()">
-                        You are logged in as <b><sec:authentication property="principal.username" /></b>
+                        <p style="margin: 0 10px 0 0">You are logged in as <b><sec:authentication property="principal.username" /></b></p>
                     </sec:authorize>
                 </div>
             </div>

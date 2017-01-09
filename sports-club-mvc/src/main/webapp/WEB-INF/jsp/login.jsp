@@ -37,7 +37,7 @@
         
         <sec:authorize access="isAnonymous()">
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 login-container">
                     <c:url var="loginUrl" value="/login" />
                     <form action="${loginUrl}" method="post" class="form-horizontal">
 
