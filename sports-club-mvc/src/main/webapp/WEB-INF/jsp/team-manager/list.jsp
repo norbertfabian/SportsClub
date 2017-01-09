@@ -36,7 +36,7 @@
                         <a href="/pa165/team-manager/${teamManager.id}" class="btn btn-primary">Detail</a>
                         <a href="${pageContext.request.contextPath}/team-manager/update/${teamManager.id}" class="btn btn-primary">Edit</a>
                         <form data="get" action="${pageContext.request.contextPath}/team-manager/delete/${teamManager.id}" style="display: inline-block">
-                            <button type="submit" class="btn btn-primary">Delete</button>
+                            <t:delete-button></t:delete-button>
                         </form>
                     </td>
                     
