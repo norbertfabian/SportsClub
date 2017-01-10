@@ -13,7 +13,6 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Age group</th>
                 <th>Team manager</th>
                 <th>Jersey number</th>
             </tr>
@@ -22,7 +21,6 @@
             <c:forEach items="${memberships}" var="membership">
                 <tr>
                     <td class="vertical-align"><c:out value="${membership.team.name}"/></td>
-                    <td class="vertical-align"><c:out value="${membership.team.ageGroupLabel}"/></td>
                     <td class="vertical-align"><c:out value="${membership.team.teamManager.name}"/></td>
                     <td><c:out value="${membership.jerseyNumber}"/></td>
                     <td>
@@ -45,7 +43,6 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Age group</th>
             <th>Team manager</th>
         </tr>
         </thead>
@@ -53,7 +50,6 @@
         <c:forEach items="${teams}" var="team">
                 <tr>
                     <td class="vertical-align"><c:out value="${team.name}"/></td>
-                    <td class="vertical-align"><c:out value="${team.ageGroupLabel}"/></td>
                     <td class="vertical-align"><c:out value="${team.teamManager.name}"/></td>
                     <td>
                         <form data="get"
